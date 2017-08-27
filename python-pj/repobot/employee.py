@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-class EmployCommit(object):
+class EmployCommit:
 
 	def __init__(self, name, commits_tot = 0, commits = []):
 		self.name = name
@@ -25,7 +25,7 @@ class EmployCommit(object):
 
 	def write_2_md(self):
 		file_name = self.name + '-commit-list.md'
-		f = open(filename,'w')
+		f = open(file_name,'w')
 		print("# ", self.name,"\'s commit weekly report\n", file = f)
 		print("## ", self.name,"There are", self.commits_tot," commits in last week \n", file = f)
 		index = 1

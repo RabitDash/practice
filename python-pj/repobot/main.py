@@ -24,11 +24,11 @@ commites = repo_obj.get_commits(sha = branch_name,
 for commit in commites:
 	author_name = commit.author.name
 	commit_dic = {
-		"author": commit.author.name,
-		"sha": commit.sha,
-		"time": commit.last_modified,
-		"url": commit.html_url,
-		"message": commit.commit.message
+		"author":  commit.author.name,
+		"sha":     commit.sha,
+		"time":    commit.last_modified,
+		"url":     commit.html_url,
+		"message": commit.commit.message,
 	}
 
 	if author_name in contributions:
@@ -36,9 +36,9 @@ for commit in commites:
 		contributions[author_name].add_commit(commit_dic)
 
 	else:
-		contributions[author_name].EmployCommit(name = author_name,
-												commits_tot = 1,
-												commits = [commit_dic])
+		contributions[author_name] = EmployCommit(name = author_name,
+		commits_tot = 1,
+		commits = [commit_dic])
 
 for key in contributions:
 	contributions[key].show_commit_tot()
