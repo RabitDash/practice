@@ -10,13 +10,13 @@ while [ "$a" -le "$LIMIT" ]
 do
 	a=$(($a+1))
 
-	if [ "$a" -gt 2 ]
+	if [ "$a" -eq 3 ] || [ "$a" -eq 11 ]
 	then
-		break
+		continue
 	fi
 
 	echo -n "$a "
 done
-echo;echo;echo
-
+echo;echo;
+echo Printing Numbers 1 through 20, but something happens after 2.
 exit 0
