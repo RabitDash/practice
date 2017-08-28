@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: py2048
+Version: 0.1
+Summary: A console 2048 game
+Home-page: UNKNOWN
+Author: ekCit
+Author-email: UNKNOWN
+License: GPL
+Description: A console 2048 game,run in python3
+Platform: Linux

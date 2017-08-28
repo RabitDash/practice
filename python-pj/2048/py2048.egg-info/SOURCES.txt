@@ -1,0 +1,7 @@
+2048.py
+MANIFEST.in
+setup.py
+py2048.egg-info/PKG-INFO
+py2048.egg-info/SOURCES.txt
+py2048.egg-info/dependency_links.txt
+py2048.egg-info/top_level.txt
