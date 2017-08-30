@@ -22,7 +22,7 @@ def main():
 		if li_num > page_num:
 			page_num = li_num
 
-	for i in range(1, page_num + 1)
+        for i in range(1, page_num + 1):
 		print(course_link.format(i))
 
 if __name__ == "__main__":

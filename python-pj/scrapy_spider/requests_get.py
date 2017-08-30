@@ -52,4 +52,3 @@ def main():
 		get_course_link(course_link.format(i))
 if __name__ == "__main__":
 	main()
-	print("{}    peoples:{}    {}   course link:{}\n".format(tag, study_people, title, host_url.format(href) ))
