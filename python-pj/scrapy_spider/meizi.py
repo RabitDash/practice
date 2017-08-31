@@ -11,24 +11,24 @@ def getContent(url):
 
 def getPageNum(soup):
     maxi = 0
-    lista = soup.find_all('a',{'class':'page-numbers'})
+    lista = soup.find_all('a', {'class': 'page-numbers'})
     # print(lista)
     for i in lista:
         if i.get_text() is not '':
             tmp = int(i.get_text())
             maxi = max(tmp, maxi)
-    #print("page_num={}".format(maxi))
+    # print("page_num={}".format(maxi))
     return maxi # int
 
 def getImage(soup):
-    src = soup.find_all('div',{'class':'comment-body'})
+    src = soup.find_all('div', {'class': 'comment-body'})
     for i in src:
-        f.write(i.find('img').get('src'))
+        f.write(i.find('img').get('src')+'\n')
     return None # list
 
 page_num = getPageNum(getContent(courl.format(1)))
-f = open('log','a')
-for i in range(1,page_num + 1):
+f = open('log', 'a')
+for i in range(1, page_num + 1):
     soup = getContent(courl.format(i))
     getImage(soup)
     time.sleep(0.35)
