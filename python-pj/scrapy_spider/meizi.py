@@ -23,13 +23,15 @@ def getPageNum(soup):
 def getImage(soup):
     src = soup.find_all('div',{'class':'comment-body'})
     for i in src:
-        print(i.find('img').get('src'))
+        f.write(i.find('img').get('src'))
     return None # list
 
 page_num = getPageNum(getContent(courl.format(1)))
+f = open('log','a')
 for i in range(1,page_num + 1):
     soup = getContent(courl.format(i))
     getImage(soup)
     time.sleep(0.35)
 
-#print("total number:{}".format(page_num))
+print("total number:{}".format(page_num))
+f.close()
