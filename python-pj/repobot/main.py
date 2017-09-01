@@ -16,32 +16,41 @@ repo_obj = github_obj.get_user().get_repo(repo_name)
 print('In', repo_obj.name, ',we need to choose a branch: ')
 branch_name = input("branch: ")
 
-commites = repo_obj.get_commits(sha = branch_name,
-				since = datetime.datetime.now() - datetime.timedelta(days = 7),
-				until = datetime.datetime.now()
-				)
+commites = repo_obj.get_commits(sha=branch_name,
+                                since=datetime.datetime.now() - datetime.timedelta(days=7),
+                                until=datetime.datetime.now()
+                                )
 
 for commit in commites:
-	author_name = commit.author.name
-	commit_dic = {
-		"author":  commit.author.name,
-		"sha":     commit.sha,
-		"time":    commit.last_modified,
-		"url":     commit.html_url,
-		"message": commit.commit.message,
-	}
+    if commit.author is not None:
+        author_name = commit.author.name
+        commit_dic = {
+            "author": commit.author.name,
+            "sha": commit.sha,
+            "time": commit.last_modified,
+            "url": commit.html_url,
+            "message": commit.commit.message,
+        }
+    else:
+        author_name = "None"
+        commit_dic = {
+            "author": "None",
+            "sha": commit.sha,
+            "time": commit.last_modified,
+            "url": commit.html_url,
+            "message": commit.commit.message,
+        }
+    if author_name in contributions:
+        contributions[author_name].add_commits_tot()
+        contributions[author_name].add_commit(commit_dic)
 
-	if author_name in contributions:
-		contributions[author_name].add_commits_tot()
-		contributions[author_name].add_commit(commit_dic)
-
-	else:
-		contributions[author_name] = EmployCommit(name = author_name,
-		commits_tot = 1,
-		commits = [commit_dic])
+    else:
+        contributions[author_name] = EmployCommit(name=author_name,
+                                                  commits_tot=1,
+                                                  commits=[commit_dic])
 
 for key in contributions:
-	contributions[key].show_commit_tot()
-	contributions[key].write_2_md()
+    contributions[key].show_commit_tot()
+    contributions[key].write_2_md()
 
 print("\n")
