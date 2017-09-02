@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from github import Github
 import datetime
 from employee import EmployCommit
