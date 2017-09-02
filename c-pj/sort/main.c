@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "sort.h"
-
 int main(int argv,char* argc)
 {
 	int a[] = {1, 3, 6, 4, 8, 9, 2, 5, 7};
