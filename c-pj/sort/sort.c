@@ -1,10 +1,18 @@
 #include <stdio.h>
-
-int main(){
-	int a[] = {3,5,4,6,1,2,9,7,8};
-	sort(a);
-	int i;
-	for(i = 0;i < 9;i++){
-		printf("%d ",a[i]);
+int* bubble_sort(int* a,int len)
+{
+	printf("%d",len);
+	int i,j;
+	for(i = 0;i < len; i++){
+		for(j = i + 1;j < len;j++){
+			if(a[i] > a[j])
+			{
+				int tmp = a[i];
+				a[i] = a[j];
+				a[j] = tmp;
+			}//swap a[i],a[j]
+		}
 	}
+	return a;
 }
+
