@@ -25,7 +25,7 @@ class EmployCommit:
 
 	def write_2_md(self):
 		file_name = self.name + '-commit-list.md'
-		f = open('../../weekly_report' + file_name,'w')
+		f = open('../../practice/weekly_report' + file_name,'w')
 		print("# ", self.name,"\'s commit weekly report\n", file = f)
 		print("## ", self.name,"There are", self.commits_tot," commits in last week \n", file = f)
 		index = 1
