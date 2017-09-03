@@ -21,7 +21,7 @@ int* insert_sort(int* a, int len)
 		key = a[j];
 		//Insert a[j] into the sorted sequence a[i..j-1]
 		i = j - 1;
-		while( i > 0 && a[i] > key)
+		while( i >= 0 && a[i] < key)
 		{
 			a[i + 1] = a[i];
 			i--;
