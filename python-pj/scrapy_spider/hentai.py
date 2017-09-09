@@ -16,10 +16,13 @@ def getImage(soup):
     name = soup.find_all('div', {'class': 'it2'})
     print(src,name)
     for (i, j) in zip(src, name):
-        f.write("name: "+i.find('a').get_text()) # get name
-        f.write("title_pic link: "+j.find('img').get('src')) # get title_pic link
-        f.write("manga link: "+i.find('a').get('href')) # get manga link
-        f.write("\n")
+        if (j.find('img') is None) | (i is None):
+            continue
+        else:
+            f.write("name: "+i.find('a').get_text()) # get name
+            f.write("title_pic link: "+j.find('img').get('src')) # get title_pic link
+            f.write("manga link: "+i.find('a').get('href')) # get manga link
+            f.write("\n")
     return None
 
 page_num = 14333
