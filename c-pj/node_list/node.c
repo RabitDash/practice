@@ -1,13 +1,28 @@
 #include <stdlib.h>
-struct node{
+typedef struct node{
 	int data;
 	struct node *next;
-};
-struct node *init()
+} NODE;
+NODE* init()
 {
-	struct node *a;
-	a = (struct node*) malloc(sizeof(struct node));
-	a->data = 1231;
-	a->next = NULL;
-	return a;
+	NODE *head;
+	head = (NODE*) malloc(sizeof(NODE));
+	head->data = 1231;
+	head->next = NULL;
+	return head;
 }
+
+NODE* append(NODE* head, data)
+{
+	NODE* append;
+	NODE* now;
+	now = head;
+	while(now->next != NULL)
+	{
+		now->next = now->next->next;
+	}
+	append = (NODE*) malloc(sizeof(NODE));
+	append->data = data;
+	now->next = append;
+	return head;
+}	
