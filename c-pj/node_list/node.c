@@ -12,7 +12,7 @@ NODE* init()
 	return head;
 }
 
-NODE* append(NODE* head, data)
+NODE* append(NODE* head, int data)
 {
 	NODE* append;
 	NODE* now;
@@ -24,5 +24,5 @@ NODE* append(NODE* head, data)
 	append = (NODE*) malloc(sizeof(NODE));
 	append->data = data;
 	now->next = append;
-	return head;
+	return append;
 }	
