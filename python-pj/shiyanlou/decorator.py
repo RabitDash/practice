@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 
-class fuck:
 
-	def __init__(self, cls):
-		pass
+def as_we_can(func):
+    print(func.__name__)
 
-	def __call__(self):
-		print("fuck!")
+@as_we_can
+def fuck():
+    print("oh_yeah")
 
-@fuck
-def fxxk():
-	s1 = fuck()
-
-fxxk()
+fuck()
