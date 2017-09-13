@@ -15,6 +15,6 @@ int main()
     c = test;
     int s;
     s = a(32);
-    std::cout<<"a:"<<a<<endl<<"b:"<<b<<"c:"<<c<<endl<<"s:"<<s;
+    std::cout<<"a:"<<a<<endl<<"b:"<<b<<endl<<"c:"<<c<<endl<<"s:"<<s;
     return 0;
 }
