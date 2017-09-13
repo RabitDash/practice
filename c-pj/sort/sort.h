@@ -2,3 +2,4 @@
 int* bubble_sort(int* ARRAY, int LENGTH);
 int* insert_sort(int* ARRAY, int LENGTH);
 int* swap_sort(int* ARRAY, int LENGTH);
+int* hip_sort(int* ARRAY, int LENGTH);

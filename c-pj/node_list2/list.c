@@ -1,6 +1,12 @@
-#include "list.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+typedef struct
+{
+	Elemtype *elem;
+	int length;
+	int size;
+}SqList;
 
 Status InitList(SqList *L)
 {
