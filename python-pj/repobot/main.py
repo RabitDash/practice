@@ -2,9 +2,12 @@
 from github import Github
 import datetime
 from employee import EmployCommit
-
-input_username = input("Github username: ")
-input_password = input("password: ")
+import sys
+# input_username = input("Github username: ")
+# input_password = input("password: ")
+# 接受命令行参数
+input_username = sys.argv[1] 
+input_password = sys.argv[2]
 
 github_obj = Github(input_username, input_password)
 
