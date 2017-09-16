@@ -1,115 +1,39 @@
 #  rabitdash 's commit weekly report
 
-<<<<<<< HEAD
-##  rabitdash There are 26  commits in last week 
+##  rabitdash There are 17  commits in last week 
 
-1. [update](https://github.com/rabitdash/practice/commit/b1e05e03753736d334da2a152c38ff3050f73f25) - Sat, 02 Sep 2017 08:36:37 GMT 
+1. [update](https://github.com/rabitdash/practice/commit/4571fd77b025a254796ffb020d59bc3fd6d5604a) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-2. [update](https://github.com/rabitdash/practice/commit/04904db5d8fe34a93e38788d7eba5feb4a69656b) - Sat, 02 Sep 2017 08:36:37 GMT 
+2. [update](https://github.com/rabitdash/practice/commit/7a0a1991f804e39fda2460d20484eb0324075fdd) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-3. [update](https://github.com/rabitdash/practice/commit/ffd1ca89623b34f703676a6239d48676d2b9cb78) - Sat, 02 Sep 2017 08:36:37 GMT 
+3. [update](https://github.com/rabitdash/practice/commit/7a08bb4f4188b76ffa8dc486d098c6f94d59b74e) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-4. [update](https://github.com/rabitdash/practice/commit/b1c4e964c35274dcd0e04508928498c4230904e1) - Sat, 02 Sep 2017 08:36:37 GMT 
+4. [update](https://github.com/rabitdash/practice/commit/0b7ffd3b0ec248fb5b44542e654f28a1bc1f0d00) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-5. [update](https://github.com/rabitdash/practice/commit/4650754591e1b79dc17424cb3abc1bb79dfd3cd4) - Sat, 02 Sep 2017 08:36:37 GMT 
+5. [update](https://github.com/rabitdash/practice/commit/863751a4845e507168f17b4868a6d174375f13bd) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-6. [update](https://github.com/rabitdash/practice/commit/7ad2c80a139ebd5e88864018b20e560860bb5475) - Sat, 02 Sep 2017 08:36:37 GMT 
+6. [update](https://github.com/rabitdash/practice/commit/d2f3f329425bd3243519b1de829d41caa15c2771) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-7. [Merge branch 'master' of github.com:rabitdash/practice](https://github.com/rabitdash/practice/commit/ed9ccba109d02d72094526a500c8c3d93f26f2dc) - Sat, 02 Sep 2017 08:36:37 GMT 
+7. [用C语言实现了一个简陋的map函数](https://github.com/rabitdash/practice/commit/e4035691c759572856418bc79df193df5d5e898f) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-8. [update](https://github.com/rabitdash/practice/commit/514498d60da324d584fd05a88d721df9bd692d66) - Sat, 02 Sep 2017 08:36:37 GMT 
+8. [add 6.c 7.c 8.c](https://github.com/rabitdash/practice/commit/19baa2c8e867dc7188f0ae7c65d32da02aca6737) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-9. [update](https://github.com/rabitdash/practice/commit/83130212f502bb14a7c9e74303fbed017b485ff5) - Sat, 02 Sep 2017 08:36:37 GMT 
+9. [update](https://github.com/rabitdash/practice/commit/dce0be4e1f73b5795ffe82d84347eada05888b9d) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-10. [update](https://github.com/rabitdash/practice/commit/2e1e40a38dfa230d2f933326c4822671397388c1) - Sat, 02 Sep 2017 08:36:37 GMT 
+10. [update](https://github.com/rabitdash/practice/commit/61c41859714d5ba2f6af7d3a138a1345fd6b0c89) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-11. [support output to file](https://github.com/rabitdash/practice/commit/cf1b91e3edbdd8767a45144169bd836182d86024) - Sat, 02 Sep 2017 08:36:37 GMT 
+11. [update](https://github.com/rabitdash/practice/commit/991361cd5165609fab9fa8eebbf3481c7819189a) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-12. [add meizi.py](https://github.com/rabitdash/practice/commit/0ea4d8e6d358afa581dfe38598c92e63f4daec66) - Sat, 02 Sep 2017 08:36:37 GMT 
+12. [Merge branch 'master' of github.com:rabitdash/practice](https://github.com/rabitdash/practice/commit/4a2c331aa8253d92575cd12b912ebeac8e1cc725) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-13. [update](https://github.com/rabitdash/practice/commit/993619dc481dc4d1031f4a5a8e9aa748eade89e7) - Sat, 02 Sep 2017 08:36:37 GMT 
+13. [fuck](https://github.com/rabitdash/practice/commit/a56e3c3999616915427a91bde484abdc069a24f8) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-14. [update](https://github.com/rabitdash/practice/commit/c9e4ca8cb6916a221e6a6dd35afe65f926dd7d9d) - Sat, 02 Sep 2017 08:36:37 GMT 
+14. [update](https://github.com/rabitdash/practice/commit/511b1ad1c7613c17523b1c5e5bf8bc2aff289220) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-15. [update](https://github.com/rabitdash/practice/commit/344fa65a1b69671aff4c57732aad797374835886) - Sat, 02 Sep 2017 08:36:37 GMT 
+15. [update node.c](https://github.com/rabitdash/practice/commit/e2532b75a25bde84f2083c9fb76eb578a517a303) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-16. [update](https://github.com/rabitdash/practice/commit/57f99bc47535e69897d274b712c58df73ca410c3) - Sat, 02 Sep 2017 08:36:37 GMT 
+16. [update](https://github.com/rabitdash/practice/commit/a5fbf80c3523ea77935b85a7466559db4725337e) - Sat, 16 Sep 2017 09:51:58 GMT 
 
-17. [Merge branch 'master' of https://github.com/rabitdash/practice](https://github.com/rabitdash/practice/commit/54d8a70787307f2fd53b13c7b38dce1bc5dd11d1) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-18. [update](https://github.com/rabitdash/practice/commit/092895c4c163d0a6b60c5eb287a55b219babf93c) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-19. [Merge branch 'master' of github.com:rabitdash/practice](https://github.com/rabitdash/practice/commit/19c8a1831a5760a23a1c5028e741d1e99fbac23f) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-20. [update](https://github.com/rabitdash/practice/commit/0bf6c3bf4b5789450425fdefcdc6f6703df80f90) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-21. [add main.cpp](https://github.com/rabitdash/practice/commit/bbd171eba030779e63e1bee10c23c8475ed8502d) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-22. [Merge branch 'master' of github.com:RabitDash/practice](https://github.com/rabitdash/practice/commit/3fcf8163550528888f4dc3c49b4d0a55a154ab05) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-23. [add project 2048](https://github.com/rabitdash/practice/commit/4b2654ce458cebaa76ce6deb17497d883d5cf363) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-24. [Merge branch 'master' of github.com:RabitDash/practice](https://github.com/rabitdash/practice/commit/f9ddafac0515dbf2c92ea552e61038ad8dc73747) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-25. [Fixed one bug](https://github.com/rabitdash/practice/commit/9baa0d4cf2989fe50a499e0d5c52d66b543ceaa1) - Sat, 02 Sep 2017 08:36:37 GMT 
-
-26. [Fixed one bug](https://github.com/rabitdash/practice/commit/8c7b103be3c276ad9efdb4a6c900b70fbf5422c5) - Sat, 02 Sep 2017 08:36:37 GMT 
-=======
-##  rabitdash There are 27  commits in last week 
-
-1. [update](https://github.com/rabitdash/practice/commit/235f4f66bdc48b3b7b3dc6c456877f2e5eea77a9) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-2. [update](https://github.com/rabitdash/practice/commit/35e9b1234df61a9e423acfbe07153fb39373a939) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-3. [update](https://github.com/rabitdash/practice/commit/51691f341a5b1d67e4cbc215e425db2d99ac4144) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-4. [update](https://github.com/rabitdash/practice/commit/ec235433a94546c2464ed5d62e5e5f827f0e53de) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-5. [update](https://github.com/rabitdash/practice/commit/b1e05e03753736d334da2a152c38ff3050f73f25) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-6. [update](https://github.com/rabitdash/practice/commit/04904db5d8fe34a93e38788d7eba5feb4a69656b) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-7. [update](https://github.com/rabitdash/practice/commit/ffd1ca89623b34f703676a6239d48676d2b9cb78) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-8. [update](https://github.com/rabitdash/practice/commit/b1c4e964c35274dcd0e04508928498c4230904e1) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-9. [update](https://github.com/rabitdash/practice/commit/4650754591e1b79dc17424cb3abc1bb79dfd3cd4) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-10. [update](https://github.com/rabitdash/practice/commit/7ad2c80a139ebd5e88864018b20e560860bb5475) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-11. [Merge branch 'master' of github.com:rabitdash/practice](https://github.com/rabitdash/practice/commit/ed9ccba109d02d72094526a500c8c3d93f26f2dc) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-12. [update](https://github.com/rabitdash/practice/commit/514498d60da324d584fd05a88d721df9bd692d66) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-13. [update](https://github.com/rabitdash/practice/commit/83130212f502bb14a7c9e74303fbed017b485ff5) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-14. [update](https://github.com/rabitdash/practice/commit/2e1e40a38dfa230d2f933326c4822671397388c1) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-15. [support output to file](https://github.com/rabitdash/practice/commit/cf1b91e3edbdd8767a45144169bd836182d86024) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-16. [add meizi.py](https://github.com/rabitdash/practice/commit/0ea4d8e6d358afa581dfe38598c92e63f4daec66) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-17. [update](https://github.com/rabitdash/practice/commit/993619dc481dc4d1031f4a5a8e9aa748eade89e7) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-18. [update](https://github.com/rabitdash/practice/commit/c9e4ca8cb6916a221e6a6dd35afe65f926dd7d9d) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-19. [update](https://github.com/rabitdash/practice/commit/344fa65a1b69671aff4c57732aad797374835886) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-20. [update](https://github.com/rabitdash/practice/commit/57f99bc47535e69897d274b712c58df73ca410c3) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-21. [Merge branch 'master' of https://github.com/rabitdash/practice](https://github.com/rabitdash/practice/commit/54d8a70787307f2fd53b13c7b38dce1bc5dd11d1) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-22. [update](https://github.com/rabitdash/practice/commit/092895c4c163d0a6b60c5eb287a55b219babf93c) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-23. [Merge branch 'master' of github.com:rabitdash/practice](https://github.com/rabitdash/practice/commit/19c8a1831a5760a23a1c5028e741d1e99fbac23f) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-24. [update](https://github.com/rabitdash/practice/commit/0bf6c3bf4b5789450425fdefcdc6f6703df80f90) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-25. [add main.cpp](https://github.com/rabitdash/practice/commit/bbd171eba030779e63e1bee10c23c8475ed8502d) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-26. [Merge branch 'master' of github.com:RabitDash/practice](https://github.com/rabitdash/practice/commit/3fcf8163550528888f4dc3c49b4d0a55a154ab05) - Sun, 03 Sep 2017 10:28:23 GMT 
-
-27. [add project 2048](https://github.com/rabitdash/practice/commit/4b2654ce458cebaa76ce6deb17497d883d5cf363) - Sun, 03 Sep 2017 10:28:23 GMT 
->>>>>>> 0e6508ff57a1f41dbafb61c8f0a628f1f1d88f87
+17. [update](https://github.com/rabitdash/practice/commit/ff7679898f1fdfe71052caf56560ac651b926adf) - Sat, 16 Sep 2017 09:51:58 GMT 
 
 ---
