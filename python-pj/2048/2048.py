@@ -6,7 +6,6 @@ import curses
 from random import randrange, choice
 from collections import defaultdict
 
-# 定义动作行为字典
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actions_dict = dict(zip(letter_codes, actions * 2))
@@ -164,6 +163,8 @@ class GameField(object):
 
 
 def main(stdscr):
+    # 有限状态机
+    game_field = GameField(win=32)
     def init():
 
         game_field.reset()
@@ -202,8 +203,6 @@ def main(stdscr):
     }
 
     curses.use_default_colors()
-    game_field = GameField(win=32)
-
     # 定义初始状态
     state = 'Init'
 
