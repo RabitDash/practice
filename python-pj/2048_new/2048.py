@@ -1,17 +1,14 @@
 # -*- coding:utf-8 -*-
 
-# 使用有限状态机的2048游戏
-
 import curses
 from random import randrange, choice
 from collections import defaultdict
 
-# 定义动作行为字典
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actions_dict = dict(zip(letter_codes, actions * 2))
 
-# 获取用户输入
+
 def get_user_action(keyboard):
     char = 'N'
     while char not in actions_dict:
@@ -193,21 +190,17 @@ def main(stdscr):
                 return 'Gameover'
         return 'Game'
 
-    # 定义状态
     state_actions = {
         'Init': init,
         'Win': lambda: not_game('Win'),
         'Gameover': lambda: not_game('Gameover'),
         'Game': game
     }
-
     curses.use_default_colors()
     game_field = GameField(win=32)
 
-    # 定义初始状态
     state = 'Init'
 
-    # 主循环
     while state != 'Exit':
         state = state_actions[state]()
 
