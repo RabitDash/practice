@@ -17,11 +17,11 @@ def get_user_action(keyboard):
         char = keyboard.getch()
     return actions_dict[char]
 
-
+# 对角线翻转
 def transpose(field):
     return [list(row) for row in zip(*field)]
 
-
+# 垂直镜面翻转
 def invert(field):
     return [row[::-1] for row in field]
 
@@ -163,8 +163,10 @@ class GameField(object):
 
 
 def main(stdscr):
-    # 有限状态机
+    curses.use_default_colors()
     game_field = GameField(win=32)
+
+    # 有限状态机
     def init():
 
         game_field.reset()
@@ -202,7 +204,7 @@ def main(stdscr):
         'Game': game
     }
 
-    curses.use_default_colors()
+
     # 定义初始状态
     state = 'Init'
 
@@ -211,4 +213,5 @@ def main(stdscr):
         state = state_actions[state]()
 
 
+# 执行
 curses.wrapper(main)

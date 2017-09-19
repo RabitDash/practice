@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 
+# 使用有限状态机的2048游戏
+
 import curses
 from random import randrange, choice
 from collections import defaultdict
@@ -8,26 +10,23 @@ letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actions_dict = dict(zip(letter_codes, actions * 2))
 
-
-def transpose(field):
-    return [list(row) for row in zip(*field)]
-
-
-def invert(field):
-    return [row[::-1] for row in field]
-
-
+# 获取用户输入
 def get_user_action(keyboard):
     char = 'N'
     while char not in actions_dict:
         char = keyboard.getch()
     return actions_dict[char]
 
+# 对角线翻转
+def transpose(field):
+    return [list(row) for row in zip(*field)]
 
+# 垂直镜面翻转
+def invert(field):
+    return [row[::-1] for row in field]
 
 
 class GameField(object):
-
     def __init__(self, height=4, width=4, win=2048):
         self.height = height
         self.width = width
@@ -46,11 +45,14 @@ class GameField(object):
 
     def move(self, direction):
         def move_row_left(row):
+
+            # 移动后补空
             def tighten(row):
                 new_row = [i for i in row if i != 0]
                 new_row += [0 for i in range(len(row) - len(new_row))]
                 return new_row
 
+            # 合并相同数字
             def merge(row):
                 pair = False
                 new_row = []
@@ -67,8 +69,10 @@ class GameField(object):
                             new_row.append(row[i])
                 assert len(new_row) == len(row)
                 return new_row
+
             return tighten(merge(tighten(row)))
 
+        # moves方法字典
         moves = {}
         moves['Left'] = lambda field: [move_row_left(row) for row in field]
 
@@ -77,6 +81,7 @@ class GameField(object):
         moves['Up'] = lambda field: transpose(moves['Left'](transpose(field)))
 
         moves['Down'] = lambda field: transpose(moves['Right'](transpose(field)))
+
 
         if direction in moves:
             if self.move_is_possible(direction):
@@ -101,6 +106,7 @@ class GameField(object):
         def cast(string):
             screen.addstr(string + '\n')
 
+        # 绘制水平分割线
         def draw_hor_separator():
             line = '+' + ('+------' * self.width + '+')[1:]
             separator = defaultdict(lambda: line)
@@ -109,9 +115,11 @@ class GameField(object):
             cast(separator[draw_hor_separator.counter])
             draw_hor_separator.counter += 1
 
+        # 绘制行以及数字
         def draw_row(row):
             cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '|')
 
+        # 清屏并输出
         screen.clear()
         cast('SCORE: ' + str(self.score))
 
@@ -132,6 +140,7 @@ class GameField(object):
                 cast(help_string1)
         cast(help_string2)
 
+    # 随机生成
     def spawn(self):
         new_element = 4 if randrange(100) > 89 else 2
         (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
@@ -148,6 +157,7 @@ class GameField(object):
 
             return any(change(i) for i in range(len(row) - 1))
 
+        # check方法字典
         check = {}
         check['Left'] = lambda field: any(row_is_left_movable(row) for row in field)
 
@@ -164,6 +174,10 @@ class GameField(object):
 
 
 def main(stdscr):
+    curses.use_default_colors()
+    game_field = GameField(win=32)
+
+    # 有限状态机
     def init():
 
         game_field.reset()
@@ -193,19 +207,22 @@ def main(stdscr):
                 return 'Gameover'
         return 'Game'
 
+    # 定义状态
     state_actions = {
         'Init': init,
         'Win': lambda: not_game('Win'),
         'Gameover': lambda: not_game('Gameover'),
         'Game': game
     }
-    curses.use_default_colors()
-    game_field = GameField(win=32)
 
+
+    # 定义初始状态
     state = 'Init'
 
+    # 主循环
     while state != 'Exit':
         state = state_actions[state]()
 
 
+# 执行
 curses.wrapper(main)
