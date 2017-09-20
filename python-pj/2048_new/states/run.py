@@ -130,4 +130,6 @@ class Run(_State):
             self.move(action)
         if self.is_win():
             pass
+        elif self.is_gameover():
+            pass
 

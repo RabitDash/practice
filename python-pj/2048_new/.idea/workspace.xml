@@ -77,8 +77,8 @@
       <file leaf-file-name="run.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/states/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1257">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="789">
+              <caret line="133" column="16" lean-forward="false" selection-start-line="133" selection-start-column="16" selection-end-line="133" selection-end-column="16" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#239#257#0" expanded="false" />
@@ -186,10 +186,10 @@
         <option value="$PROJECT_DIR$/fuck.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/states/stop.py" />
-        <option value="$PROJECT_DIR$/states/run.py" />
         <option value="$PROJECT_DIR$/constant.py" />
         <option value="$PROJECT_DIR$/tools.py" />
         <option value="$PROJECT_DIR$/states/init.py" />
+        <option value="$PROJECT_DIR$/states/run.py" />
       </list>
     </option>
   </component>
@@ -874,8 +874,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/states/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1257">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="789">
+          <caret line="133" column="16" lean-forward="false" selection-start-line="133" selection-start-column="16" selection-end-line="133" selection-end-column="16" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#239#257#0" expanded="false" />
