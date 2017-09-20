@@ -3,6 +3,7 @@
 # 使用有限状态机的2048游戏
 
 import curses
+from constant import *
 from collections import defaultdict
 
 
@@ -14,8 +15,6 @@ class Control(object):
         self.state = None
         self.done = False
 
-        self.score = 0
-        self.highscore = 0
 
 
 
@@ -23,7 +22,6 @@ class Control(object):
         self.state_dict = state_dict
         self.state_name = start_state
         self.state = self.state_dict[self.state_name]
-        self.set_music()
 
     def is_win(self):
         return any(any(i >= self.win_value for i in row) for row in self.field)
@@ -42,7 +40,7 @@ class Control(object):
 
         # 绘制水平分割线
         def draw_hor_separator():
-            line = '+' + ('+------' * self.width + '+')[1:]
+            line = '+' + ('+------' * width + '+')[1:]
             separator = defaultdict(lambda: line)
             if not hasattr(draw_hor_separator, "counter"):
                 draw_hor_separator.counter = 0
@@ -108,6 +106,18 @@ class Control(object):
         else:
             return False
 
+    def get_user_action(keyboard):
+        char = 'N'
+        while char not in actions_dict:
+            char = keyboard.getch()
+        return actions_dict[char]
+
+    # contains main loop
+    def main(self,stdscr):
+        curses.use_default_colors()
+
+        pass
+
 class _State(object):
     """Base class for all game states"""
 
@@ -117,17 +127,14 @@ class _State(object):
         self.next = None
         self.previous = None
 
-    def get_event(self, event):
+    def startup(self):
         pass
 
-    def update(self, surface, keys, current_time):
+    def update(self, keys):
         pass
 
 
 def main(stdscr):
-    curses.use_default_colors()
-    game_field = GameField(win=32)
-
     # 有限状态机
     def init():
 
