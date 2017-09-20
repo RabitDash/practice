@@ -1,20 +1,27 @@
 from random import randrange, choice
 from ..tools import _State
-
+from constant import *
 class Run(_State):
 
-    def __init__(self, initField):
+    def __init__(self):
         super(_State, self).__init__()
-        self.field = initField
+
+    def getScore(self, score):
+        self.score = score
+
+    def setField(self, field):
+        self.field = field
+
     # 对角线翻转
-    def transpose(field):
-        return [list(row) for row in zip(*field)]
+    def transpose(self, field):
+        return [list(row) for row in zip(*self.field)]
 
     # 垂直镜面翻转
-    def invert(field):
-        return [row[::-1] for row in field]
+    def invert(self, field):
+        return [row[::-1] for row in self.field]
 
     def move(self, direction):
+
         def move_row_left(row):
 
             # 移动后补空
@@ -37,37 +44,75 @@ class Run(_State):
                             pair = True
                             new_row.append(0)
                         else:
-                            new_row.apbpend(row[i])
+                            new_row.append(row[i])
                 assert len(new_row) == len(row)
                 return new_row
 
             return tighten(merge(tighten(row)))
 
         # moves方法字典
-        def setMoves():
+        def moves():
             moves = {}
             moves['Left'] = lambda field: [move_row_left(row) for row in field]
 
-            moves['Right'] = lambda field: invert(moves['Left'](invert(field)))
+            moves['Right'] = lambda field: self.invert(moves['Left'](self.invert(field)))
 
-            moves['Up'] = lambda field: transpose(moves['Left'](transpose(field)))
+            moves['Up'] = lambda field: self.transpose(moves['Left'](self.transpose(field)))
 
-            moves['Down'] = lambda field: transpose(moves['Right'](transpose(field)))
+            moves['Down'] = lambda field: self.transpose(moves['Right'](self.transpose(field)))
             return moves
-
-        moves = setMoves()
-
-        if direction in moves:
-            if self.move_is_possible(direction):
-                self.field = moves[direction](self.field)
-                self.spawn()
-                return True
-            else:
-                return False
 
         # 随机生成
         def spawn(self):
             new_element = 4 if randrange(100) > 89 else 2
-            (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
+            (i, j) = choice([(i, j) for i in range(width) for j in range(height) if self.field[i][j] == 0])
             self.field[i][j] = new_element
+
+        def move_is_possible(self, direction):
+            def row_is_left_movable(row):
+                def change(i):
+                    if row[i] == 0 and row[i + 1] != 0:
+                        return True
+                    if row[i] != 0 and row[i + 1] == row[i]:
+                        return True
+                    return False
+
+                return any(change(i) for i in range(len(row) - 1))
+
+            check = {}
+            check['Left'] = lambda field: any(row_is_left_movable(row) for row in field)
+
+            check['Right'] = lambda field: check['Left'](self.invert(field))
+
+            check['Up'] = lambda field: check['Left'](self.transpose(field))
+
+            check['Down'] = lambda field: check['Right'](self.transpose(field))
+
+
+            if direction in check:
+                return check[direction](self.field)
+            else:
+                return False
+
+        # 测试各个方向是否可以移动
+        if direction in moves:
+            if move_is_possible(self, direction):
+                self.field = moves()[direction](self.field)
+                spawn(self)
+                return True
+            else:
+                return False
+
+        def win(self):
+            return any(any(i >= self.win_value for i in row) for row in self.field)
+
+        def lose(self):
+            return not any(self.move_is_possible(move) for move in actions)
+
+        def startup(self, state_dict):
+            self.state = 'Run'
+            self.next = state_dict['Stop']
+            pass
+
+    def startup(self, game_data):
 

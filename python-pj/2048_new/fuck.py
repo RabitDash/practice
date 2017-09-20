@@ -17,13 +17,7 @@ def get_user_action(keyboard):
         char = keyboard.getch()
     return actions_dict[char]
 
-# 对角线翻转
-def transpose(field):
-    return [list(row) for row in zip(*field)]
 
-# 垂直镜面翻转
-def invert(field):
-    return [row[::-1] for row in field]
 
 
 class GameField(object):
