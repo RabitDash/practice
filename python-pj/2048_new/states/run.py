@@ -86,13 +86,12 @@ class Run(_State):
         # moves方法字典
         def moves(self):
             moves = {}
+
             moves['Left'] = lambda field: [move_row_left(row) for row in field]
-
             moves['Right'] = lambda field: self.invert(moves['Left'](self.invert(field)))
-
             moves['Up'] = lambda field: self.transpose(moves['Left'](self.transpose(field)))
-
             moves['Down'] = lambda field: self.transpose(moves['Right'](self.transpose(field)))
+
             return moves
 
         # 随机生成
