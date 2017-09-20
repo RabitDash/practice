@@ -4,6 +4,8 @@
 from constant import *
 from collections import defaultdict
 
+from states import *
+
 
 
 class Control(object):
@@ -34,7 +36,7 @@ class Control(object):
         self.field = field
 
     def setState(self, state):
-        pass
+        self.state = state_dict[state]
 
     def getScore(self):
         return self.score
@@ -54,8 +56,6 @@ class Control(object):
     def draw(self):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
         help_string2 = '      (R)Restart (Q)Exit'
-        gameover_string = '               GAME OVER'
-        win_string = '             YOU WIN!'
 
         def cast(string):
             self.screen.addstr(string + '\n')
@@ -73,7 +73,6 @@ class Control(object):
         def drawRow(row):
             cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '|')
 
-        
         def drawScore(self):
             cast('SCORE: ' + str(self.score))   # 输出当前分数
             if 0 != self.highscore:             # 输出最高分
@@ -96,19 +95,17 @@ class Control(object):
         drawField(self)
         drawHelp(self)
 
-    def switchState(self):
-        pass
-
     def getAction(self):
         char = 'N'
         while char not in actionsDict:
             char = self.screen.getch()
         return actionsDict[char]    # 获取输入并返回对应行为
 
-    def run(self):
-        while not self.done:
-           pass
+    def switchState(self, next):
+        self.state = state_dict[next]
 
+    def main(self):
+        self.state.update()
 
 class _State(object):
     """Base class for all game states"""

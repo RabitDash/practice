@@ -1,19 +1,52 @@
 from random import randrange, choice
 from ..tools import _State
-from ..tools import Control as c
+from ..tools import Control
 from constant import *
 
 class Run(_State):
 
     def __init__(self):
         super(_State, self).__init__()
-        self.win_value = win_value
 
-    def getScore(self, score):
+    def setScore(self, score):
         self.score = score
 
     def setField(self, field):
         self.field = field
+
+    # 对角线翻转
+    def transpose(self, field):
+        return [list(row) for row in zip(*field)]
+
+    # 垂直镜面翻转
+    def invert(self, field):
+        return [row[::-1] for row in field]
+
+    # 判断是否能够移动
+    def move_is_possible(self, direction):
+        def row_is_left_movable(row):
+            def change(i):
+                if row[i] == 0 and row[i + 1] != 0:
+                    return True
+                if row[i] != 0 and row[i + 1] == row[i]:
+                    return True
+                return False
+
+            return any(change(i) for i in range(len(row) - 1))
+
+        check = {}
+        check['Left'] = lambda field: any(row_is_left_movable(row) for row in field)
+
+        check['Right'] = lambda field: check['Left'](self.invert(field))
+
+        check['Up'] = lambda field: check['Left'](self.transpose(field))
+
+        check['Down'] = lambda field: check['Right'](self.transpose(field))
+
+        if direction in check:
+            return check[direction](self.field)
+        else:
+            return False
 
     def move(self, direction):
         '''
@@ -21,14 +54,6 @@ class Run(_State):
         :param direction: 
         :return: 
         '''
-
-        # 对角线翻转
-        def transpose(self):
-            return [list(row) for row in zip(*self.field)]
-
-        # 垂直镜面翻转
-        def invert(self):
-            return [row[::-1] for row in self.field]
 
         def move_row_left(row):
 
@@ -76,47 +101,22 @@ class Run(_State):
             (i, j) = choice([(i, j) for i in range(width) for j in range(height) if self.field[i][j] == 0])
             self.field[i][j] = new_element
 
-    # 判断是否能够移动
-    def move_is_possible(self, direction):
-        def row_is_left_movable(row):
-            def change(i):
-                if row[i] == 0 and row[i + 1] != 0:
-                    return True
-                if row[i] != 0 and row[i + 1] == row[i]:
-                    return True
+        # 测试各个方向是否可以移动
+        if direction in moves:
+            if self.move_is_possible(direction):
+                self.field = moves()[direction](self.field)
+                spawn(self)
+                return True
+            else:
                 return False
 
-            return any(change(i) for i in range(len(row) - 1))
 
-        check = {}
-        check['Left'] = lambda field: any(row_is_left_movable(row) for row in field)
+    def is_win(self):
+        return any(any(i >= win_value for i in row) for row in self.field)
 
-        check['Right'] = lambda field: check['Left'](self.invert(field))
+    def is_gameover(self):
+        return not any(self.move_is_possible(move) for move in actions)
 
-        check['Up'] = lambda field: check['Left'](self.transpose(field))
-
-        check['Down'] = lambda field: check['Right'](self.transpose(field))
-
-
-        if direction in check:
-            return check[direction](self.field)
-        else:
-            return False
-
-    # 测试各个方向是否可以移动
-    if direction in moves:
-        if move_is_possible(self, direction):
-            self.field = moves()[direction](self.field)
-            spawn(self)
-            return True
-        else:
-            return False
-
-    def win(self):
-        return any(any(i >= self.win_value for i in row) for row in self.field)
-
-    def lose(self):
-        return not any(self.move_is_possible(move) for move in actionsDict)
 
     def startup(self):
         self.state = 'Run'
@@ -124,4 +124,10 @@ class Run(_State):
         self.previous = 'Init'
 
     def update(self):
-        pass
+        control = Control()
+        action = control.getAction()
+        while not self.is_win() and self.is_gameover():
+            self.move(action)
+        if self.is_win():
+            pass
+

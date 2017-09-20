@@ -28,7 +28,7 @@ class Init(_State):
         self.previous = 'None'
         self.next = 'Run'
 
-    def execute(self):
+    def update(self):
         control = Control()
         initialize = Init()
 
@@ -38,4 +38,4 @@ class Init(_State):
         control.setScore(initialize.score)
         control.setHighScore(initialize.highscore)
         control.setField(initialize.field())
-        control.switchState()
+        control.switchState(initialize.next)
