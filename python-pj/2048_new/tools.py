@@ -1,4 +1,4 @@
-    # -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 # 使用有限状态机的2048游戏
 
@@ -18,9 +18,9 @@ class Control(object):
         self.state = None
         self.done = False
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *more):
         if not cls.__instance:
-            cls.__instance = super(Control, cls).__new__(cls, *args, **kwargs)
+            cls.__instance = super(Control, cls).__new__(cls)
         return cls.__instance
 
     def setScore(self, score):
@@ -41,11 +41,13 @@ class Control(object):
     def getField(self):
         return self.field
 
+    def setScreen(self, screen):
+        self.screen = screen
+
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
         self.state_name = start_state
         self.state = self.state_dict[self.state_name]
-
 
     def draw(self, screen):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
@@ -54,7 +56,7 @@ class Control(object):
         win_string = '             YOU WIN!'
 
         def cast(string):
-            screen.addstr(string + '\n')
+            stdcsr.addstr(string + '\n')
 
         # 绘制水平分割线
         def drawSeparator():
@@ -92,7 +94,6 @@ class Control(object):
         drawField(self)
         drawHelp(self)
 
-
     def switchState(self):
         previous, self.state_name = self.state_name, self.state.next
         self.state = self.state_dict[self.state_name]
@@ -105,12 +106,11 @@ class Control(object):
             self.switchState()
         self.state.update()
 
-
-    def action(char):
+    def action(screen):
+        char = 'N'
+        while char not in actions:
+            char = screen.getch()
         return actions[char]
-
-    def eventloop(self):
-        pass
 
     # contains main loop
     def main(self):
@@ -127,14 +127,9 @@ class _State(object):
         self.quit = False
         self.next = None
         self.previous = None
-        self.game_data = {}
 
-    def startup(self, game_data):
-        self.game_data = game_data
-
-    def cleanup(self):
-        self.done = False
-        return self.game_data
+    def startup(self):
+        pass
 
     def update(self):
         pass

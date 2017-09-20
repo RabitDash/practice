@@ -19,14 +19,14 @@ class Init(_State):
         self.field = [[0 for i in range(width)] for j in range(height)]
         return self.field
 
-    def startup(self, keys):
+    def startup(self):
         self.state = 'Init'
         self.next = 'Run'
 
-control = Control()
-init = Init()
-control.setScore(init.score)
-control.setHighScore(init.highscore)
-control.setField(init.initField())
-
-
+def init():
+    control = Control()
+    initialize = Init()
+    control.setScore(initialize.score)
+    control.setHighScore(initialize.highscore)
+    control.setField(initialize.initField())
+    control.switchState()

@@ -1,5 +1,6 @@
 from random import randrange, choice
 from ..tools import _State
+from ..tools import Control as c
 from constant import *
 class Run(_State):
 
@@ -114,5 +115,14 @@ class Run(_State):
             self.next = state_dict['Stop']
             pass
 
-    def startup(self, game_data):
+    def startup(self):
+        self.state = 'Run'
+        self.next = 'Stop'
+        self.previous = 'Init'
+
+    def update(self):
+        pass
+
+    def getAction(self):
+
 
