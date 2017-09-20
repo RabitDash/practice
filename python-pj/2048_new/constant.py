@@ -1,7 +1,12 @@
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
-actions_dict = dict(zip(letter_codes, actions * 2))
+actionsDict = dict(zip(letter_codes, actions * 2))
 
+state_dict = {
+    'Init': init,
+    'Run': run,
+    'Stop': stop
+}
 
 height = 4
 width = 4

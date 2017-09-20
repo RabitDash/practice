@@ -9,6 +9,11 @@ class Init(_State):
         self.highscore = 0
         self.field = None
 
+    # 单例模式
+    def __new__(cls, *more):
+        if not cls.__instance:
+            cls.__instance = super(Init, cls).__new__(cls)
+        return cls.__instance
 
     def initScore(self):
         if self.score > self.highscore:
@@ -17,16 +22,20 @@ class Init(_State):
 
     def initField(self):
         self.field = [[0 for i in range(width)] for j in range(height)]
-        return self.field
 
     def startup(self):
         self.state = 'Init'
+        self.previous = 'None'
         self.next = 'Run'
 
-def init():
-    control = Control()
-    initialize = Init()
-    control.setScore(initialize.score)
-    control.setHighScore(initialize.highscore)
-    control.setField(initialize.initField())
-    control.switchState()
+    def execute(self):
+        control = Control()
+        initialize = Init()
+
+        initialize.initScore()
+        initialize.initField()
+
+        control.setScore(initialize.score)
+        control.setHighScore(initialize.highscore)
+        control.setField(initialize.field())
+        control.switchState()

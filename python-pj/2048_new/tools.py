@@ -1,8 +1,6 @@
 # -*- coding:utf-8 -*-
-
 # 使用有限状态机的2048游戏
 
-import curses
 from constant import *
 from collections import defaultdict
 
@@ -29,34 +27,38 @@ class Control(object):
     def setHighscore(self, highscore):
         self.highscore = highscore
 
+    def setScreen(self, screen):
+        self.screen = screen
+
+    def setField(self, field):
+        self.field = field
+
+    def setState(self, state):
+        pass
+
     def getScore(self):
         return self.score
 
     def getHighscore(self):
         return self.highscore
 
-    def setField(self, field):
-        self.field = field
+    def getScreen(self):
+        return self.screen
 
     def getField(self):
         return self.field
 
-    def setScreen(self, screen):
-        self.screen = screen
+    def getStates(self):
+        return self.state_dict
 
-    def setup_states(self, state_dict, start_state):
-        self.state_dict = state_dict
-        self.state_name = start_state
-        self.state = self.state_dict[self.state_name]
-
-    def draw(self, screen):
+    def draw(self):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
         help_string2 = '      (R)Restart (Q)Exit'
         gameover_string = '               GAME OVER'
         win_string = '             YOU WIN!'
 
         def cast(string):
-            stdcsr.addstr(string + '\n')
+            self.screen.addstr(string + '\n')
 
         # 绘制水平分割线
         def drawSeparator():
@@ -89,35 +91,24 @@ class Control(object):
             cast(help_string2)
 
         # 绘制各种东西
-        screen.clear()
+        self.screen.clear()
         drawScore(self)
         drawField(self)
         drawHelp(self)
 
     def switchState(self):
-        previous, self.state_name = self.state_name, self.state.next
-        self.state = self.state_dict[self.state_name]
-        self.state.previous = previous
+        pass
 
-    def update(self):
-        if self.state.quit:
-            self.done = True
-        elif self.state.done:
-            self.switchState()
-        self.state.update()
-
-    def action(screen):
+    def getAction(self):
         char = 'N'
-        while char not in actions:
-            char = screen.getch()
-        return actions[char]
+        while char not in actionsDict:
+            char = self.screen.getch()
+        return actionsDict[char]    # 获取输入并返回对应行为
 
-    # contains main loop
-    def main(self):
-        curses.use_default_colors()
+    def run(self):
         while not self.done:
-            self.eventloop()
-            self.update()
+           pass
+
 
 class _State(object):
     """Base class for all game states"""
