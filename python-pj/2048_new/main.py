@@ -1,11 +1,17 @@
 import curses
-from tools import Control
+
 from constant import *
+from tools import tools
 
 stdscr = curses.initscr()
 
 def main(stdscr):
+    curses.start_color()
     curses.use_default_colors()
-    c = Control()
+    c = tools.Control()
     c.setScreen(stdscr)
-    c.state_dict = state_dict
+    c.setStateDict(state_dict)
+    c.setState('Init')
+    c.main()
+
+main(stdscr)

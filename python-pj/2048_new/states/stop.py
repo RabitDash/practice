@@ -1,10 +1,14 @@
-from ..tools import _State
-from ..tools import Control as c
+from tools import tools
 
-class stop(_State):
+class Stop():
 
     def __init__(self):
-        super(stop, self).__init__()
+        pass
+    # 单例模式
+    def __new__(cls, *more):
+        if not cls.__instance:
+            cls.__instance = super(Stop, cls).__new__(cls)
+        return cls.__instance
 
     def startup(self):
         self.state = 'Stop'
@@ -12,6 +16,10 @@ class stop(_State):
         self.next = 'None'
 
     def update(self):
-        pass
-
+        control = tools.Control()
+        action = control.getAction()
+        if action == 'Restart':
+            control.switchState('Init')
+        else:
+            control.done = True
 

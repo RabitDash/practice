@@ -1,11 +1,25 @@
 # -*- coding:utf-8 -*-
 # 使用有限状态机的2048游戏
 
-from constant import *
 from collections import defaultdict
 
-from states import *
+from constant import *
+from states import init, run, stop
 
+
+letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
+actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
+actionsDict = dict(zip(letter_codes, actions * 2))
+
+state_dict = {
+    'Init': init,
+    'Run': run,
+    'Stop': stop,
+}
+
+height = 4
+width = 4
+win_value = 2048
 
 
 class Control(object):
@@ -35,6 +49,9 @@ class Control(object):
     def setField(self, field):
         self.field = field
 
+    def setStateDict(self, state_dict):
+        self.state_dict = state_dict
+
     def setState(self, state):
         self.state = state_dict[state]
 
@@ -53,12 +70,13 @@ class Control(object):
     def getStates(self):
         return self.state_dict
 
-    def draw(self):
+    def draw(self, string=''):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
         help_string2 = '      (R)Restart (Q)Exit'
 
         def cast(string):
-            self.screen.addstr(string + '\n')
+            if string is not '':
+                self.screen.addstr(string + '\n')
 
         # 绘制水平分割线
         def drawSeparator():
@@ -94,6 +112,7 @@ class Control(object):
         drawScore(self)
         drawField(self)
         drawHelp(self)
+        cast(string)
 
     def getAction(self):
         char = 'N'
@@ -105,9 +124,12 @@ class Control(object):
         self.state = state_dict[next]
 
     def main(self):
-        self.state.update()
+        control = Control()
+        control.setState('Init')
+        while self.done == False:
+            self.state.update()
 
-class _State(object):
+class State(object):
     """Base class for all game states"""
 
     def __init__(self):

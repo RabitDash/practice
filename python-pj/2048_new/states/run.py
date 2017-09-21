@@ -1,13 +1,19 @@
 from random import randrange, choice
-from ..tools import _State
-from ..tools import Control
-from constant import *
 
-class Run(_State):
+from constant import *
+from tools import tools
+
+class Run():
 
     def __init__(self):
-        super(_State, self).__init__()
+       # super(Run, self).__init__()
+        pass
+    # 单例模式
+    def __new__(cls, *more):
+        if not cls.__instance:
+            cls.__instance = super(Run, cls).__new__(cls)
 
+        return cls.__instance
     def setScore(self, score):
         self.score = score
 
@@ -123,12 +129,18 @@ class Run(_State):
         self.previous = 'Init'
 
     def update(self):
-        control = Control()
+        control = tools.Control()
+        run = Run()
         action = control.getAction()
         while not self.is_win() and self.is_gameover():
-            self.move(action)
+            run.setScore(control.getScore())
+            run.setField(control.getField())
+            run.move(action)
+            control.setScore(run.score)
+            control.setField(run.field)
+            control.draw()
         if self.is_win():
-            pass
+            control.draw('You Win!')
         elif self.is_gameover():
-            pass
-
+            control.draw('Fuck')
+        control.switchState(('Stop'))
