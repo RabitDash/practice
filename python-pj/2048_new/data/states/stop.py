@@ -1,6 +1,6 @@
 from tools import tools
 
-class Stop():
+class Stop(tools.State):
 
     def __init__(self):
         pass
@@ -20,6 +20,6 @@ class Stop():
         action = control.getAction()
         if action == 'Restart':
             control.switchState('Init')
-        else:
+        elif action == 'Quit':
             control.done = True
 

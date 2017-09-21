@@ -1,4 +1,6 @@
-from states import init, run, stop
+from states.init import Init
+from states.run import Run
+from states.stop import Stop
 
 
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
@@ -6,14 +8,10 @@ actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actionsDict = dict(zip(letter_codes, actions * 2))
 
 state_dict = {
-    'Init': init,
-    'Run': run,
-    'Stop': stop
+    'Init': Init,
+    'Run': Run,
+    'Stop': Stop
 }
-
-global height
-global width
-global win_value
 
 height = 4
 width = 4

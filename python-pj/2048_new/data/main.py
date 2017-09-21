@@ -1,6 +1,6 @@
 import curses
 
-from constant import *
+import constants as constants
 from tools import tools
 
 stdscr = curses.initscr()
@@ -10,7 +10,7 @@ def main(stdscr):
     curses.use_default_colors()
     c = tools.Control()
     c.setScreen(stdscr)
-    c.setStateDict(state_dict)
+    c.setStateDict(constants.state_dict)
     c.setState('Init')
     c.main()
 

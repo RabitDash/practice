@@ -2,19 +2,16 @@
 # 使用有限状态机的2048游戏
 
 from collections import defaultdict
-
-from constant import *
 from states import init, run, stop
-
 
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actionsDict = dict(zip(letter_codes, actions * 2))
 
 state_dict = {
-    'Init': init,
-    'Run': run,
-    'Stop': stop,
+    'Init': init.Init(),
+    'Run': run.Run(),
+    'Stop': stop.Stop(),
 }
 
 height = 4
@@ -128,6 +125,7 @@ class Control(object):
         control.setState('Init')
         while self.done == False:
             self.state.update()
+
 
 class State(object):
     """Base class for all game states"""

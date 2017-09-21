@@ -1,9 +1,9 @@
 from random import randrange, choice
 
-from constant import *
-from tools import tools
+from constants import *
+from ..tools import *
 
-class Run():
+class Run(tools.State):
 
     def __init__(self):
        # super(Run, self).__init__()
