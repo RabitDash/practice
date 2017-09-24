@@ -122,6 +122,11 @@ class Run(tools._State):
         self.win_value = game_data['win_value']
         self.width = game_data['width']
         self.height = game_data['height']
+        self.game_data = game_data
+
+    def cleanup(self):
+        self.done = False
+        return self.game_data
 
     def update(self, screen, event):
         pass
