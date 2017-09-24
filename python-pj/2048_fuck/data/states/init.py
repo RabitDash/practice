@@ -58,11 +58,5 @@ class Init(tools._State):
 
         draw_hor_separator()
 
-
-    def spawn(self):
-        new_element = 4 if randrange(100) > 89 else 2
-        (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
-        self.field[i][j] = new_element
-
     def get_event(self, event):
         self.event = event

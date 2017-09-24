@@ -95,11 +95,13 @@ def create_game_data_dict():
     carries between states"""
 
 
-    data_dict = {'Highscore': 0,
-                 'Score': 0,
-                 'Win': False,
-                 'Lose':False,
-                 'Winscore':32,
+    data_dict = {'highscore': 0,
+                 'score': 0,
+                 'isWin': False,
+                 'isLose':False,
+                 'win_score':32,
+                 'width': 4,
+                 'height': 4
     }
 
     return data_dict

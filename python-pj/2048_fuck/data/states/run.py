@@ -2,6 +2,9 @@ from random import randrange, choice
 
 import data.tools as tools
 
+actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
+
+
 class Run(tools._State):
 
     def __init__(self):
@@ -90,7 +93,7 @@ class Run(tools._State):
         # 随机生成
         def spawn(self):
             new_element = 4 if randrange(100) > 89 else 2
-            (i, j) = choice([(i, j) for i in range(width) for j in range(height) if self.field[i][j] == 0])
+            (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
             self.field[i][j] = new_element
 
         # 测试各个方向是否可以移动
@@ -104,16 +107,25 @@ class Run(tools._State):
 
 
     def is_win(self):
-        return any(any(i >= win_value for i in row) for row in self.field)
+        return any(any(i >= self.win_value for i in row) for row in self.field)
 
     def is_gameover(self):
         return not any(self.move_is_possible(move) for move in actions)
 
 
-    def startup(self):
+    def startup(self, game_data):
         self.state = 'Run'
         self.next = None
         self.previous = 'Init'
+        self.score = game_data['score']
+        self.highscore = game_data['highscore']
+        self.win_value = game_data['win_value']
+        self.width = game_data['width']
+        self.height = game_data['height']
 
-    def update(self):
+    def update(self, screen, event):
+        pass
+
+    def get_event(self, event):
+        self.event = event
 
