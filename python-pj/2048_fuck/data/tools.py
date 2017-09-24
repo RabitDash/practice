@@ -6,7 +6,8 @@ import curses
 stdscr = curses.initscr()
 curses.noecho()
 curses.cbreak()
-curses.
+curses.start_color()
+curses.use_default_colors()
 stdscr.keypad(1)
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
@@ -38,11 +39,11 @@ class Control(object):
         self.state = self.state_dict[self.state_name]
 
     def update(self):
-        if self.state.quit:
+        if self.state.quit: # 如果state给出退出信号
             self.done = True
-        elif self.state.done:
+        elif self.state.done: # 如果state结束
             self.flip_state()
-        self.state.update(self.screen, self.events)
+        self.state.update(self.screen, self.event)
 
     def flip_state(self):
         previous, self.state_name = self.state_name, self.state.next
@@ -52,19 +53,19 @@ class Control(object):
         self.state.startup(persist)
 
     def event_loop(self):
-        self.events = get_user_action(stdscr)
+        self.event = get_user_action(stdscr)
 
-        for event in self.events:
-            if event == 'Exit':
-                self.done = True
-            else:
-                self.state.get_event(event)
+        if self.event == 'Exit':
+            self.done = True
+        else:
+            self.state.get_event(self.event)
 
     def main(self):
         """Main loop for entire program"""
         while not self.done:
             self.event_loop()
             self.update()
+        curses.endwin()
 
 
 class _State(object):

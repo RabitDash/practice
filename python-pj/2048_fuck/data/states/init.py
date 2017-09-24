@@ -25,7 +25,7 @@ class Init(tools._State):
 
     def update(self, screen, event):
         # self.done = True
-        screen.addstr(self.event)
+        screen.addstr(str(event))
 
 
     def draw(self, screen):
