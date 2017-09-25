@@ -33,8 +33,7 @@ class Init(tools._State):
             self.game_data = tools.create_game_data_dict()
         if self.game_data['score'] > self.game_data['highscore']:
             self.game_data['highscore'] = self.game_data['score']
-        if event == 'Restart':
-            self.done = True
+        self.done = True
 
     def get_event(self, event):
         self.event = event

@@ -34,6 +34,7 @@ class Control(object):
         self.state_name = None
         self.state = None
         self.game_data = {}
+        self.event = 'Restart'
 
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
@@ -42,6 +43,7 @@ class Control(object):
 
     def update(self):
         self.state.update(self.screen, self.event)
+
         if self.state.quit: # 如果state给出退出信号
             self.done = True
         elif self.state.done: # 如果state结束
@@ -55,17 +57,16 @@ class Control(object):
         self.state.previous = previous
         self.state.startup(persist)
 
+
     def event_loop(self):
-        self.event = get_user_action(stdscr)
-        
         if self.event == 'Exit':
             self.done = True
         else:
+            self.event = get_user_action(stdscr)
             self.state.get_event(self.event)
 
     def main(self):
         """Main loop for entire program"""
-        stdscr.addstr("Press r to start game")
 
         while not self.done:
             self.event_loop()

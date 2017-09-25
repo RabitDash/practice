@@ -118,7 +118,7 @@ class Run(tools._State):
             screen.addstr(string + '\n')
 
         def draw_hor_separator():
-            line = '+' + ('+-----' * self.width + '+')[1:]
+            line = '+' + ('+------' * self.width + '+')[1:]
             separator = defaultdict(lambda: line)
             if not hasattr(draw_hor_separator, "counter"):
                 draw_hor_separator.counter = 0
@@ -126,7 +126,7 @@ class Run(tools._State):
             draw_hor_separator.counter += 1
 
         def draw_row(row):
-            cast(''.join('|{:  ^4} '.format(num) if num > 0 else '|     ' for num in row) + '|')
+            cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '|')
 
         screen.clear()
         cast('SCORE: ' + str(self.score))
@@ -175,6 +175,9 @@ class Run(tools._State):
     def update(self, screen, event):
         self.move(direction = event)
         self.draw(screen)
+        if event is 'Restart':
+            self.next = 'Init'
+            self.done = True
 
     def get_event(self, event):
         self.event = event
