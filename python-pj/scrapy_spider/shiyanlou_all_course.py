@@ -3,10 +3,10 @@ import re
 from bs4 import BeautifulSoup
 import time
 
-host_url = "https://www.shiyanlou.com{}"
+host_url = "https://www.shiyanlou.com/{}"
 
 def write_file(string):
-	log = open('/home/shiyanlou/Desktop/shiyanlou_spider.log','a')
+	log = open('/home/animaze/Desktop/shiyanlou_spider.log','a')
 	log.write(string + '\n')
 	log.close()
 

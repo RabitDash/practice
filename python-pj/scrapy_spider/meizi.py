@@ -1,5 +1,4 @@
 import requests
-# import re
 from bs4 import BeautifulSoup
 import time
 courl = "http://www.mzitu.com/zipai/comment-page-{}/#comments"
