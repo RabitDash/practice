@@ -1,6 +1,5 @@
-__author__ = 'justinarmstrong'
+__author__ = 'rabitdash'
 
-import os, random
 import curses
 
 stdscr = curses.initscr()
@@ -18,7 +17,16 @@ actions_dict = dict(zip(letter_codes, actions * 2))
 def get_user_action(keyboard):
     char = 'N'
     while char not in actions_dict:
-        char = keyboard.getch()
+        try:
+            char = keyboard.getch()
+        except KeyboardInterrupt:
+            curses.endwin()
+            curses.nocbreak()
+            stdscr.keypad(0)
+            curses.echo()
+            curses.endwin()
+            exit(0)
+            
     return actions_dict[char]
 
 class Control(object):
