@@ -33,6 +33,7 @@ class Control(object):
         self.state_dict = {}
         self.state_name = None
         self.state = None
+        self.game_data = {}
 
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
@@ -40,22 +41,23 @@ class Control(object):
         self.state = self.state_dict[self.state_name]
 
     def update(self):
+        self.state.update(self.screen, self.event)
         if self.state.quit: # 如果state给出退出信号
             self.done = True
         elif self.state.done: # 如果state结束
             self.flip_state()
-        self.state.update(self.screen, self.event)
 
     def flip_state(self):
         previous, self.state_name = self.state_name, self.state.next
         persist = self.state.cleanup()
-        self.state = self.state_dict[self.state_name]
+
+        self.state = self.state_dict[self.state_name] # 转换状态
         self.state.previous = previous
         self.state.startup(persist)
 
     def event_loop(self):
         self.event = get_user_action(stdscr)
-
+        
         if self.event == 'Exit':
             self.done = True
         else:
@@ -63,6 +65,8 @@ class Control(object):
 
     def main(self):
         """Main loop for entire program"""
+        stdscr.addstr("Press r to start game")
+
         while not self.done:
             self.event_loop()
             self.update()

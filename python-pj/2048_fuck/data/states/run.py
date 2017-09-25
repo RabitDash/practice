@@ -1,4 +1,5 @@
 from random import randrange, choice
+from collections import defaultdict
 
 import data.tools as tools
 
@@ -8,7 +9,7 @@ actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 class Run(tools._State):
 
     def __init__(self):
-       super(Run, self).__init__()
+        super(Run, self).__init__()
 
     # 对角线翻转
     def transpose(self, field):
@@ -79,16 +80,12 @@ class Run(tools._State):
 
             return tighten(merge(tighten(row)))
 
-        # moves方法字典
-        def moves(self):
-            moves = {}
+        moves = {}
 
-            moves['Left'] = lambda field: [move_row_left(row) for row in field]
-            moves['Right'] = lambda field: self.invert(moves['Left'](self.invert(field)))
-            moves['Up'] = lambda field: self.transpose(moves['Left'](self.transpose(field)))
-            moves['Down'] = lambda field: self.transpose(moves['Right'](self.transpose(field)))
-
-            return moves
+        moves['Left'] = lambda field: [move_row_left(row) for row in field]
+        moves['Right'] = lambda field: self.invert(moves['Left'](self.invert(field)))
+        moves['Up'] = lambda field: self.transpose(moves['Left'](self.transpose(field)))
+        moves['Down'] = lambda field: self.transpose(moves['Right'](self.transpose(field)))
 
         # 随机生成
         def spawn(self):
@@ -99,18 +96,63 @@ class Run(tools._State):
         # 测试各个方向是否可以移动
         if direction in moves:
             if self.move_is_possible(direction):
-                self.field = moves(self)[direction](self.field)
+                self.field = moves[direction](self.field)
                 spawn(self)
                 return True
             else:
                 return False
-
 
     def is_win(self):
         return any(any(i >= self.win_value for i in row) for row in self.field)
 
     def is_gameover(self):
         return not any(self.move_is_possible(move) for move in actions)
+
+    def draw(self, screen):
+        help_string1 = '(W)Up (S)Down (A)Left (D)Right'
+        help_string2 = '      (R)Restart (Q)Exit'
+        gameover_string = '               GAME OVER'
+        win_string = '             YOU WIN!'
+
+        def cast(string):
+            screen.addstr(string + '\n')
+
+        def draw_hor_separator():
+            line = '+' + ('+-----' * self.width + '+')[1:]
+            separator = defaultdict(lambda: line)
+            if not hasattr(draw_hor_separator, "counter"):
+                draw_hor_separator.counter = 0
+            cast(separator[draw_hor_separator.counter])
+            draw_hor_separator.counter += 1
+
+        def draw_row(row):
+            cast(''.join('|{:  ^4} '.format(num) if num > 0 else '|     ' for num in row) + '|')
+
+        screen.clear()
+        cast('SCORE: ' + str(self.score))
+
+        if 0 != self.highscore:
+            cast('HIGHSCORE: ' + str(self.highscore))
+
+        for row in self.field:
+            draw_hor_separator()
+            draw_row(row)
+
+        draw_hor_separator()
+
+        if self.is_win():
+            cast(win_string)
+        else:
+            if self.is_gameover():
+                cast(gameover_string)
+            else:
+                cast(help_string1)
+        cast(help_string2)
+
+    def spawn(self):
+        new_element = 4 if randrange(100) > 89 else 2
+        (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
+        self.field[i][j] = new_element
 
 
     def startup(self, game_data):
@@ -119,17 +161,20 @@ class Run(tools._State):
         self.previous = 'Init'
         self.score = game_data['score']
         self.highscore = game_data['highscore']
-        self.win_value = game_data['win_value']
+        self.win_value = game_data['win_score']
         self.width = game_data['width']
         self.height = game_data['height']
         self.game_data = game_data
+        self.field = [[0 for i in range(self.width)] for j in range(self.height)]
+        self.spawn()
 
     def cleanup(self):
         self.done = False
         return self.game_data
 
     def update(self, screen, event):
-        pass
+        self.move(direction = event)
+        self.draw(screen)
 
     def get_event(self, event):
         self.event = event

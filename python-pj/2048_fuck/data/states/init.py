@@ -12,23 +12,29 @@ class Init(tools._State):
 
     def startup(self, game_data):
         self.state = 'Init'
-        if self.game_data is None:
-            self.game_data = tools.create_game_data_dict()
-        else:
-            self.game_data = game_data
-            if self.game_data['score'] > self.game_data['highscore']:
-                self.game_data['highscore'] = self.game_data['score']
-            self.game_data['score'] = 0
-        self.score = game_data['score']
-        self.highscore = game_data['highscore']
+        self.next = 'Run'
+        self.previous = 'None'
+
+        if self.game_data['score'] > self.game_data['highscore']:
+            self.game_data['highscore'] = self.game_data['score']
+
+        self.game_data['score'] = 0
 
     def cleanup(self):
         self.done = False
         return self.game_data
 
     def update(self, screen, event):
-        # self.done = True
-        screen.addstr(str(event))
+        self.state = 'Init'
+        self.next = 'Run'
+        self.previous = 'None'
+
+        if not self.game_data :
+            self.game_data = tools.create_game_data_dict()
+        if self.game_data['score'] > self.game_data['highscore']:
+            self.game_data['highscore'] = self.game_data['score']
+        if event == 'Restart':
+            self.done = True
 
     def get_event(self, event):
         self.event = event
