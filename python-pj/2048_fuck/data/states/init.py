@@ -1,6 +1,5 @@
-from random import randrange, choice
 import data.tools as tools
-from collections import defaultdict
+
 
 class Init(tools._State):
     def __init__(self):
@@ -23,7 +22,6 @@ class Init(tools._State):
 
     def cleanup(self):
         self.done = False
-        print("Init fucked!")
         return self.game_data
 
     def update(self, screen, event):

@@ -105,9 +105,7 @@ def create_game_data_dict():
 
     data_dict = {'highscore': 0,
                  'score': 0,
-                 'isWin': False,
-                 'isLose':False,
-                 'win_score':32,
+                 'win_score':2048,
                  'width': 4,
                  'height': 4
     }

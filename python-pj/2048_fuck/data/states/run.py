@@ -11,7 +11,7 @@ class Run(tools._State):
     def __init__(self):
         super(Run, self).__init__()
         self.need_event = False
-
+        self.stop = False
     # 对角线翻转
     def transpose(self, field):
         return [list(row) for row in zip(*field)]
@@ -99,8 +99,10 @@ class Run(tools._State):
             if self.move_is_possible(direction):
                 self.field = moves[direction](self.field)
                 spawn(self)
+                self.need_event = False
                 return True
             else:
+                self.need_event = False
                 return False
 
     def is_win(self):
@@ -112,8 +114,8 @@ class Run(tools._State):
     def draw(self, screen):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
         help_string2 = '      (R)Restart (Q)Exit'
-        gameover_string = '               GAME OVER'
-        win_string = '             YOU WIN!'
+        gameover_string = '           GAME OVER'
+        win_string = '           YOU WIN!'
 
         def cast(string):
             screen.addstr(string + '\n')
@@ -143,9 +145,13 @@ class Run(tools._State):
 
         if self.is_win():
             cast(win_string)
+            cast(help_string2)
+            return True
         else:
             if self.is_gameover():
                 cast(gameover_string)
+                cast(help_string2)
+                return True
             else:
                 cast(help_string1)
         cast(help_string2)
@@ -174,12 +180,15 @@ class Run(tools._State):
 
     def update(self, screen, event):
         self.move(direction = event)
-        self.draw(screen)
-        self.need_event = True
-        if event is 'Restart':
-            self.next = 'Init'
+        self.stop = self.draw(screen)
+        if not self.stop:
+            self.need_event = True
+            if event is 'Restart':
+                self.next = 'Init'
+                self.done = True
+        else:
+            self.next = 'Halt'
             self.done = True
-
     def get_event(self, event):
         self.event = event
 
