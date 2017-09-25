@@ -9,6 +9,7 @@ class Init(tools._State):
         self.width = 4
         self.height = 4
         self.field = []
+        self.need_event = False
 
     def startup(self, game_data):
         self.state = 'Init'
@@ -22,6 +23,7 @@ class Init(tools._State):
 
     def cleanup(self):
         self.done = False
+        print("Init fucked!")
         return self.game_data
 
     def update(self, screen, event):

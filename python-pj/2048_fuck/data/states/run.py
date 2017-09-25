@@ -10,6 +10,7 @@ class Run(tools._State):
 
     def __init__(self):
         super(Run, self).__init__()
+        self.need_event = False
 
     # 对角线翻转
     def transpose(self, field):
@@ -167,7 +168,6 @@ class Run(tools._State):
         self.game_data = game_data
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
         self.spawn()
-
     def cleanup(self):
         self.done = False
         return self.game_data
@@ -175,6 +175,7 @@ class Run(tools._State):
     def update(self, screen, event):
         self.move(direction = event)
         self.draw(screen)
+        self.need_event = True
         if event is 'Restart':
             self.next = 'Init'
             self.done = True
