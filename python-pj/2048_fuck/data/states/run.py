@@ -154,13 +154,13 @@ class Run(tools._State):
                 return True
             else:
                 cast(help_string1)
+
         cast(help_string2)
 
     def spawn(self):
         new_element = 4 if randrange(100) > 89 else 2
         (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
         self.field[i][j] = new_element
-
 
     def startup(self, game_data):
         self.state = 'Run'
@@ -174,6 +174,7 @@ class Run(tools._State):
         self.game_data = game_data
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
         self.spawn()
+
     def cleanup(self):
         self.done = False
         return self.game_data
@@ -189,6 +190,7 @@ class Run(tools._State):
         else:
             self.next = 'Halt'
             self.done = True
+            
     def get_event(self, event):
         self.event = event
 

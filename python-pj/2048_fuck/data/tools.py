@@ -13,6 +13,7 @@ letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actions_dict = dict(zip(letter_codes, actions * 2))
 
+
 # 获取用户输入
 def get_user_action(keyboard):
     char = 'N'
@@ -26,7 +27,7 @@ def get_user_action(keyboard):
             curses.echo()
             curses.endwin()
             exit(0)
-            
+
     return actions_dict[char]
 
 class Control(object):
