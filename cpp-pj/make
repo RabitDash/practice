@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+import subprocess as sp
+
+src = sp.getoutput("ls src/").split('\n')  # list
+
+for file in src:
+    sp.getoutput("g++ " + "-c src/" + file + " -o " + "obj/" + file.split(".cpp")[0] + ".o")
+
+obj = sp.getoutput("ls obj/").split('\n')  # list
+for file in obj:
+    sp.getoutput("g++ " + "obj/" + file + " -o " + "bin/" + file.split(".o")[0])
+

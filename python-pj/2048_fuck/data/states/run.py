@@ -12,6 +12,7 @@ class Run(tools._State):
         super(Run, self).__init__()
         self.need_event = False
         self.stop = False
+
     # 对角线翻转
     def transpose(self, field):
         return [list(row) for row in zip(*field)]
@@ -47,12 +48,8 @@ class Run(tools._State):
             return False
 
     def move(self, direction):
-        '''
-        接受用户行为, 取得移动方向
-        :param direction:
-        :return:
-        '''
 
+        # 接受用户行为, 取得移动方向
         def move_row_left(row):
 
             # 移动后补空

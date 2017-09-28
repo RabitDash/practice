@@ -24,5 +24,6 @@ class Halt(tools._State):
             self.next = 'Halt'
             self.done = True
         self.need_event = False
+
     def get_event(self, event):
         self.event = event
