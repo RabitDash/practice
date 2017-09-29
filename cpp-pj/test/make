@@ -9,4 +9,3 @@ for file in src:
 obj = sp.getoutput("ls obj/").split('\n')  # list
 for file in obj:
     sp.getoutput("g++ " + "obj/" + file + " -o " + "bin/" + file.split(".o")[0])
-
