@@ -1,12 +1,7 @@
 #include <iostream>
 using namespace std;
-
-int main()
+extern int i;
+void fuck()
 {
-	int i = 42;
-	int *p1 = &i;
-	*p1 = *p1 * *p1;
-	cout << (*p1) << endl;
-	cout << p1;
-	return 0;
+	std::cout << i;
 }
