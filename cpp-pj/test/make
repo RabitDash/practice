@@ -20,5 +20,10 @@ check(status, output)
 obj = output.split('\n')
 objects = ""
 for file in obj:
+    if file.split('.o')[0] + ".cpp" not in src:
+        sp.getoutput("rm " + file.split('.o')[0])
+        obj.remove(file)
+        continue
     objects += "obj/" + file + " "
+print(objects)
 sp.getoutput("g++ " + objects + " -o " + "bin/" + "main")

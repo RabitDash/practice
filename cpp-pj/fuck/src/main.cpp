@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
-extern void fuck();
-int i = 3;
 int main()
 {
-	fuck();
+	string a;
+	cin >> a;
+	cout << a << endl;
 	return 0;
 }

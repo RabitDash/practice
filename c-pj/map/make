@@ -12,7 +12,7 @@ for file in src:
         src.remove(file)
 
 for file in src:
-    status, output = sp.getstatusoutput("g++ " + "-c src/" + file + " -o " + "obj/" + file.split(".cpp")[0] + ".o")
+    status, output = sp.getstatusoutput("gcc " + "-c src/" + file + " -o " + "obj/" + file.split(".c")[0] + ".o")
     check(status, output)
 
 status, output = sp.getstatusoutput("ls obj/")  # list
@@ -20,10 +20,10 @@ check(status, output)
 obj = output.split('\n')
 objects = ""
 for file in obj:
-    if file.split('.o')[0] + ".cpp" not in src:
+    if file.split('.o')[0] + ".c" not in src:
         sp.getoutput("rm " + file.split('.o')[0])
         obj.remove(file)
         continue
     objects += "obj/" + file + " "
 print(objects)
-sp.getoutput("g++ " + objects + " -o " + "bin/" + "main")
+sp.getoutput("gcc " + objects + " -o " + "bin/" + "main")

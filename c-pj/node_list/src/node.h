@@ -5,4 +5,4 @@ typedef struct node
 	struct node* next;
 }NODE;
 struct node *init();
-struct node *append();
+struct node *append(NODE*, int);
