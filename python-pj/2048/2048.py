@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 
+# 使用有限状态机的2048游戏
+
 import curses
 from random import randrange, choice
 from collections import defaultdict
@@ -8,18 +10,18 @@ letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actions_dict = dict(zip(letter_codes, actions * 2))
 
-
+# 获取用户输入
 def get_user_action(keyboard):
     char = 'N'
     while char not in actions_dict:
         char = keyboard.getch()
     return actions_dict[char]
 
-
+# 对角线翻转
 def transpose(field):
     return [list(row) for row in zip(*field)]
 
-
+# 垂直镜面翻转
 def invert(field):
     return [row[::-1] for row in field]
 
@@ -39,7 +41,6 @@ class GameField(object):
             self.highscore = self.score
         self.score = 0
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
-        self.spawn()
         self.spawn()
 
     def move(self, direction):
@@ -162,6 +163,10 @@ class GameField(object):
 
 
 def main(stdscr):
+    curses.use_default_colors()
+    game_field = GameField(win=32)
+
+    # 有限状态机
     def init():
 
         game_field.reset()
@@ -191,19 +196,22 @@ def main(stdscr):
                 return 'Gameover'
         return 'Game'
 
+    # 定义状态
     state_actions = {
         'Init': init,
         'Win': lambda: not_game('Win'),
         'Gameover': lambda: not_game('Gameover'),
         'Game': game
     }
-    curses.use_default_colors()
-    game_field = GameField(win=32)
 
+
+    # 定义初始状态
     state = 'Init'
 
+    # 主循环
     while state != 'Exit':
         state = state_actions[state]()
 
 
+# 执行
 curses.wrapper(main)
