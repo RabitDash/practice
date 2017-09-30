@@ -26,4 +26,5 @@ for file in obj:
         continue
     objects += "obj/" + file + " "
 print(objects)
-sp.getoutput("gcc " + objects + " -o " + "bin/" + "main")
+status, output = sp.getstatusoutput("gcc " + objects + " -o " + "bin/" + "main")
+check(status, output)

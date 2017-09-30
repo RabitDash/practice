@@ -1,13 +1,5 @@
-#define TRUE 1
-#define FALSE 0
-#define OK 1
-#define ERROR 0
-#define INIT_SIZE 10	//init length of list
-#define INCREMENT_SIZE 5 //allocate increment
-
 typedef int Status;
 typedef int Elemtype;
-
 //Storage structure
 typedef struct
 {
