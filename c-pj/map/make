@@ -28,3 +28,4 @@ for file in obj:
 print(objects)
 status, output = sp.getstatusoutput("gcc " + objects + " -o " + "bin/" + "main")
 check(status, output)
+print("make success!")
