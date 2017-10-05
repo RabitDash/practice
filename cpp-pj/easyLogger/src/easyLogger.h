@@ -23,17 +23,20 @@ private:
     static auto_ptr<easyLogger> _instance;
 };
 
+auto_ptr<easyLogger> easyLogger::_instance;
+
 void easyLogger::Log(const string& logInfo) {
     ofstream ofs;
     time_t t = time(0);
-    char tmp[12];
+    cout<< logInfo << endl;
+    char tmp[42];
     // [2017.07.12 13:50:36 Wednesday]
     strftime(tmp, sizeof(tmp), "[%Y.%m.%d %X %A]", localtime(&t));
     // write to easyLogger.log
-    ofs.open("shiyanloulogger.log");
+    ofs.open("shiyanloulogger.log", ios::app);
     ofs.write(logInfo.c_str(), logInfo.size());
-
-    ofs << tmp;
+    ofs.flush();
+    ofs << tmp << endl;
     ofs.close();
 }
 
