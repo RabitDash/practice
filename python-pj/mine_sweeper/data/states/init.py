@@ -1,6 +1,5 @@
 import data.tools as tools
 
-
 class Init(tools._State):
     def __init__(self):
         super(Init, self).__init__()

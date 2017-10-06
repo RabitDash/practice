@@ -1,14 +1,14 @@
 #include <iostream>
 using namespace std;
-int abs(int i)
+void abs(int i)
 {
 	cout<<i<<endl;
 }
-float abs(float i)
+void abs(float i)
 {
 	cout<<i<<endl;
 }
-double abs(double i)
+void abs(double i)
 {
 	cout<<i<<endl;
 }
