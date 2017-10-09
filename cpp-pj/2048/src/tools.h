@@ -1,5 +1,1 @@
-#include <map>
-class dict
-{
-    std::map<string, string> dict;
-}
+letter_codes = 

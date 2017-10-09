@@ -1,9 +1,9 @@
 #include <iostream>
+#include <stdio.h>
 using namespace std;
 class fuck
 {
 	public:
-		int i;
 		int b;
 		fuck()
 		{
