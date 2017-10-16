@@ -2,3 +2,4 @@ repobot.sh
 *.py[cod]
 .idea
 .vscode
+*.swp
