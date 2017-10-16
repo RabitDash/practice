@@ -85,17 +85,11 @@ class Run(tools._State):
         moves['Up'] = lambda field: self.transpose(moves['Left'](self.transpose(field)))
         moves['Down'] = lambda field: self.transpose(moves['Right'](self.transpose(field)))
 
-        # 随机生成
-        def spawn(self):
-            new_element = 4 if randrange(100) > 89 else 2
-            (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
-            self.field[i][j] = new_element
-
         # 测试各个方向是否可以移动
         if direction in moves:
             if self.move_is_possible(direction):
                 self.field = moves[direction](self.field)
-                spawn(self)
+                self.spawn()
                 self.need_event = False
                 return True
             else:

@@ -1,5 +1,4 @@
 from random import randrange, choice
-from collections import defaultdict
 
 import data.tools as tools
 
@@ -15,8 +14,7 @@ class Run(tools._State):
 
         # 随机生成
     def spawn(self):
-        pass
-        
+        new_element = 0 if randrange(100) > 89
     def is_win(self):
         pass
 
@@ -43,9 +41,8 @@ class Run(tools._State):
         if 0 != self.highscore:
             cast('HIGHSCORE: ' + str(self.highscore))
 
-        for row in self.field:# Draw something
-
-        draw_hor_separator()
+        for row in self.field:
+            pass # Draw something
 
         if self.is_win():
             cast(win_string)
@@ -84,7 +81,7 @@ class Run(tools._State):
         return self.game_data
 
     def update(self, screen, event):
-        self.move(direction=event)
+        pass
         self.stop = self.draw(screen)
         if not self.stop:
             self.need_event = True
