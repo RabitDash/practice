@@ -14,7 +14,10 @@ class Run(tools._State):
 
         # 随机生成
     def spawn(self):
-        new_element = 0 if randrange(100) > 89
+        new_element = 1;
+        (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
+        self.field[i][j] = new_element
+
     def is_win(self):
         pass
 
@@ -35,6 +38,7 @@ class Run(tools._State):
 
         def draw_row(row):
             pass
+        
         screen.clear()
         cast('SCORE: ' + str(self.score))
 
@@ -57,11 +61,6 @@ class Run(tools._State):
                 cast(help_string1)
 
         cast(help_string2)
-
-    def spawn(self):
-        new_element = 0 if randrange(100) > 89 else 1
-        (i, j) = choice([(i, j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
-        self.field[i][j] = new_element
 
     def startup(self, game_data):
         self.state = 'Run'
