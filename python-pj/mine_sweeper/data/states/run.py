@@ -2,7 +2,7 @@ from random import choice
 
 import data.tools as tools
 
-actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
+actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit', 'Tap']
 directions = ['Up', 'Left', 'Down', 'Right']
 
 
@@ -37,7 +37,19 @@ class Run(tools._State):
         else:
             return False
         # 返回当前位置
-    def move(self, event):
+
+    def is_hit(self, screen):
+        (x, y) = self.location
+        if self.field[x - 1][y - 1] is 0:
+            self.draw(screen, "Lucky Boy!")
+        elif self.field[x - 1][y - 1] is 1:
+            self.draw(screen, "Damn!")
+            self.hit = True
+
+    def move(self, screen, event):
+        if event is 'Tap':
+            self.is_hit(screen)
+
         (x, y) = self.location
 
         def in_border(location):
@@ -65,7 +77,7 @@ class Run(tools._State):
                 if in_border(next_location):
                     self.location = next_location
 
-    def draw(self, screen):
+    def draw(self, screen, fuck = ''):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
         help_string2 = '      (R)Restart (Q)Exit'
         gameover_string = '           GAME OVER'
@@ -74,34 +86,38 @@ class Run(tools._State):
         def cast(string):
             screen.addstr(string + '\n')
 
-        def draw_hor_separator():
-            cast('+' + '-' * 9 + '+')
+        if fuck is '':
 
-        def draw_row(row):
-            cast('|' + ''.join('{:2}'.format(num) for num in row) + ' |')
-        
-        screen.clear()
-        cast('SCORE: ' + str(self.score))
-        if 0 != self.highscore:
-            cast('HIGHSCORE: ' + str(self.highscore))
+            def draw_hor_separator():
+                cast('+' + '-' * 9 + '+')
 
-        draw_hor_separator()
-        for row in self.field:
-            draw_row(row)
-        draw_hor_separator()
-        cast('{}'.format(self.location))
+            def draw_row(row):
+                cast('|' + ''.join('{:2}'.format(num) for num in row) + ' |')
 
-        if self.is_win():
-            cast(win_string)
+            screen.clear()
+            cast('SCORE: ' + str(self.score))
+            if 0 != self.highscore:
+                cast('HIGHSCORE: ' + str(self.highscore))
+
+            draw_hor_separator()
+            for row in self.field:
+                draw_row(row)
+            draw_hor_separator()
+            cast('{}'.format(self.location))
+
+            if self.is_win():
+                cast(win_string)
+                cast(help_string2)
+                return True
+            elif self.is_gameover():
+                cast(gameover_string)
+                cast(help_string2)
+                return True
+            else:
+                cast(help_string1)
             cast(help_string2)
-            return True
-        elif self.is_gameover():
-            cast(gameover_string)
-            cast(help_string2)
-            return True
         else:
-            cast(help_string1)
-        cast(help_string2)
+            cast(fuck)
 
     def startup(self, game_data):
         self.state = 'Run'
@@ -112,8 +128,8 @@ class Run(tools._State):
         self.width = game_data['width']
         self.height = game_data['height']
         self.mines = game_data['mines']
-        self.left_mines = self.mines # 还剩多少地雷
-        self.hit = False # 踩雷
+        self.left_mines = self.mines  # 还剩多少地雷
+        self.hit = False  # 踩雷
         self.location = (1, 1)
         self.game_data = game_data
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
@@ -124,7 +140,7 @@ class Run(tools._State):
         return self.game_data
 
     def update(self, screen, event):
-        self.move(event)
+        self.move(screen, event)
         self.stop = self.draw(screen)
         if not self.stop:
             self.need_event = True

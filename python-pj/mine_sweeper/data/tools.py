@@ -7,8 +7,8 @@ curses.start_color()
 curses.use_default_colors()
 stdscr.keypad(1)
 
-letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
-actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
+letter_codes = [ord(ch) for ch in 'WASDRQTwasdrqt']
+actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit', 'Tap']
 actions_dict = dict(zip(letter_codes, actions * 2))
 
 
