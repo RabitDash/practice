@@ -1,9 +1,10 @@
-from random import randrange, choice
+from random import choice
 
 import data.tools as tools
 
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 directions = ['Up', 'Left', 'Down', 'Right']
+
 
 class Run(tools._State):
 
@@ -13,6 +14,11 @@ class Run(tools._State):
         self.stop = False
 
         # 随机生成
+
+        '''
+        0 代表没地雷, 1 代表有地雷, 2代表翻过了
+        '''
+
     def spawn(self):
         new_element = 1
         for fuck in range(self.mines):
@@ -20,21 +26,26 @@ class Run(tools._State):
             self.field[i][j] = new_element
 
     def is_win(self):
-        pass
+        if self.left_mines is 0:
+            return True
+        else:
+            return False
 
     def is_gameover(self):
-        pass
-
+        if self.hit is True:
+            return True
+        else:
+            return False
         # 返回当前位置
-    def current_location(self, event):
+    def move(self, event):
         (x, y) = self.location
 
         def in_border(location):
             (a, b) = location
-            if a < 1 and a > 4 and b < 1 and b > 4:
-                return False
-            else:
+            if a in range(1, 5) and b in range(1, 5):
                 return True
+            else:
+                return False
 
         if event in directions:
             if event is 'Up':
@@ -64,32 +75,32 @@ class Run(tools._State):
             screen.addstr(string + '\n')
 
         def draw_hor_separator():
-            pass
+            cast('+' + '-' * 9 + '+')
 
         def draw_row(row):
-            pass
+            cast('|' + ''.join('{:2}'.format(num) for num in row) + ' |')
         
         screen.clear()
         cast('SCORE: ' + str(self.score))
-
         if 0 != self.highscore:
             cast('HIGHSCORE: ' + str(self.highscore))
 
+        draw_hor_separator()
         for row in self.field:
-            pass # Draw something
+            draw_row(row)
+        draw_hor_separator()
+        cast('{}'.format(self.location))
 
         if self.is_win():
             cast(win_string)
             cast(help_string2)
             return True
+        elif self.is_gameover():
+            cast(gameover_string)
+            cast(help_string2)
+            return True
         else:
-            if self.is_gameover():
-                cast(gameover_string)
-                cast(help_string2)
-                return True
-            else:
-                cast(help_string1)
-
+            cast(help_string1)
         cast(help_string2)
 
     def startup(self, game_data):
@@ -98,10 +109,11 @@ class Run(tools._State):
         self.previous = 'Init'
         self.score = game_data['score']
         self.highscore = game_data['highscore']
-        self.win_value = game_data['win_score']
         self.width = game_data['width']
         self.height = game_data['height']
         self.mines = game_data['mines']
+        self.left_mines = self.mines # 还剩多少地雷
+        self.hit = False # 踩雷
         self.location = (1, 1)
         self.game_data = game_data
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
@@ -112,7 +124,7 @@ class Run(tools._State):
         return self.game_data
 
     def update(self, screen, event):
-        pass
+        self.move(event)
         self.stop = self.draw(screen)
         if not self.stop:
             self.need_event = True

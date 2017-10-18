@@ -7,8 +7,8 @@ curses.start_color()
 curses.use_default_colors()
 stdscr.keypad(1)
 
-letter_codes = [ord(ch) for ch in 'WASDRQFwasdrqf']
-actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit', 'Flag']
+letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
+actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
 actions_dict = dict(zip(letter_codes, actions * 2))
 
 
@@ -113,8 +113,8 @@ def create_game_data_dict():
 
     data_dict = {'highscore': 0,
                  'score': 0,
-                 'width': 8,
-                 'height': 8,
+                 'width': 4,
+                 'height': 4,
                  'mines': 4,
     }
 
