@@ -52,27 +52,27 @@ class Run(tools._State):
 
         if event in directions:
             if event is 'Up':
-                next_location = (x, y - 1)
-                if in_border(next_location):
-                    self.location = next_location
-            elif event is 'Down':
-                next_location = (x, y + 1)
-                if in_border(next_location):
-                    self.location = next_location
-            elif event is 'Left':
                 next_location = (x - 1, y)
                 if in_border(next_location):
                     self.location = next_location
-            elif event is 'Right':
+            elif event is 'Down':
                 next_location = (x + 1, y)
                 if in_border(next_location):
                     self.location = next_location
+            elif event is 'Left':
+                next_location = (x, y - 1)
+                if in_border(next_location):
+                    self.location = next_location
+            elif event is 'Right':
+                next_location = (x, y + 1)
+                if in_border(next_location):
+                    self.location = next_location
 
-            if event is 'Tap':
-                if self.is_hit():
-                    self.hit = True
-                else:
-                    self.hit = False
+        if event is 'Tap':
+            if self.is_hit():
+                self.hit = True
+            else:
+                self.hit = False
 
     def draw(self, screen, fuck=''):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
@@ -101,8 +101,6 @@ class Run(tools._State):
                 draw_row(row)
             draw_hor_separator()
             cast('{}'.format(self.location))
-
-
 
             if self.is_win():
                 cast(win_string)

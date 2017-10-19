@@ -42,7 +42,7 @@ class Control(object):
         self.state_name = None
         self.state = None
         self.game_data = {}
-        self.event = 'Tap'
+        self.event = 'None'
 
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict

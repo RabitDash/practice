@@ -1,9 +1,5 @@
 repobot.sh
 *.py[cod]
 .idea
-<<<<<<< HEAD
-.swap
-=======
 .vscode
 *.swp
->>>>>>> 2cb3b4a90ea34c169d33ef3fa72e4bd28e4a42b9
