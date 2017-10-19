@@ -1,5 +1,7 @@
 import curses
+
 from .constants import *
+
 stdscr = curses.initscr()
 curses.noecho()
 curses.cbreak()
