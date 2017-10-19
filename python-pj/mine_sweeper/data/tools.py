@@ -1,15 +1,11 @@
 import curses
-
+from .constants import *
 stdscr = curses.initscr()
 curses.noecho()
 curses.cbreak()
 curses.start_color()
 curses.use_default_colors()
 stdscr.keypad(1)
-
-letter_codes = [ord(ch) for ch in 'WASDRQTwasdrqt']
-actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit', 'Tap']
-actions_dict = dict(zip(letter_codes, actions * 2))
 
 
 # 获取用户输入
@@ -70,7 +66,7 @@ class Control(object):
         if self.state.need_event:
             self.event = get_user_action(stdscr)
 
-        if self.event == 'Exit':
+        if self.event == 'Exit':3
             self.done = True
         else:
             self.state.get_event(self.event)

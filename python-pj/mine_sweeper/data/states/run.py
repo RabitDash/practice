@@ -1,9 +1,7 @@
 from random import choice
 
 import data.tools as tools
-
-actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit', 'Tap']
-directions = ['Up', 'Left', 'Down', 'Right']
+from ..constants import *
 
 
 class Run(tools._State):
@@ -119,7 +117,7 @@ class Run(tools._State):
 
     def startup(self, game_data):
         self.state = 'Run'
-        self.next = None
+        self.next = 'Halt'
         self.previous = 'Init'
         self.score = game_data['score']
         self.highscore = game_data['highscore']
@@ -135,18 +133,16 @@ class Run(tools._State):
 
     def cleanup(self):
         self.done = False
+        self.need_event = False
         return self.game_data
 
     def update(self, screen, event):
         self.move(event)
+        self.draw(screen)
         self.stop = self.draw(screen) or self.hit
-        if not self.stop:
-            self.need_event = True
-            if event is 'Restart':
-                self.next = 'Init'
-                self.done = True
-        else:
-            self.next = 'Halt'
+
+        if event is 'Restart' or self.stop:
+            self.next = self.previous
             self.done = True
             
     def get_event(self, event):
