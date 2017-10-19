@@ -16,7 +16,7 @@ class Run(tools._State):
         # 随机生成
 
         '''
-        0 代表没地雷, 1 代表有地雷, 2代表翻过了
+        0 代表没地雷, 1 代表有地雷
         '''
 
     def spawn(self):
@@ -31,30 +31,21 @@ class Run(tools._State):
         else:
             return False
 
-    def is_gameover(self):
-        if self.hit is True:
-            return True
-        else:
-            return False
         # 返回当前位置
 
-    def is_hit(self, screen):
+    def is_hit(self):
         (x, y) = self.location
-        if self.field[x - 1][y - 1] is 0:
-            self.draw(screen, "Lucky Boy!")
-        elif self.field[x - 1][y - 1] is 1:
-            self.draw(screen, "Damn!")
-            self.hit = True
+        if self.field[x][y] is 0:
+            return False
+        elif self.field[x][y] is 1:
+            return True
 
-    def move(self, screen, event):
-        if event is 'Tap':
-            self.is_hit(screen)
-
+    def move(self, event):
         (x, y) = self.location
 
         def in_border(location):
             (a, b) = location
-            if a in range(1, 5) and b in range(1, 5):
+            if a in range(self.width) and b in range(self.height):
                 return True
             else:
                 return False
@@ -77,7 +68,13 @@ class Run(tools._State):
                 if in_border(next_location):
                     self.location = next_location
 
-    def draw(self, screen, fuck = ''):
+            if event is 'Tap':
+                if self.is_hit():
+                    self.hit = True
+                else:
+                    self.hit = False
+
+    def draw(self, screen, fuck=''):
         help_string1 = '(W)Up (S)Down (A)Left (D)Right'
         help_string2 = '      (R)Restart (Q)Exit'
         gameover_string = '           GAME OVER'
@@ -105,17 +102,20 @@ class Run(tools._State):
             draw_hor_separator()
             cast('{}'.format(self.location))
 
+
+
             if self.is_win():
                 cast(win_string)
                 cast(help_string2)
                 return True
-            elif self.is_gameover():
+            elif self.hit:
                 cast(gameover_string)
                 cast(help_string2)
                 return True
             else:
                 cast(help_string1)
             cast(help_string2)
+            return False
         else:
             cast(fuck)
 
@@ -130,7 +130,7 @@ class Run(tools._State):
         self.mines = game_data['mines']
         self.left_mines = self.mines  # 还剩多少地雷
         self.hit = False  # 踩雷
-        self.location = (1, 1)
+        self.location = (0, 0)
         self.game_data = game_data
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
         self.spawn()
@@ -140,8 +140,8 @@ class Run(tools._State):
         return self.game_data
 
     def update(self, screen, event):
-        self.move(screen, event)
-        self.stop = self.draw(screen)
+        self.move(event)
+        self.stop = self.draw(screen) or self.hit
         if not self.stop:
             self.need_event = True
             if event is 'Restart':
