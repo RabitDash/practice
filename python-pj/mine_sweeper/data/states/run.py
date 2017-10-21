@@ -10,7 +10,8 @@ class Run(tools._State):
         super(Run, self).__init__()
         self.need_event = False
         self.stop = False
-
+        self.state_name = 'Run'
+        self.next = 'Init'
         # 随机生成
 
         '''
@@ -80,6 +81,7 @@ class Run(tools._State):
 
         def cast(string):
             screen.addstr(string + '\n')
+        screen.clear()
 
         if fuck is '':
 
@@ -89,7 +91,7 @@ class Run(tools._State):
             def draw_row(row):
                 cast('|' + ''.join('{:2}'.format(num) for num in row) + ' |')
 
-            screen.clear()
+
             cast('SCORE: ' + str(self.score))
             if 0 != self.highscore:
                 cast('HIGHSCORE: ' + str(self.highscore))
@@ -116,9 +118,6 @@ class Run(tools._State):
             cast(fuck)
 
     def startup(self, game_data):
-        self.state = 'Run'
-        self.next = 'Halt'
-        self.previous = 'Init'
         self.score = game_data['score']
         self.highscore = game_data['highscore']
         self.width = game_data['width']
@@ -137,14 +136,18 @@ class Run(tools._State):
         return self.game_data
 
     def update(self, screen, event):
+        self.need_event = True
         self.move(event)
         self.draw(screen)
         self.stop = self.draw(screen) or self.hit
 
-        if event is 'Restart' or self.stop:
-            self.next = self.previous
+        if event is 'Restart':
             self.done = True
-            
+            screen.clear()
+            screen.addstr('Press W to continue' + '\n')
+        if event is 'Exit':
+            self.quit = True
+
     def get_event(self, event):
         self.event = event
 
