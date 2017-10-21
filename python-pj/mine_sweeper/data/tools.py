@@ -66,7 +66,7 @@ class Control(object):
         if self.state.need_event:
             self.event = get_user_action(stdscr)
 
-        if self.event == 'Exit':3
+        if self.event == 'Exit':
             self.done = True
         else:
             self.state.get_event(self.event)

@@ -6,9 +6,9 @@ class Init(tools._State):
         self.name = 'Init'
         self.field = []
         self.need_event = False
-        self.state = 'Init'
+        self.state_name = 'Init'
         self.next = 'Run'
-        self.previous = 'None'
+        self.previous = 'Init'
 
     def startup(self, game_data):
         if self.game_data['score'] > self.game_data['highscore']:
@@ -18,6 +18,7 @@ class Init(tools._State):
 
     def cleanup(self):
         self.done = False
+        self.need_event = True
         return self.game_data
 
     def update(self, screen, event):
