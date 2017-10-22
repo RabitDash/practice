@@ -11,7 +11,6 @@ class Init(tools._State):
         self.need_event = False
 
     def startup(self, game_data):
-        self.state = 'Init'
         self.next = 'Run'
         self.previous = 'None'
 
@@ -25,9 +24,8 @@ class Init(tools._State):
         return self.game_data
 
     def update(self, screen, event):
-        self.state = 'Init'
         self.next = 'Run'
-        self.previous = 'None'
+        self.previous = 'Init'
 
         if not self.game_data :
             self.game_data = tools.create_game_data_dict()

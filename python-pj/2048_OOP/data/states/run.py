@@ -154,8 +154,7 @@ class Run(tools._State):
         self.field[i][j] = new_element
 
     def startup(self, game_data):
-        self.state = 'Run'
-        self.next = None
+        self.next = 'Halt'
         self.previous = 'Init'
         self.score = game_data['score']
         self.highscore = game_data['highscore']
@@ -173,11 +172,11 @@ class Run(tools._State):
     def update(self, screen, event):
         self.move(direction = event)
         self.stop = self.draw(screen)
+        if event is 'Restart':
+            self.done = True
+            self.next = 'Init'
         if not self.stop:
             self.need_event = True
-            if event is 'Restart':
-                self.next = 'Init'
-                self.done = True
         else:
             self.next = 'Halt'
             self.done = True
