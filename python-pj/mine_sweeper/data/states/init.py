@@ -17,7 +17,6 @@ class Init(tools._State):
 
     def cleanup(self):
         self.done = False
-        self.need_event = False
         return self.game_data
 
     def update(self, screen, event):

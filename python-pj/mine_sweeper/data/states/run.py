@@ -128,7 +128,7 @@ class Run(tools._State):
         self.game_data = game_data
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
         self.spawn()
-
+        self.need_event = True
     def cleanup(self):
         self.done = False
         self.need_event = False
@@ -138,10 +138,11 @@ class Run(tools._State):
         self.move(event)
         self.draw(screen)
         self.stop = self.draw(screen) or self.hit
-
         if event is 'Restart':
             self.done = True
             screen.clear()
+            screen.addstr("Press to continue")
+
         if event is 'Exit':
             self.quit = True
 
