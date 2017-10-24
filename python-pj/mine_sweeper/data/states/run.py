@@ -10,7 +10,6 @@ class Run(tools._State):
         super(Run, self).__init__()
         self.need_event = False
         self.stop = False
-        self.state_name = 'Run'
         self.next = 'Init'
         # 随机生成
 
@@ -74,8 +73,8 @@ class Run(tools._State):
                 self.hit = False
 
     def draw(self, screen, fuck=''):
-        help_string1 = '(W)Up (S)Down (A)Left (D)Right'
-        help_string2 = '      (R)Restart (Q)Exit'
+        help_string1 = '(W)Up (S)Down (A)Left (D)Right (T)Tap'
+        help_string2 = '    (R)Restart (Q)Exit'
         gameover_string = '           GAME OVER'
         win_string = '           YOU WIN!'
 
@@ -136,7 +135,6 @@ class Run(tools._State):
         return self.game_data
 
     def update(self, screen, event):
-        self.need_event = True
         self.move(event)
         self.draw(screen)
         self.stop = self.draw(screen) or self.hit
@@ -144,10 +142,8 @@ class Run(tools._State):
         if event is 'Restart':
             self.done = True
             screen.clear()
-            screen.addstr('Press W to continue' + '\n')
         if event is 'Exit':
             self.quit = True
 
     def get_event(self, event):
         self.event = event
-
