@@ -64,12 +64,8 @@ class Control(object):
         self.state.startup(persist)
 
     def event_loop(self):
-
         if self.state.need_event:
             self.event = get_user_action(stdscr)
-
-        if self.event == 'Exit':
-            self.done = True
         else:
             self.state.get_event(self.event)
 
@@ -78,7 +74,15 @@ class Control(object):
 
         while not self.done:
             self.event_loop()
-            self.update()
+            try:
+                self.update()
+            except KeyboardInterrupt:
+                curses.endwin()
+                curses.nocbreak()
+                stdscr.keypad(0)
+                curses.echo()
+                curses.endwin()
+                exit(0)
         curses.endwin()
 
 
