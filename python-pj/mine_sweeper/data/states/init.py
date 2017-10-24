@@ -6,7 +6,6 @@ class Init(tools._State):
         self.name = 'Init'
         self.field = []
         self.need_event = False
-        self.state_name = 'Init'
         self.next = 'Run'
         self.previous = 'Init'
 
@@ -18,7 +17,7 @@ class Init(tools._State):
 
     def cleanup(self):
         self.done = False
-        self.need_event = True
+        self.need_event = False
         return self.game_data
 
     def update(self, screen, event):

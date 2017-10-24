@@ -1,17 +1,11 @@
-__author__ = 'rabitdash'
-
 import curses
-
+from .constants import *
 stdscr = curses.initscr()
 curses.noecho()
 curses.cbreak()
 curses.start_color()
 curses.use_default_colors()
 stdscr.keypad(1)
-
-letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
-actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
-actions_dict = dict(zip(letter_codes, actions * 2))
 
 
 # 获取用户输入
@@ -30,6 +24,7 @@ def get_user_action(keyboard):
 
     return actions_dict[char]
 
+
 class Control(object):
     """
     Control class for entire project.  Contains the game loop, and contains
@@ -43,7 +38,7 @@ class Control(object):
         self.state_name = None
         self.state = None
         self.game_data = {}
-        self.event = 'Restart'
+        self.event = 'None'
 
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
@@ -53,26 +48,22 @@ class Control(object):
     def update(self):
         self.state.update(self.screen, self.event)
 
-        if self.state.quit: # 如果state给出退出信号
+        if self.state.quit:  # 如果state给出退出信号
             self.done = True
-        elif self.state.done: # 如果state结束
+        elif self.state.done:  # 如果state结束
             self.flip_state()
 
     def flip_state(self):
         previous, self.state_name = self.state_name, self.state.next
         persist = self.state.cleanup()
 
-        self.state = self.state_dict[self.state_name] # 转换状态
+        self.state = self.state_dict[self.state_name]  # 转换状态
         self.state.previous = previous
         self.state.startup(persist)
 
     def event_loop(self):
-
         if self.state.need_event:
             self.event = get_user_action(stdscr)
-
-        if self.event == 'Exit':
-            self.done = True
         else:
             self.state.get_event(self.event)
 
@@ -81,7 +72,15 @@ class Control(object):
 
         while not self.done:
             self.event_loop()
-            self.update()
+            try:
+                self.update()
+            except KeyboardInterrupt:
+                curses.endwin()
+                curses.nocbreak()
+                stdscr.keypad(0)
+                curses.echo()
+                curses.endwin()
+                exit(0)
         curses.endwin()
 
 
@@ -107,22 +106,19 @@ class _State(object):
     def update(self, screen, event):
         pass
 
+
 def create_game_data_dict():
     """Create a dictionary of persistant values the player
     carries between states"""
 
-
     data_dict = {'highscore': 0,
                  'score': 0,
-                 'win_score':2048,
                  'width': 4,
-                 'height': 4
+                 'height': 4,
+                 'mines': 4,
     }
 
     return data_dict
-
-
-
 
 
 
