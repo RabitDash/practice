@@ -3,3 +3,4 @@ repobot.sh
 .idea
 .vscode
 *.swp
+__pycache__/*
