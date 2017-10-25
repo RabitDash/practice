@@ -10,7 +10,6 @@ class Run(tools._State):
         super(Run, self).__init__()
         self.need_event = False
         self.stop = False
-        self.next = 'Init'
         # 随机生成
 
         '''
@@ -129,6 +128,8 @@ class Run(tools._State):
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
         self.spawn()
         self.need_event = True
+        self.next = 'Halt'
+
     def cleanup(self):
         self.done = False
         self.need_event = False
@@ -141,7 +142,13 @@ class Run(tools._State):
         if event is 'Restart':
             self.done = True
             screen.clear()
-            screen.addstr("Press to continue")
+            screen.addstr("Press W to continue")
+            self.next = 'Init'
+
+        if not self.stop:
+            self.need_event = True
+        else:
+            self.done = True
 
         if event is 'Exit':
             self.quit = True

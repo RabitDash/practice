@@ -110,8 +110,7 @@ class Run(tools._State):
             cast(fuck)
 
     def startup(self, game_data):
-        self.state = 'Run'
-        self.next = None
+        self.next = 'Halt'
         self.previous = 'Init'
         self.score = game_data['score']
         self.highscore = game_data['highscore']
