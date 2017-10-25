@@ -17,7 +17,7 @@ class Halt(tools._State):
         if event is 'Restart':
             self.next = 'Init'
             self.done = True
-        elif event is 'Quit':
+        elif event is 'Exit':
             self.quit = True
             self.done = True
         else:
