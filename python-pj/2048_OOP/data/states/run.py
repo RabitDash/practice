@@ -178,7 +178,6 @@ class Run(tools._State):
         if not self.stop:
             self.need_event = True
         else:
-            self.next = 'Halt'
             self.done = True
             
     def get_event(self, event):
