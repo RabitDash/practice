@@ -2,6 +2,7 @@
 using namespace std;
 #define SWAP(A,B) (A)=(A)^(B),(B)=(B)^(A),(A)=(A)^(B);
 int gcd (int, int);
+int fuck(int, int);
 int main()
 {
 	int n;
@@ -14,9 +15,14 @@ int main()
 	for(int i = 0; i < n; i++)
 	{
 		cin >> a >> b;
-		cout << gcd(a,b) << endl;
+		cout << fuck(a,b) << endl;
 	}
 	return 0;
+}
+int fuck(int a, int b)
+{
+	int shit = gcd(a,b);
+	return a * b / shit;
 }
 int gcd(int a, int b)
 {
