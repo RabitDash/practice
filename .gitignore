@@ -4,3 +4,4 @@ repobot.sh
 .vscode
 *.swp
 __pycache__/*
+*.*~

@@ -2,15 +2,17 @@
 using namespace std;
 void abs(int i)
 {
-	cout<<i<<endl;
+	cout << i << endl;
 }
+
 void abs(float i)
 {
-	cout<<i<<endl;
+	cout << i << endl;
 }
+
 void abs(double i)
 {
-	cout<<i<<endl;
+	cout << i << endl;
 }
 
 int main()
