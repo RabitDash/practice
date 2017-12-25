@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+#include "draw.h"
+#include "move.h"
 int main()
 {
     return 0;

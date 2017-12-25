@@ -1,0 +1,1 @@
+#define WINSCORE 2048
