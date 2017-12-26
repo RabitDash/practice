@@ -1,6 +1,15 @@
-/tmp/cco1sVhi.o: In function `main':
-main.cpp:(.text+0x3f): undefined reference to `QueueSystem::QueueSystem(int, int)'
-main.cpp:(.text+0x50): undefined reference to `QueueSystem::simulate(int)'
+/ tmp / cco1sVhi.o: In function ` main ':
+main.cpp:(.text+0x3f): undefined reference to `QueueSystem::QueueSystem(int, int)' main.cpp: (.text + 0x50):undefined reference to ` QueueSystem::
+simulate (int)
+  '
 main.cpp:(.text+0xd5): undefined reference to `QueueSystem::~QueueSystem()'
-main.cpp:(.text+0xe8): undefined reference to `QueueSystem::~QueueSystem()'
+  main.
+cpp:(.text + 0xe8):
+  undefined
+  reference
+  to `
+QueueSystem::~
+QueueSystem () '
 collect2: error: ld returned 1 exit status
+
+
