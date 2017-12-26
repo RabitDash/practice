@@ -1,6 +1,12 @@
 #include "draw.h"
 #include "move.h"
+#include "tools.h"
 int main()
 {
-    return 0;
+	/*loop
+		//getEvent
+		//move
+		//draw
+	*/
+	return 0;
 }
