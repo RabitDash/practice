@@ -6,12 +6,12 @@ int main()
 	int n;
 	while (cin >> n) {
 		int matrix[n][n] = { 0 };
-		for (int i = 0; i < n; i++) {
+/*		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				matrix[i][j] = 0;
 			}
 		}
-
+*/
 		int x = 0;
 		int y = 0;
 		int xDir = 1;
