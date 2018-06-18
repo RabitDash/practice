@@ -14,11 +14,13 @@ int dp(vector<vector<int> > mat, int n)
 					mat[i][j] = mat[i-1][j-1] + mat[i][j];
 				else
 				{
-					mat[i][j] = (mat[i-1][j-1] < mat[i-1][j] ? mat[i-1][j-1] : mat[i-1][j]) + mat[i][j];//该节点和 = [左父亲和 + 右父亲和]min + 该节点值
+					//到该节点的最小路径和 = [左父亲和 , 右父亲和]min + 该节点值
+					mat[i][j] = (mat[i-1][j-1] < mat[i-1][j] ? mat[i-1][j-1] : mat[i-1][j]) + mat[i][j];
 				}
 		}
 	}
 	int min;
+	//到达底层节点，找最小路径
 	min = mat[n][1];
 	for(int j = 2; j <= n; j++)
 	{
@@ -38,6 +40,8 @@ int main()
 		{
 			mat[i].resize(n+1);
 		}
+
+		//输入数据
 		for(int i =1; i <= n; i++)
 		{
 			for(int j = 1; j <= i; j++)
