@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+import subprocess as sp
+
+def check(status, output):
+    if status is not 0:
+        print(output)
+        exit(0)
+
+src = sp.getoutput("ls src/").split('\n')  # list
+for file in src:
+    if file.find(".h") is not -1:
+        src.remove(file)
+
+for file in src:
+    status, output = sp.getstatusoutput("g++ " + "-c src/" + file + " -o " + "obj/" + file.split(".cpp")[0] + ".o")
+    check(status, output)
+
+status, output = sp.getstatusoutput("ls obj/")  # list
+check(status, output)
+obj = output.split('\n')
+objects = ""
+for file in obj:
+    if file.split('.o')[0] + ".cpp" not in src:
+        sp.getoutput("rm " + file.split('.o')[0])
+        obj.remove(file)
+        continue
+    objects += "obj/" + file + " "
+print(objects)
+status, output = sp.getstatusoutput("g++ " + objects + " -o " + "bin/" + "main")
+check(status, output)
+print("make success!")
