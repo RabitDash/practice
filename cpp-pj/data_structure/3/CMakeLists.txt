@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
-project(3)
+project(main C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(.)
-
-add_executable(main main.c)
+add_executable(main
+        main.c)

@@ -59,6 +59,7 @@ int main()
 		head = head->next;
 	}
 	head = Reverse(h1);
+	printf("\n");
     while(head->next != NULL)
     {
         printf("%d ", head->next->elem);
