@@ -6,12 +6,12 @@ typedef struct Node{
 	struct Node* next;
 } Node;
 
-//Node* InitList(){
-//	Node* head;
-//	head = (Node*)malloc(sizeof(Node));
-//	head->next = NULL;
-//	return head;
-//}
+Node* InitList(){
+	Node* head;
+	head = (Node*)malloc(sizeof(Node));
+	head->next = NULL;
+	return head;
+}
 
 void Append(Node* head, int elem)
 {
@@ -27,10 +27,10 @@ void Append(Node* head, int elem)
 
 Node* Reverse(Node* h1)
 {
-    printf("\nfuck");
-	Node *h2, *p;
-	h2 = h1;
-    h1 = h1->next;
+	Node *h2, *p, *headnode;
+	headnode = h1;
+    h2 = h1->next;
+    h1 = h1->next->next;
 	h2->next = NULL;
 	p = h2;
 	while(h1 != NULL)
@@ -40,12 +40,13 @@ Node* Reverse(Node* h1)
         h2->next = p;
 		p = h2;
 	}
-
-	return p;
+    headnode->next = p;
+	return headnode;
 }
 int main()
 {
 	Node *head, *h1;
+	head = InitList();
 	int i;
 	for(i = 0; i < 20; i++)
 	{
@@ -60,7 +61,7 @@ int main()
 	head = Reverse(h1);
     while(head->next != NULL)
     {
-        printf("%d ", head->elem);
+        printf("%d ", head->next->elem);
         head = head->next;
     }
 	return 0;
