@@ -8,7 +8,8 @@ def init_model():
     global seq
     seq = keras.models.Sequential()
     seq.add(keras.layers.Dense(2,use_bias=False, input_shape=(8,)))
-    #seq.add(keras.layers.Dropout(0.05))
+    seq.add(keras.layers.Dropout(0.05))
+    seq.add(keras.layers.Activation('softmax'))
     seq.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 def train(data=data, truth=truth):
