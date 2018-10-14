@@ -6,3 +6,4 @@ repobot.sh
 __pycache__/*
 *.*~
 cmake-build-debug
+__pychche__
