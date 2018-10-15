@@ -9,11 +9,13 @@ data, truth = preprocessing.titanic_data()
 def init_model():
     global seq
     seq = Sequential()
-    seq.add(Dense(32,kernel_initializer='uniform',input_shape=(8,)))   
-    seq.add(Dense(32))  
+    seq.add(keras.layers.InputLayer(input_shape=(8,)))
+    seq.add(keras.layers.BatchNormalization())
+    seq.add(Dense(17,kernel_initializer='uniform', use_bias=False))
+    seq.add(Dropout(0.5))
     seq.add(Dense(2,activation='softmax'))    
     rmsprop = RMSprop(lr=0.001, rho=0.9, epsilon=1e-08, decay=0.0)    
-    seq.compile(optimizer='sgd',loss='mse',metrics=['accuracy'])
+    seq.compile(optimizer='adadelta',loss='binary_crossentropy',metrics=['accuracy'])
 
 def train(data=data, truth=truth):
     seq.fit(data, truth, epochs=2000, validation_split=0.05, batch_size=20)

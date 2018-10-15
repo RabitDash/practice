@@ -43,15 +43,16 @@ def preprocessing(path):
     train_data['FaNum'] = train_data['SibSp'] + train_data['Parch']
 
     # normalization
-    train_data.Fare = normalize(train_data.Fare)
-    train_data.Age = normalize(train_data.Age)
-    train_data.Pclass = normalize(train_data.Pclass)
-    # train_data.Cabin = normalize(train_data.Cabin)
-    train_data.FaNum = normalize(train_data.FaNum)
-    train_data.Embarked = normalize(train_data.Embarked)
-    train_data.SibSp = normalize(train_data.SibSp)
-    train_data.Parch = normalize(train_data.Parch)
+    # train_data.Fare = normalize(train_data.Fare)
+    # train_data.Age = normalize(train_data.Age)
+    # train_data.Pclass = normalize(train_data.Pclass)
+    # train_data.FaNum = normalize(train_data.FaNum)
+    # train_data.Embarked = normalize(train_data.Embarked)
+    # train_data.SibSp = normalize(train_data.SibSp)
+    # train_data.Parch = normalize(train_data.Parch)
     # train_data.Sex
+    # train_data.Cabin = normalize(train_data.Cabin)
+
     return train_data
 
 def data_matrix(path):
