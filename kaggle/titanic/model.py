@@ -13,13 +13,13 @@ def init_model():
     seq.add(keras.layers.BatchNormalization())
     seq.add(Dense(17,kernel_initializer='uniform', use_bias=False))
     seq.add(Dropout(0.5))
-    seq.add(Dense(2,activation='softmax'))    
-    rmsprop = RMSprop(lr=0.001, rho=0.9, epsilon=1e-08, decay=0.0)    
+    seq.add(Dense(2,activation='softmax'))
+    rmsprop = RMSprop(lr=0.001, rho=0.9, epsilon=1e-08, decay=0.0)
     seq.compile(optimizer='adadelta',loss='binary_crossentropy',metrics=['accuracy'])
 
 def train(data=data, truth=truth):
     seq.fit(data, truth, epochs=2000, validation_split=0.05, batch_size=20)
-    seq.save('model.h5')
+    seq.save('save.h5')
 
 def predict(data=data):
     prediction = seq.predict(data)
