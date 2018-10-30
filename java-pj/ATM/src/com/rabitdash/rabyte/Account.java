@@ -3,7 +3,12 @@ package com.rabitdash.rabyte;
 /**
  * @author rabitdash
  */
-class Account {
+enum accountType {
+    SavingAccount, CreditAccount
+}
+
+abstract class Account {
+    accountType type;
     private long id;
     private String password;
     private String name;
@@ -31,8 +36,12 @@ class Account {
     }
 
     Account withdraw(double num) {
-        this.balance -= num;
+        if (this.balance < num) {
+            throw new IllegalArgumentException("余额不足");
+        } else {
+            this.balance -= num;
 
+        }
         return this;
     }
 
@@ -87,6 +96,8 @@ class Account {
 
 //储蓄账户
 class SavingAccount extends Account {
+    public static final accountType type = accountType.SavingAccount;
+
     SavingAccount() {
         super();
     }
@@ -108,22 +119,39 @@ class SavingAccount extends Account {
 }
 
 class CreditAccount extends Account {
-
-    private long ceiling;
+    public static final accountType type = accountType.CreditAccount;
+    private double ceiling;
 
     CreditAccount() {
         super();
         this.ceiling = 0;
     }
 
-    CreditAccount(long id, String password, String name, String personId, String email, long ceiling) {
+    CreditAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
+    }
+
+    double getCeiling() {
+        return ceiling;
+    }
+
+    void setCeiling(double ceiling) {
         this.ceiling = ceiling;
     }
 
     @Override
     Account withdraw(double num) {
-        return this;
+        //是否透支
+        if (num > this.getBalance() + this.getCeiling()) {
+            throw new IllegalArgumentException("余额不足");
+        } else if (num > this.getBalance()) {
+            this.setCeiling(this.getCeiling() + this.getBalance() - num);
+            this.setBalance(0);
+            return this;
+        } else {
+            this.setBalance(this.getBalance() - num);
+            return this;
+        }
     }
 
 
