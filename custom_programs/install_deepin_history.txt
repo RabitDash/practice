@@ -1,0 +1,288 @@
+[animaze@animaze-omen ~]$ sudo pacman -S deepin deepin-extra
+[sudo] animaze 的密码：
+:: 在组 deepin 中有 26 成员：
+:: 软件仓库 community
+   1) deepin-account-faces  2) deepin-anything  3) deepin-api
+   4) deepin-calendar  5) deepin-control-center  6) deepin-daemon
+   7) deepin-desktop-base  8) deepin-desktop-schemas  9) deepin-dock
+   10) deepin-file-manager  11) deepin-grub2-themes  12) deepin-gtk-theme
+   13) deepin-image-viewer  14) deepin-launcher  15) deepin-manual
+   16) deepin-menu  17) deepin-network-utils
+   18) deepin-polkit-agent-ext-gnomekeyring  19) deepin-qt5dxcb-plugin
+   20) deepin-qt5integration  21) deepin-session-ui  22) deepin-shortcut-viewer
+   23) deepin-sound-theme  24) deepin-system-monitor  25) deepin-turbo
+   26) startdde
+
+输入某个选择 ( 默认=全部选定 ): 
+警告：deepin-anything-0.0.3-1 已经为最新 -- 重新安装
+警告：deepin-file-manager-1:4.6.10-1 已经为最新 -- 重新安装
+警告：deepin-menu-3.4.0-1 已经为最新 -- 重新安装
+警告：deepin-qt5dxcb-plugin-1.1.12-1 已经为最新 -- 重新安装
+警告：deepin-qt5integration-0.3.6-1 已经为最新 -- 重新安装
+警告：deepin-shortcut-viewer-1.3.5-1 已经为最新 -- 重新安装
+:: 在组 deepin-extra 中有 13 成员：
+:: 软件仓库 community
+   1) deepin-boot-maker  2) deepin-calculator  3) deepin-clone
+   4) deepin-community-wallpapers  5) deepin-draw  6) deepin-editor
+   7) deepin-movie  8) deepin-music  9) deepin-picker
+   10) deepin-screen-recorder  11) deepin-screenshot  12) deepin-terminal
+   13) deepin-voice-recorder
+
+输入某个选择 ( 默认=全部选定 ): 
+警告：deepin-movie-1:3.2.14-1 已经为最新 -- 重新安装
+警告：deepin-terminal-3.0.9-1 已经为最新 -- 重新安装
+正在解决依赖关系...
+正在查找软件包冲突...
+警告：正在从目标清单中删除 'deepin-community-wallpapers' ，因为它和 'deepin-wallpapers' 冲突
+:: deepin-clutter 与 clutter 有冲突。删除 clutter 吗？ [y/N] y
+:: deepin-cogl 与 cogl 有冲突。删除 cogl 吗？ [y/N] y
+警告：检测到依赖关系环：
+警告：deepin-session-ui 将在它 deepin-control-center 的依赖关系之前被安装
+警告：检测到依赖关系环：
+警告：deepin-session-ui 将在它 deepin-daemon 的依赖关系之前被安装
+警告：检测到依赖关系环：
+警告：startdde 将在它 deepin-daemon 的依赖关系之前被安装
+
+软件包 (73) bamf-0.5.3-2  blur-effect-1.1.3-1  byzanz-0.3.0.1-3
+            clutter-1.26.2-1 [删除]  cogl-1.22.2+11+g811f285a-1 [删除]
+            deepin-clutter-1.26.2-1  deepin-cogl-1.22.5-1
+            deepin-icon-theme-15.12.60-1  deepin-metacity-3.22.22-1
+            deepin-mutter-3.20.34-1  deepin-polkit-agent-0.2.1-1
+            deepin-wallpapers-2:1.7.5-2  deepin-wm-1.9.33-1  dtkwm-2.0.9-2
+            freeimage-3.18.0-2  geoip-1.6.12-1  geoip-database-20180403-1
+            geoip-database-extra-20180403-1  granite-5.1.0-1  jxrlib-0.2.1-3
+            libcue-2.2.1-1  libdbusmenu-qt5-0.9.3+16.04.20160218-1
+            liblightdm-qt5-1:1.28.0-1  libraw-0.19.0-1  lightdm-1:1.28.0-1
+            mtools-4.0.19-1  nethogs-0.8.5-2  networkmanager-qt-5.51.0-1
+            nilfs-utils-2.2.7-1  partclone-0.3.11-1  progsreiserfs-0.3.0.5-9
+            qt5-tools-5.11.2-2  syntax-highlighting-5.51.0-1  syslinux-6.03-11
+            xcur2png-0.7.1-5  deepin-account-faces-1.0.11-1.1
+            deepin-anything-0.0.3-1  deepin-api-3.4.0-1
+            deepin-boot-maker-2.0.4.6-1  deepin-calculator-1.0.8-1
+            deepin-calendar-1.2.5-2  deepin-clone-0.1.1-1
+            deepin-control-center-4.7.3-1  deepin-daemon-3.4.0-1
+            deepin-desktop-base-2:2018.7.23-1.1  deepin-desktop-schemas-3.3.1-1
+            deepin-dock-4.7.5.2-1  deepin-draw-1.0.0-2  deepin-editor-1.1-1
+            deepin-file-manager-1:4.6.10-1  deepin-grub2-themes-1.0.0-3
+            deepin-gtk-theme-17.10.10-1  deepin-image-viewer-1.3.0-2
+            deepin-launcher-4.5.1-1  deepin-manual-2.0.12-1
+            deepin-menu-3.4.0-1  deepin-movie-1:3.2.14-1
+            deepin-music-3.1.8.5-2  deepin-network-utils-0.0.6-1
+            deepin-picker-1.6.3-1  deepin-polkit-agent-ext-gnomekeyring-0.1.0-1
+            deepin-qt5dxcb-plugin-1.1.12-1  deepin-qt5integration-0.3.6-1
+            deepin-screen-recorder-2.7.6-1  deepin-screenshot-4.1.2-1
+            deepin-session-ui-4.6.0-1.1  deepin-shortcut-viewer-1.3.5-1
+            deepin-sound-theme-15.10.3-1  deepin-system-monitor-1.4.6-1
+            deepin-terminal-3.0.9-1  deepin-turbo-0.0.2-1
+            deepin-voice-recorder-1.3.8-1  startdde-3.2.0-1
+
+下载大小:   299.40 MiB
+全部安装大小：  698.89 MiB
+净更新大小：  654.61 MiB
+
+:: 进行安装吗？ [Y/n] 
+:: 正在获取软件包......
+ syslinux-6.03-11-x86_64 1508.0 KiB  7.88M/s 00:00 [######################] 100%
+ nilfs-utils-2.2.7-1...   108.0 KiB  8.11M/s 00:00 [######################] 100%
+ geoip-database-2018...  1195.2 KiB  2.71M/s 00:00 [######################] 100%
+ geoip-1.6.12-1-x86_64     74.8 KiB  7.31M/s 00:00 [######################] 100%
+ geoip-database-extr...    22.8 MiB  1694K/s 00:14 [######################] 100%
+ lightdm-1:1.28.0-1-...   202.9 KiB  2.61M/s 00:00 [######################] 100%
+ liblightdm-qt5-1:1....    26.4 KiB  2.58M/s 00:00 [######################] 100%
+ qt5-tools-5.11.2-2-...     5.6 MiB  2.35M/s 00:02 [######################] 100%
+ networkmanager-qt-5...  1412.6 KiB  2.29M/s 00:01 [######################] 100%
+ libdbusmenu-qt5-0.9...   157.0 KiB  2.29M/s 00:00 [######################] 100%
+ libraw-0.19.0-1-x86_64   289.3 KiB  2.41M/s 00:00 [######################] 100%
+ mtools-4.0.19-1-x86_64   182.8 KiB  3.31M/s 00:00 [######################] 100%
+ progsreiserfs-0.3.0...    49.6 KiB  4.84M/s 00:00 [######################] 100%
+ syntax-highlighting...  1048.1 KiB  3.20M/s 00:00 [######################] 100%
+ libcue-2.2.1-1-x86_64     18.9 KiB  2.64M/s 00:00 [######################] 100%
+ deepin-account-face...  1146.9 KiB   959K/s 00:01 [######################] 100%
+ xcur2png-0.7.1-5-x86_64   10.5 KiB  1054K/s 00:00 [######################] 100%
+ blur-effect-1.1.3-1...    14.1 KiB  1010K/s 00:00 [######################] 100%
+ deepin-api-3.4.0-1-...    15.2 MiB  1755K/s 00:09 [######################] 100%
+ deepin-calendar-1.2...    73.1 KiB  5.10M/s 00:00 [######################] 100%
+ deepin-gtk-theme-17...   324.4 KiB  6.74M/s 00:00 [######################] 100%
+ deepin-icon-theme-1...     7.6 MiB  2.31M/s 00:03 [######################] 100%
+ deepin-sound-theme-...     3.6 MiB  2.42M/s 00:01 [######################] 100%
+ deepin-desktop-sche...    40.6 KiB  3.97M/s 00:00 [######################] 100%
+ bamf-0.5.3-2-x86_64      153.5 KiB  4.05M/s 00:00 [######################] 100%
+ granite-5.1.0-1-x86_64   290.9 KiB  4.73M/s 00:00 [######################] 100%
+ deepin-cogl-1.22.5-...   749.8 KiB  3.66M/s 00:00 [######################] 100%
+ deepin-clutter-1.26...  1752.1 KiB  2.39M/s 00:01 [######################] 100%
+ deepin-mutter-3.20....   866.8 KiB  2.40M/s 00:00 [######################] 100%
+ deepin-wm-1.9.33-1-...   354.2 KiB  6.07M/s 00:00 [######################] 100%
+ deepin-metacity-3.2...   972.1 KiB  2.71M/s 00:00 [######################] 100%
+ startdde-3.2.0-1-x86_64    3.0 MiB  2.38M/s 00:01 [######################] 100%
+ deepin-session-ui-4...  1837.3 KiB  2.87M/s 00:01 [######################] 100%
+ deepin-polkit-agent...    41.6 KiB  2.39M/s 00:00 [######################] 100%
+ deepin-polkit-agent...    12.5 KiB  1786K/s 00:00 [######################] 100%
+ deepin-wallpapers-2...    36.6 MiB  1765K/s 00:21 [######################] 100%
+ deepin-desktop-base...    18.0 KiB  1804K/s 00:00 [######################] 100%
+ deepin-daemon-3.4.0...    17.0 MiB  2.25M/s 00:08 [######################] 100%
+ deepin-network-util...    81.7 KiB  2.42M/s 00:00 [######################] 100%
+ deepin-control-cent...     4.0 MiB  2.36M/s 00:02 [######################] 100%
+ deepin-launcher-4.5...   322.2 KiB  2.25M/s 00:00 [######################] 100%
+ deepin-dock-4.7.5.2...   534.1 KiB  2.56M/s 00:00 [######################] 100%
+ deepin-grub2-themes...  1944.2 KiB  2.63M/s 00:01 [######################] 100%
+ jxrlib-0.2.1-3-x86_64    203.3 KiB  2.84M/s 00:00 [######################] 100%
+ freeimage-3.18.0-2-...   301.0 KiB  2.51M/s 00:00 [######################] 100%
+ deepin-image-viewer...     3.7 MiB  2.43M/s 00:02 [######################] 100%
+ deepin-manual-2.0.1...   148.9 MiB  2028K/s 01:15 [######################] 100%
+ dtkwm-2.0.9-2-x86_64      19.1 KiB  1912K/s 00:00 [######################] 100%
+ nethogs-0.8.5-2-x86_64    44.8 KiB  2.57M/s 00:00 [######################] 100%
+ deepin-system-monit...   283.7 KiB  2.39M/s 00:00 [######################] 100%
+ deepin-turbo-0.0.2-...    51.5 KiB  2.19M/s 00:00 [######################] 100%
+ deepin-boot-maker-2...   861.0 KiB  4.67M/s 00:00 [######################] 100%
+ deepin-calculator-1...   269.2 KiB  8.76M/s 00:00 [######################] 100%
+ partclone-0.3.11-1-...   433.2 KiB  4.36M/s 00:00 [######################] 100%
+ deepin-clone-0.1.1-...     3.7 MiB  2.42M/s 00:02 [######################] 100%
+ deepin-draw-1.0.0-2...   435.4 KiB  2.27M/s 00:00 [######################] 100%
+ deepin-editor-1.1-1...  1170.1 KiB  3.09M/s 00:00 [######################] 100%
+ deepin-music-3.1.8....  1703.7 KiB  2.39M/s 00:01 [######################] 100%
+ deepin-picker-1.6.3...    57.1 KiB  2.43M/s 00:00 [######################] 100%
+ byzanz-0.3.0.1-3-x86_64   83.3 KiB  2.20M/s 00:00 [######################] 100%
+ deepin-screen-recor...     3.9 MiB  2.43M/s 00:02 [######################] 100%
+ deepin-screenshot-4...   306.3 KiB  2.30M/s 00:00 [######################] 100%
+ deepin-voice-record...   388.1 KiB  2.27M/s 00:00 [######################] 100%
+(71/71) 正在检查密钥环里的密钥                     [######################] 100%
+(71/71) 正在检查软件包完整性                       [######################] 100%
+(71/71) 正在加载软件包文件                         [######################] 100%
+(71/71) 正在检查文件冲突                           [######################] 100%
+:: 正在运行事务前钩子函数...
+(1/1) Remove DKMS modules
+:: 正在处理软件包的变化...
+(1/2) 正在删除 clutter                             [######################] 100%
+(2/2) 正在删除 cogl                                [######################] 100%
+( 1/71) 正在安装 deepin-account-faces              [######################] 100%
+( 2/71) 正在重新安装 deepin-anything               [######################] 100%
+( 3/71) 正在安装 xcur2png                          [######################] 100%
+( 4/71) 正在安装 blur-effect                       [######################] 100%
+( 5/71) 正在安装 deepin-api                        [######################] 100%
+( 6/71) 正在重新安装 deepin-qt5dxcb-plugin         [######################] 100%
+( 7/71) 正在重新安装 deepin-qt5integration         [######################] 100%
+( 8/71) 正在安装 deepin-calendar                   [######################] 100%
+( 9/71) 正在安装 geoip-database                    [######################] 100%
+(10/71) 正在安装 geoip                             [######################] 100%
+geoip 的可选依赖
+    geoip-database-extra: city/ASN databases (not needed for country lookups)
+    [等待中]
+(11/71) 正在安装 geoip-database-extra              [######################] 100%
+(12/71) 正在安装 deepin-gtk-theme                  [######################] 100%
+deepin-gtk-theme 的可选依赖
+    gtk-engine-murrine: for gtk2 themes [已安装]
+(13/71) 正在安装 deepin-icon-theme                 [######################] 100%
+(14/71) 正在安装 deepin-sound-theme                [######################] 100%
+(15/71) 正在安装 deepin-desktop-schemas            [######################] 100%
+(16/71) 正在安装 lightdm                           [######################] 100%
+警告：/etc/lightdm/lightdm.conf 已被安装为 /etc/lightdm/lightdm.conf.pacnew
+lightdm 的可选依赖
+    accountsservice: Enhanced user accounts handling [已安装]
+    lightdm-gtk-greeter: GTK greeter
+    xorg-server-xephyr: LightDM test mode
+(17/71) 正在安装 liblightdm-qt5                    [######################] 100%
+(18/71) 正在安装 bamf                              [######################] 100%
+(19/71) 正在重新安装 deepin-menu                   [######################] 100%
+(20/71) 正在安装 granite                           [######################] 100%
+(21/71) 正在安装 deepin-cogl                       [######################] 100%
+(22/71) 正在安装 deepin-clutter                    [######################] 100%
+(23/71) 正在安装 deepin-mutter                     [######################] 100%
+(24/71) 正在安装 deepin-wm                         [######################] 100%
+(25/71) 正在安装 deepin-metacity                   [######################] 100%
+(26/71) 正在安装 startdde                          [######################] 100%
+(27/71) 正在安装 qt5-tools                         [######################] 100%
+qt5-tools 的可选依赖
+    clang: for qdoc
+    qt5-webkit: for Qt Assistant
+(28/71) 正在安装 deepin-session-ui                 [######################] 100%
+(29/71) 正在安装 deepin-polkit-agent               [######################] 100%
+(30/71) 正在安装 deepin-polkit-agent-ext-gnome...  [######################] 100%
+(31/71) 正在安装 deepin-wallpapers                 [######################] 100%
+(32/71) 正在安装 deepin-desktop-base               [######################] 100%
+(33/71) 正在安装 deepin-daemon                     [######################] 100%
+deepin-daemon 的可选依赖
+    networkmanager: for network management support [已安装]
+    deepin-grub2-themes: theme for grub module [等待中]
+    iw: for miracast module [已安装]
+    proxychains-ng: for proxy configuration module
+(34/71) 正在安装 networkmanager-qt                 [######################] 100%
+(35/71) 正在安装 deepin-network-utils              [######################] 100%
+(36/71) 正在安装 deepin-control-center             [######################] 100%
+deepin-control-center 的可选依赖
+    redshift: automatic color temperature support
+(37/71) 正在安装 deepin-launcher                   [######################] 100%
+(38/71) 正在安装 libdbusmenu-qt5                   [######################] 100%
+(39/71) 正在安装 deepin-dock                       [######################] 100%
+(40/71) 正在重新安装 deepin-shortcut-viewer        [######################] 100%
+(41/71) 正在重新安装 deepin-terminal               [######################] 100%
+(42/71) 正在重新安装 deepin-movie                  [######################] 100%
+(43/71) 正在重新安装 deepin-file-manager           [######################] 100%
+(44/71) 正在安装 deepin-grub2-themes               [######################] 100%
+(45/71) 正在安装 libraw                            [######################] 100%
+(46/71) 正在安装 jxrlib                            [######################] 100%
+jxrlib 的可选依赖
+    java-runtime: Java bindings [已安装]
+(47/71) 正在安装 freeimage                         [######################] 100%
+(48/71) 正在安装 deepin-image-viewer               [######################] 100%
+deepin-image-viewer 的可选依赖
+    deepin-manual: view the help manual [等待中]
+(49/71) 正在安装 deepin-manual                     [######################] 100%
+(50/71) 正在安装 dtkwm                             [######################] 100%
+(51/71) 正在安装 nethogs                           [######################] 100%
+(52/71) 正在安装 deepin-system-monitor             [######################] 100%
+(53/71) 正在安装 deepin-turbo                      [######################] 100%
+(54/71) 正在安装 mtools                            [######################] 100%
+mtools 的可选依赖
+    libx11: required by floppyd [已安装]
+    libsm: required by floppyd [已安装]
+(55/71) 正在安装 syslinux                          [######################] 100%
+
+==> For setting up Syslinux BIOS using the syslinux-install_update script follow
+    https://wiki.archlinux.org/index.php/Syslinux#Automatic_Install
+
+==> For setting up Syslinux EFI follow
+    https://wiki.archlinux.org/index.php/Syslinux#UEFI_Systems
+
+==> The syslinux-install_update script does not currently support EFI install
+
+syslinux 的可选依赖
+    perl-crypt-passwdmd5: For md5pass
+    perl-digest-sha1: For sha1pass
+    mtools: For mkdiskimage and syslinux support [已安装]
+    gptfdisk: For GPT support [已安装]
+    util-linux: For isohybrid [已安装]
+    efibootmgr: For EFI support [已安装]
+    dosfstools: For EFI support [已安装]
+(56/71) 正在安装 deepin-boot-maker                 [######################] 100%
+(57/71) 正在安装 deepin-calculator                 [######################] 100%
+(58/71) 正在安装 progsreiserfs                     [######################] 100%
+(59/71) 正在安装 nilfs-utils                       [######################] 100%
+(60/71) 正在安装 partclone                         [######################] 100%
+(61/71) 正在安装 deepin-clone                      [######################] 100%
+(62/71) 正在安装 deepin-draw                       [######################] 100%
+(63/71) 正在安装 syntax-highlighting               [######################] 100%
+(64/71) 正在安装 deepin-editor                     [######################] 100%
+(65/71) 正在安装 libcue                            [######################] 100%
+(66/71) 正在安装 deepin-music                      [######################] 100%
+(67/71) 正在安装 deepin-picker                     [######################] 100%
+(68/71) 正在安装 byzanz                            [######################] 100%
+byzanz 的可选依赖
+    gst-libav: save into FLV format [已安装]
+(69/71) 正在安装 deepin-screen-recorder            [######################] 100%
+(70/71) 正在安装 deepin-screenshot                 [######################] 100%
+(71/71) 正在安装 deepin-voice-recorder             [######################] 100%
+:: 正在运行事务后钩子函数...
+( 1/10) Install DKMS modules
+==> Unable to install module deepin-anything/0.0.3 for kernel 4.14.79-1-MANJARO: Missing kernel headers.
+==> Unable to install module deepin-anything/0.0.3 for kernel 4.19.1-1-MANJARO: Missing kernel headers.
+( 2/10) Compiling GSettings XML schema files...
+override for key “thumbnail-limit” in schema “org.gnome.nautilus.preferences” in override file “/usr/share/glib-2.0/schemas/99_manjaro-settings.gschema.override” is outside the range given in the schema；忽略对此键的覆盖。
+( 3/10) Updating icon theme caches...
+( 4/10) Reloading system manager configuration...
+( 5/10) Creating system user accounts...
+( 6/10) Creating temporary files...
+( 7/10) Arming ConditionNeedsUpdate...
+( 8/10) Updating the info directory file...
+( 9/10) Updating the desktop file MIME type cache...
+(10/10) Updating the MIME type database...
+
