@@ -4,7 +4,18 @@ package com.rabitdash.rabyte;
  * @author rabitdash
  */
 enum accountType {
-    SavingAccount, CreditAccount
+    SavingAccount,
+    CreditAccount,
+    LoanSavingAccount,
+    LoanCreditAccount,
+}
+
+abstract interface Loanable {
+    Account requestLoan(double money);
+
+    Account payLoan(double money);
+
+    double getLoan();
 }
 
 abstract class Account {
@@ -21,13 +32,14 @@ abstract class Account {
         id++;
     }
 
-    public Account(long id, String password, String name, String personId, String email) {
-        this.id++;
+    public Account(long id, String password, String name, String personId, String email, accountType type) {
+        this.id = id;
         this.password = password;
         this.name = name;
         this.personId = personId;
         this.email = email;
         this.balance = 0;
+        this.type = type;
     }
 
     final Account deposit(double num) {
@@ -85,6 +97,17 @@ abstract class Account {
     public void setPersonId(String personId) {
         this.personId = personId;
     }
+
+    @Override
+    public String toString() {
+        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", id, balance, personId, type);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        return this.id == ((Account) o).getId();
+    }
 }
 
 //储蓄账户
@@ -96,7 +119,7 @@ class SavingAccount extends Account {
     }
 
     SavingAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email);
+        super(id, password, name, personId, email, type);
     }
 
     @Override
@@ -108,6 +131,60 @@ class SavingAccount extends Account {
             this.setBalance(this.getBalance() - num);
             return this;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        return this.getId() == ((Account) o).getId();
+    }
+}
+
+class LoanSavingAccount extends SavingAccount implements Loanable {
+    public static final accountType type = accountType.LoanSavingAccount;
+    private double loan;
+
+    LoanSavingAccount() {
+        super();
+    }
+
+    LoanSavingAccount(long id, String password, String name, String personId, String email) {
+        super(id, password, name, personId, email);
+        //TODO
+    }
+
+    @Override
+    public Account requestLoan(double money) {
+        this.loan += money;
+        return this;
+    }
+
+    @Override
+    public Account payLoan(double money) {
+        this.withdraw(money);
+        this.loan -= money;
+        return this;
+    }
+
+    @Override
+    public double getLoan() {
+        return loan;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        return this.getId() == ((Account) o).getId();
     }
 }
 
@@ -121,7 +198,7 @@ class CreditAccount extends Account {
     }
 
     CreditAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email);
+        super(id, password, name, personId, email, type);
     }
 
     double getCeiling() {
@@ -147,6 +224,60 @@ class CreditAccount extends Account {
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        return this.getId() == ((Account) o).getId();
+    }
+
+}
+
+class LoanCreditAccount extends CreditAccount implements Loanable {
+    public static final accountType type = accountType.LoanCreditAccount;
+    private double loan;
+
+    LoanCreditAccount() {
+        super();
+    }
+
+    LoanCreditAccount(long id, String password, String name, String personId, String email) {
+        super(id, password, name, personId, email);
+        //TODO
+    }
+
+    @Override
+    public Account requestLoan(double money) {
+        this.loan += money;
+        return this;
+    }
+
+    @Override
+    public Account payLoan(double money) {
+        this.withdraw(money);
+        this.loan -= money;
+        return this;
+    }
+
+    @Override
+    public double getLoan() {
+        return loan;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        return this.getId() == ((Account) o).getId();
+    }
 
 }
 

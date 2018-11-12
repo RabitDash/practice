@@ -36,6 +36,9 @@ public class Bank {
                 account = new CreditAccount(id, password, name, personId, email);
                 ((CreditAccount) account).setCeiling(0L);
                 break;
+            case LoanCreditAccount:
+                account = new LoanCreditAccount(id, password, name, personId, email);
+                break;
             default:
                 throw new IllegalArgumentException("未知账户类型");
         }
@@ -63,8 +66,29 @@ public class Bank {
         throw new NoSuchElementException("未找到账户");
     }
 
+    Account requestLoan(long id, double num) {
+        for (int i = 0; i < nAccounts; i++) {
+            if (Accounts[i].getId() == id) {
+                ((Loanable) Accounts[i]).requestLoan(num);
+                return Accounts[i];
+            }
+        }
+        throw new NoSuchElementException("未找到账户");
+    }
+
+    Account payLoan(long id, double num) {
+        for (int i = 0; i < nAccounts; i++) {
+            if (Accounts[i].getId() == id) {
+                ((Loanable) Accounts[i]).payLoan(num);
+                return Accounts[i];
+            }
+        }
+        throw new NoSuchElementException("未找到账户");
+    }
+
     Account setCeiling(long id, double num) {
         for (int i = 0; i < nAccounts; i++) {
+            System.out.println(Accounts[i].type);
             if (Accounts[i].getId() == id && Accounts[i].type == accountType.CreditAccount) {
                 ((CreditAccount) Accounts[i]).setCeiling(num);
                 return Accounts[i];
@@ -115,6 +139,14 @@ public class Bank {
             }
         }
         return sumCeiling;
+    }
+
+    double allLoan() {
+        double sumLoan = 0.0;
+        for (int i = 0; i < nAccounts; i++) {
+            sumLoan += ((Loanable) Accounts[i]).getLoan();
+        }
+        return sumLoan;
     }
 
 
