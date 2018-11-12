@@ -6,25 +6,25 @@ import java.util.NoSuchElementException;
 public class Bank {
 
 
-    //    private static volatile Bank instance;
+    private static volatile Bank instance;
     private static int nAccounts;// number of accounts
     private Account[] Accounts;
 
-    public Bank() {
+    private Bank() {
         Accounts = new Account[100];
         nAccounts = 0;
     }
 
-//    public static Bank getInstance() {
-//        if (instance == null) {
-//            synchronized (Bank.class) {
-//                if (instance == null) {
-//                    instance = new Bank();
-//                }
-//            }
-//        }
-//        return instance;
-//    }
+    public static Bank getInstance() {
+        if (instance == null) {
+            synchronized (Bank.class) {
+                if (instance == null) {
+                    instance = new Bank();
+                }
+            }
+        }
+        return instance;
+    }
 
     Account register(long id, String password, String name, String personId, String email, accountType type) {
         Account account;
@@ -77,7 +77,7 @@ public class Bank {
         try {
             for (int i = 0; i < nAccounts; i++) {
                 if (Accounts[i].getId() == from) {
-                    ((Account) Accounts[i]).withdraw(money);
+                    Accounts[i].withdraw(money);
                 }
             }
         } catch (IllegalArgumentException e) {

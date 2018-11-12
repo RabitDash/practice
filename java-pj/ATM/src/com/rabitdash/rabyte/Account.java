@@ -8,8 +8,8 @@ enum accountType {
 }
 
 abstract class Account {
+    private static long id = 100000;
     accountType type;
-    private long id;
     private String password;
     private String name;
     private String personId;
@@ -18,10 +18,11 @@ abstract class Account {
 
     public Account() {
         balance = 0;
+        id++;
     }
 
     public Account(long id, String password, String name, String personId, String email) {
-        this.id = id;
+        this.id++;
         this.password = password;
         this.name = name;
         this.personId = personId;
@@ -29,21 +30,13 @@ abstract class Account {
         this.balance = 0;
     }
 
-    Account deposit(double num) {
+    final Account deposit(double num) {
         this.balance += num;
 
         return this;
     }
 
-    Account withdraw(double num) {
-        if (this.balance < num) {
-            throw new IllegalArgumentException("余额不足");
-        } else {
-            this.balance -= num;
-
-        }
-        return this;
-    }
+    abstract Account withdraw(double num);
 
     public double getBalance() {
         return balance;
