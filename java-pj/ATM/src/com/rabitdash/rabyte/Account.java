@@ -3,7 +3,7 @@ package com.rabitdash.rabyte;
 /**
  * @author rabitdash
  */
-enum accountType {
+enum ACCOUNTTYPE {
     SavingAccount,
     CreditAccount,
     LoanSavingAccount,
@@ -20,7 +20,7 @@ abstract interface Loanable {
 
 abstract class Account {
     private static long id = 100000;
-    accountType type;
+    ACCOUNTTYPE type;
     private String password;
     private String name;
     private String personId;
@@ -32,19 +32,17 @@ abstract class Account {
         id++;
     }
 
-    public Account(long id, String password, String name, String personId, String email, accountType type) {
+    public Account(long id, String password, String name, String personId, String email) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.personId = personId;
         this.email = email;
         this.balance = 0;
-        this.type = type;
     }
 
     final Account deposit(double num) {
         this.balance += num;
-
         return this;
     }
 
@@ -112,14 +110,15 @@ abstract class Account {
 
 //储蓄账户
 class SavingAccount extends Account {
-    public static final accountType type = accountType.SavingAccount;
 
     SavingAccount() {
         super();
+        type = ACCOUNTTYPE.SavingAccount;
     }
 
     SavingAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email, type);
+        super(id, password, name, personId, email);
+        type = ACCOUNTTYPE.SavingAccount;
     }
 
     @Override
@@ -146,16 +145,16 @@ class SavingAccount extends Account {
 }
 
 class LoanSavingAccount extends SavingAccount implements Loanable {
-    public static final accountType type = accountType.LoanSavingAccount;
     private double loan;
 
     LoanSavingAccount() {
         super();
+        type = ACCOUNTTYPE.LoanSavingAccount;
     }
 
     LoanSavingAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
-        //TODO
+        type = ACCOUNTTYPE.LoanSavingAccount;
     }
 
     @Override
@@ -189,16 +188,19 @@ class LoanSavingAccount extends SavingAccount implements Loanable {
 }
 
 class CreditAccount extends Account {
-    public static final accountType type = accountType.CreditAccount;
-    private double ceiling;
+    //    protected static ACCOUNTTYPE type = ACCOUNTTYPE.CreditAccount;
+//    protected ACCOUNTTYPE type;
+    protected double ceiling;
 
     CreditAccount() {
         super();
         this.ceiling = 0;
+        type = ACCOUNTTYPE.CreditAccount;
     }
 
     CreditAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email, type);
+        super(id, password, name, personId, email);
+        type = ACCOUNTTYPE.CreditAccount;
     }
 
     double getCeiling() {
@@ -207,6 +209,7 @@ class CreditAccount extends Account {
 
     void setCeiling(double ceiling) {
         this.ceiling = ceiling;
+        System.out.println("fuck");
     }
 
     @Override
@@ -238,16 +241,16 @@ class CreditAccount extends Account {
 }
 
 class LoanCreditAccount extends CreditAccount implements Loanable {
-    public static final accountType type = accountType.LoanCreditAccount;
     private double loan;
 
     LoanCreditAccount() {
         super();
+        type = ACCOUNTTYPE.LoanCreditAccount;
     }
 
     LoanCreditAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
-        //TODO
+        type = ACCOUNTTYPE.LoanCreditAccount;
     }
 
     @Override
