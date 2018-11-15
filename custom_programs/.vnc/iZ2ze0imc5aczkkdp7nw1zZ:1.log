@@ -1,0 +1,52 @@
+
+Xvnc Free Edition 4.1.1 - built Feb 25 2015 23:02:21
+Copyright (C) 2002-2005 RealVNC Ltd.
+See http://www.realvnc.com for information on VNC.
+Underlying X server release 40300000, The XFree86 Project, Inc
+
+
+Thu Nov 15 18:39:38 2018
+ vncext:      VNC extension running!
+ vncext:      Listening for VNC connections on port 5901
+ vncext:      created VNC server for screen 0
+error opening security policy file /etc/X11/xserver/SecurityPolicy
+Could not init font path element /usr/X11R6/lib/X11/fonts/Type1/, removing from list!
+Could not init font path element /usr/X11R6/lib/X11/fonts/Speedo/, removing from list!
+Could not init font path element /usr/X11R6/lib/X11/fonts/misc/, removing from list!
+Could not init font path element /usr/X11R6/lib/X11/fonts/75dpi/, removing from list!
+Could not init font path element /usr/X11R6/lib/X11/fonts/100dpi/, removing from list!
+Could not init font path element /usr/share/fonts/X11/75dpi/, removing from list!
+Could not init font path element /usr/share/fonts/X11/100dpi/, removing from list!
+AUDIT: Thu Nov 15 18:39:44 2018: 2658 Xvnc4: client 13 rejected from local host
+
+Thu Nov 15 18:39:47 2018
+ Connections: accepted: 0.0.0.0::45560
+ SConnection: Client needs protocol version 3.8
+ SConnection: Client requests security type VncAuth(2)
+
+Thu Nov 15 18:39:48 2018
+ VNCSConnST:  Server default pixel format depth 16 (16bpp) little-endian rgb565
+ VNCSConnST:  Client pixel format depth 16 (16bpp) little-endian rgb565
+
+Thu Nov 15 18:51:51 2018
+ Connections: closed: 0.0.0.0::45560 (Clean disconnection)
+ SMsgWriter:  framebuffer updates 631
+ SMsgWriter:    copyRect rects 108, bytes 1728
+ SMsgWriter:    ZRLE rects 1844, bytes 1485041
+ SMsgWriter:    raw bytes equivalent 19150876, compression ratio 12.895857
+
+Thu Nov 15 18:59:28 2018
+ Connections: accepted: 0.0.0.0::40761
+ SConnection: Client needs protocol version 3.8
+ SConnection: Client requests security type VncAuth(2)
+
+Thu Nov 15 18:59:29 2018
+ VNCSConnST:  Server default pixel format depth 16 (16bpp) little-endian rgb565
+ VNCSConnST:  Client pixel format depth 16 (16bpp) little-endian rgb565
+AUDIT: Thu Nov 15 19:02:36 2018: 2658 Xvnc4: client 11 rejected from local host
+
+Thu Nov 15 19:03:21 2018
+ Connections: accepted: 0.0.0.0::54476
+ SConnection: Client needs protocol version 3.3
+ SConnection: AuthFailureException: Authentication failure
+ Connections: closed: 0.0.0.0::54476 (Authentication failure)
