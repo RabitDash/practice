@@ -10,14 +10,6 @@ enum ACCOUNTTYPE {
     LoanCreditAccount,
 }
 
-abstract interface Loanable {
-    Account requestLoan(double money);
-
-    Account payLoan(double money);
-
-    double getLoan();
-}
-
 abstract class Account {
     private static long id = 100000;
     ACCOUNTTYPE type;
@@ -46,7 +38,7 @@ abstract class Account {
         return this;
     }
 
-    abstract Account withdraw(double num);
+    abstract Account withdraw(double num) throws BalanceNotEnoughException;
 
     public double getBalance() {
         return balance;
@@ -106,182 +98,6 @@ abstract class Account {
 
         return this.id == ((Account) o).getId();
     }
-}
-
-//储蓄账户
-class SavingAccount extends Account {
-
-    SavingAccount() {
-        super();
-        type = ACCOUNTTYPE.SavingAccount;
-    }
-
-    SavingAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.SavingAccount;
-    }
-
-    @Override
-    Account withdraw(double num) {
-        //是否透支
-        if (num > this.getBalance()) {
-            return this;
-        } else {
-            this.setBalance(this.getBalance() - num);
-            return this;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        return this.getId() == ((Account) o).getId();
-    }
-}
-
-class LoanSavingAccount extends SavingAccount implements Loanable {
-    private double loan;
-
-    LoanSavingAccount() {
-        super();
-        type = ACCOUNTTYPE.LoanSavingAccount;
-    }
-
-    LoanSavingAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.LoanSavingAccount;
-    }
-
-    @Override
-    public Account requestLoan(double money) {
-        this.loan += money;
-        return this;
-    }
-
-    @Override
-    public Account payLoan(double money) {
-        this.withdraw(money);
-        this.loan -= money;
-        return this;
-    }
-
-    @Override
-    public double getLoan() {
-        return loan;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        return this.getId() == ((Account) o).getId();
-    }
-}
-
-class CreditAccount extends Account {
-    //    protected static ACCOUNTTYPE type = ACCOUNTTYPE.CreditAccount;
-//    protected ACCOUNTTYPE type;
-    protected double ceiling;
-
-    CreditAccount() {
-        super();
-        this.ceiling = 0;
-        type = ACCOUNTTYPE.CreditAccount;
-    }
-
-    CreditAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.CreditAccount;
-    }
-
-    double getCeiling() {
-        return ceiling;
-    }
-
-    void setCeiling(double ceiling) {
-        this.ceiling = ceiling;
-        System.out.println("fuck");
-    }
-
-    @Override
-    Account withdraw(double num) {
-        //是否透支
-        if (num > this.getBalance() + this.getCeiling()) {
-            throw new IllegalArgumentException("余额不足");
-        } else if (num > this.getBalance()) {
-            this.setCeiling(this.getCeiling() + this.getBalance() - num);
-            this.setBalance(0);
-            return this;
-        } else {
-            this.setBalance(this.getBalance() - num);
-            return this;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        return this.getId() == ((Account) o).getId();
-    }
-
-}
-
-class LoanCreditAccount extends CreditAccount implements Loanable {
-    private double loan;
-
-    LoanCreditAccount() {
-        super();
-        type = ACCOUNTTYPE.LoanCreditAccount;
-    }
-
-    LoanCreditAccount(long id, String password, String name, String personId, String email) {
-        super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.LoanCreditAccount;
-    }
-
-    @Override
-    public Account requestLoan(double money) {
-        this.loan += money;
-        return this;
-    }
-
-    @Override
-    public Account payLoan(double money) {
-        this.withdraw(money);
-        this.loan -= money;
-        return this;
-    }
-
-    @Override
-    public double getLoan() {
-        return loan;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("id:%d\nbalance:%f\npersonid:%s\ntype:%s\n", this.getId(), this.getBalance(), this.getPersonId(), type);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        return this.getId() == ((Account) o).getId();
-    }
-
 }
 
 

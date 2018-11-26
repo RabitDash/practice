@@ -37,7 +37,7 @@ public class Bank {
 
     }
 
-    Account register(long id, String password, String name, String personId, String email, ACCOUNTTYPE type) {
+    Account register(long id, String password, String name, String personId, String email, ACCOUNTTYPE type) throws RegisterException{
         Account account;
         switch (type) {
             case SavingAccount:
@@ -54,7 +54,7 @@ public class Bank {
                 account = new LoanSavingAccount(id, password, name, personId, email);
                 break;
             default:
-                throw new IllegalArgumentException("未知账户类型");
+                throw new RegisterException("未知账户类型");
         }
         accounts.add(account);
         nAccounts++;
@@ -66,17 +66,26 @@ public class Bank {
     }
 
     Account withdraw(long id, double num) {
-        return getAccountById(id).withdraw(num);
+        Account account;
+        try{
+            account = getAccountById(id).withdraw(num);
+            return account;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
-    Account requestLoan(long id, double num) {
+    Account requestLoan(long id, double num) throws LoanException{
         Account account = getAccountById(id);
         if (account.type == ACCOUNTTYPE.LoanCreditAccount || account.type == ACCOUNTTYPE.LoanSavingAccount)
             ((Loanable) account).requestLoan(num);
         return account;
     }
 
-    Account payLoan(long id, double num) {
+    Account payLoan(long id, double num) throws LoanException{
         Account account = getAccountById(id);
         if (account.type == ACCOUNTTYPE.LoanCreditAccount || account.type == ACCOUNTTYPE.LoanSavingAccount)
             ((Loanable) account).payLoan(num);
@@ -102,10 +111,10 @@ public class Bank {
         return true;
     }
 
-    Account login(long id, String password) {
+    Account login(long id, String password) throws LoginException{
         if (getAccountById(id).getPassword().equals(password))
             return getAccountById(id);
-        throw new NoSuchElementException("未找到账户");
+        throw new LoginException("账户名或密码错误");
     }
 
     double allBalance() {
