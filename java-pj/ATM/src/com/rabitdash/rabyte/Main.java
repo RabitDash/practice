@@ -27,7 +27,6 @@ public class Main {
         System.out.println(a[1].type);
         System.out.println(a[2].type);
 
-
     }
 }
 

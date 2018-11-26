@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ATMClient">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="CardLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <enabled value="false"/>
+    </properties>
+    <border type="none" title="Jpanel"/>
+    <children>
+      <grid id="7fa6a" layout-manager="GridBagLayout">
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties/>
+        <border type="none" title="MainPanel"/>
+        <children/>
+      </grid>
+      <grid id="8de70" layout-manager="GridBagLayout">
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
+        <properties/>
+        <border type="none" title="RegisterPanel"/>
+        <children/>
+      </grid>
+      <grid id="39d45" layout-manager="GridBagLayout">
+        <constraints>
+          <card name="Card3"/>
+        </constraints>
+        <properties/>
+        <border type="none" title="LoginPanel"/>
+        <children/>
+      </grid>
+      <grid id="e6573" layout-manager="GridBagLayout">
+        <constraints>
+          <card name="Card4"/>
+        </constraints>
+        <properties/>
+        <border type="none" title="BusinessPanel"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>
