@@ -1,17 +1,18 @@
 package com.rabitdash.rabyte;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Bank {
 
 
-    private static volatile Bank instance;
+    private static volatile Bank instance = null;
     private static int nAccounts;// number of accounts
-    private Account[] Accounts;
+    private List<Account> accounts;
 
     private Bank() {
-        Accounts = new Account[100];
+        accounts = new ArrayList<Account>();
         nAccounts = 0;
     }
 
@@ -26,7 +27,17 @@ public class Bank {
         return instance;
     }
 
-    Account register(long id, String password, String name, String personId, String email, accountType type) {
+    Account getAccountById(long id) {
+        for (Account a : accounts) {
+            if (a.getId() == id) {
+                return a;
+            }
+        }
+        throw new NoSuchElementException("未找到账户");
+
+    }
+
+    Account register(long id, String password, String name, String personId, String email, ACCOUNTTYPE type) throws RegisterException{
         Account account;
         switch (type) {
             case SavingAccount:
@@ -34,117 +45,102 @@ public class Bank {
                 break;
             case CreditAccount:
                 account = new CreditAccount(id, password, name, personId, email);
-                ((CreditAccount) account).setCeiling(0L);
+                ((CreditAccount) account).setCeiling(100);
                 break;
             case LoanCreditAccount:
                 account = new LoanCreditAccount(id, password, name, personId, email);
                 break;
+            case LoanSavingAccount:
+                account = new LoanSavingAccount(id, password, name, personId, email);
+                break;
             default:
-                throw new IllegalArgumentException("未知账户类型");
+                throw new RegisterException("未知账户类型");
         }
-        Accounts[nAccounts++] = account;
+        accounts.add(account);
+        nAccounts++;
         return account;
     }
 
     Account deposit(long id, double num) {
-        for (int i = 0; i < nAccounts; i++) {
-            if (Accounts[i].getId() == id) {
-                Accounts[i].deposit(num);
-                return Accounts[i];
-            }
-        }
-        throw new NoSuchElementException("未找到账户");
+        return getAccountById(id).deposit(num);
     }
 
     Account withdraw(long id, double num) {
-        for (int i = 0; i < nAccounts; i++) {
-            if (Accounts[i].getId() == id) {
-                Accounts[i].withdraw(num);
-                return Accounts[i];
-            }
+        Account account;
+        try{
+            account = getAccountById(id).withdraw(num);
+            return account;
         }
-        throw new NoSuchElementException("未找到账户");
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
-    Account requestLoan(long id, double num) {
-        for (int i = 0; i < nAccounts; i++) {
-            if (Accounts[i].getId() == id) {
-                ((Loanable) Accounts[i]).requestLoan(num);
-                return Accounts[i];
-            }
-        }
-        throw new NoSuchElementException("未找到账户");
+    Account requestLoan(long id, double num) throws LoanException{
+        Account account = getAccountById(id);
+        if (account.type == ACCOUNTTYPE.LoanCreditAccount || account.type == ACCOUNTTYPE.LoanSavingAccount)
+            ((Loanable) account).requestLoan(num);
+        return account;
     }
 
-    Account payLoan(long id, double num) {
-        for (int i = 0; i < nAccounts; i++) {
-            if (Accounts[i].getId() == id) {
-                ((Loanable) Accounts[i]).payLoan(num);
-                return Accounts[i];
-            }
-        }
-        throw new NoSuchElementException("未找到账户");
+    Account payLoan(long id, double num) throws LoanException{
+        Account account = getAccountById(id);
+        if (account.type == ACCOUNTTYPE.LoanCreditAccount || account.type == ACCOUNTTYPE.LoanSavingAccount)
+            ((Loanable) account).payLoan(num);
+        return account;
     }
 
     Account setCeiling(long id, double num) {
-        for (int i = 0; i < nAccounts; i++) {
-            System.out.println(Accounts[i].type);
-            if (Accounts[i].getId() == id && Accounts[i].type == accountType.CreditAccount) {
-                ((CreditAccount) Accounts[i]).setCeiling(num);
-                return Accounts[i];
-            }
+        Account account = getAccountById(id);
+        if (account.type == ACCOUNTTYPE.CreditAccount || account.type == ACCOUNTTYPE.LoanCreditAccount) {
+            ((CreditAccount) account).setCeiling(num);
+            System.out.println("fuck");
         }
-        throw new NoSuchElementException("未找到账户");
+        return account;
     }
 
     boolean transfer(long from, long to, double money) {
         try {
-            for (int i = 0; i < nAccounts; i++) {
-                if (Accounts[i].getId() == from) {
-                    Accounts[i].withdraw(money);
-                }
-            }
-        } catch (IllegalArgumentException e) {
+            withdraw(from, money);
+            deposit(to, money);
+        } catch (Exception e) {
             return false;
         }
-        this.deposit(to, money);
         return true;
-
     }
 
-    Account login(long id, String password) {
-        for (int i = 0; i < nAccounts; i++) {
-            if (Accounts[i].getId() == id && Accounts[i].getPassword().equals(password)) {
-                return Accounts[i];
-            }
-        }
-        throw new NoSuchElementException("未找到账户");
+    Account login(long id, String password) throws LoginException{
+        if (getAccountById(id).getPassword().equals(password))
+            return getAccountById(id);
+        throw new LoginException("账户名或密码错误");
     }
 
     double allBalance() {
         double sumBalance = 0.0;
-        for (int i = 0; i < nAccounts; i++) {
-            sumBalance += Accounts[i].getBalance();
+        for (Account i : accounts) {
+            sumBalance += i.getBalance();
+
         }
         return sumBalance;
     }
 
     double allCeiling() {
         double sumCeiling = 0.0;
-        {
-            for (int i = 0; i < nAccounts; i++) {
-                if (Accounts[i].type == accountType.CreditAccount) {
-                    sumCeiling += ((CreditAccount) Accounts[i]).getCeiling();
-                }
-            }
+        for (Account a : accounts) {
+            if (a.type == ACCOUNTTYPE.CreditAccount || a.type == ACCOUNTTYPE.LoanCreditAccount)
+                sumCeiling += ((CreditAccount) a).getCeiling();
         }
         return sumCeiling;
     }
 
     double allLoan() {
         double sumLoan = 0.0;
-        for (int i = 0; i < nAccounts; i++) {
-            sumLoan += ((Loanable) Accounts[i]).getLoan();
+        for (Account a : accounts) {
+            if (a.type == ACCOUNTTYPE.LoanCreditAccount || a.type == ACCOUNTTYPE.LoanSavingAccount)
+                sumLoan += ((Loanable) a).getLoan();
+
         }
         return sumLoan;
     }
