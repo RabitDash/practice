@@ -1,45 +1,34 @@
 package com.rabyte.rabitdash;
+
 import java.util.Arrays;
 import java.util.Random;
 public class Main {
+    private static void sortAndPrint(Shape[] shapes) {
+        System.out.println("Before: ");
+        for (Shape shape : shapes) {
+            System.out.print(shape + " ");
+        }
+        System.out.println();
+        Arrays.sort(shapes, Shape::compare);
+        System.out.println("After: ");
+        for (Shape shape : shapes) {
+            System.out.print(shape + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
+        Shape[] shapes = new Shape[10];
         Random random = new Random();
-        Student[] students = new Student[10];
-        for (int i = 0; i < 10; i++)
-        {
-            students[i] = new Student(i, random.nextInt(100));
+        for (int i = 0; i < 10; i++) {
+            shapes[i] = new Triangle(random.nextDouble(), random.nextDouble(), random.nextDouble());
         }
-        System.out.println("Before: ");
-        for(Student stu:students)
-        {
-            System.out.print(stu.score + " ");
+        sortAndPrint(shapes);
+        for (int i = 0; i < 10; i++) {
+            shapes[i] = new Rectangle(random.nextDouble(), random.nextDouble());
         }
-        Arrays.sort(students, Student::compare);
-        System.out.println();
-        System.out.println("After: ");
-        for(Student stu:students)
-        {
-            System.out.print(stu.score + " ");
-        }
-        System.out.println();
-        Rectangle[] rectangles = new Rectangle[10];
-        for (int i = 0; i < 10; i++)
-        {
-            rectangles[i] = new Rectangle(random.nextInt(20), random.nextInt(20));
-        }
-        System.out.println("Before: ");
-        for(Rectangle rect:rectangles)
-        {
-            System.out.print(rect.area + " ");
-        }
-        Arrays.sort(rectangles, Rectangle::compare);
-        System.out.println();
-        System.out.println("After: ");
-        for(Rectangle rect:rectangles)
-        {
-            System.out.print(rect.area + " ");
-        }
+        sortAndPrint(shapes);
 
 
     }
