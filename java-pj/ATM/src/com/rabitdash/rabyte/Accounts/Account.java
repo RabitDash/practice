@@ -1,13 +1,14 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Accounts;
 
 /**
  * @author rabitdash
  */
 import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 public abstract class Account {
     private long id;
-    ACCOUNT_TYPE type;
+    public ACCOUNT_TYPE type;
     private String password;
     private String name;
     private String personId;
@@ -28,12 +29,12 @@ public abstract class Account {
         this.balance = 0;
     }
 
-    final Account deposit(double num) {
+    public final Account deposit(double num) {
         this.balance += num;
         return this;
     }
 
-    abstract Account withdraw(double num) throws BalanceNotEnoughException;
+    public abstract Account withdraw(double num) throws BalanceNotEnoughException;
 
     public ACCOUNT_TYPE getType() {
         return type;
@@ -43,7 +44,7 @@ public abstract class Account {
         return balance;
     }
 
-    void setBalance(double balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 

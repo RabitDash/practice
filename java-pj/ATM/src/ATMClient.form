@@ -7,7 +7,7 @@
     <properties>
       <enabled value="false"/>
     </properties>
-    <border type="none" title="Jpanel"/>
+    <border type="none"/>
     <children>
       <grid id="7fa6a" binding="MainPanel" layout-manager="GridBagLayout">
         <constraints>
@@ -133,10 +133,15 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <model/>
+              <model>
+                <item value="SavingAccount"/>
+                <item value="CreditAccount"/>
+                <item value="LoanSavingAccount"/>
+                <item value="LoanCreditAccount"/>
+              </model>
             </properties>
           </component>
-          <component id="edc37" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
+          <component id="edc37" class="javax.swing.JPasswordField" binding="passwordField">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -152,34 +157,42 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
-          <component id="906b" class="javax.swing.JFormattedTextField" binding="formattedTextField1" default-binding="true">
+          <component id="906b" class="javax.swing.JFormattedTextField" binding="personIdFormattedTextField">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
-          <component id="358ec" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+          <component id="358ec" class="javax.swing.JTextArea" binding="locationTextArea">
             <constraints>
               <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
-          <component id="8b9ab" class="javax.swing.JFormattedTextField" binding="formattedTextField2" default-binding="true">
+          <component id="8b9ab" class="javax.swing.JFormattedTextField" binding="emailFormattedTextField2">
             <constraints>
               <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
           <component id="7ee1e" class="javax.swing.JButton" binding="commitButton">
             <constraints>
@@ -190,7 +203,7 @@
               <text value="提交"/>
             </properties>
           </component>
-          <component id="89cae" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="89cae" class="javax.swing.JTextField" binding="nameTextField">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -237,16 +250,18 @@
               <text value="用户密码"/>
             </properties>
           </component>
-          <component id="c748b" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="c748b" class="javax.swing.JTextField" binding="loginIdTextField">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
-          <component id="4c080" class="javax.swing.JPasswordField" binding="passwordField3" default-binding="true">
+          <component id="4c080" class="javax.swing.JPasswordField" binding="loginPasswordPasswordField">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -281,13 +296,169 @@
           </component>
         </children>
       </grid>
-      <grid id="e6573" binding="businessPanel" layout-manager="GridBagLayout">
+      <grid id="e6573" binding="BusinessPanel" layout-manager="GridBagLayout">
         <constraints>
           <card name="Card4"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
         <border type="none" title="BusinessPanel"/>
-        <children/>
+        <children>
+          <component id="f12ab" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="账户"/>
+            </properties>
+          </component>
+          <component id="fb225" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="姓名"/>
+            </properties>
+          </component>
+          <component id="4ed76" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="余额"/>
+            </properties>
+          </component>
+          <component id="351d4" class="javax.swing.JLabel" binding="ceilingHeadLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="信用额度"/>
+            </properties>
+          </component>
+          <component id="f64e4" class="javax.swing.JLabel" binding="loanHeadLabel">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="贷款额"/>
+            </properties>
+          </component>
+          <component id="bce7" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="存款"/>
+                <item value="取款"/>
+                <item value="贷款"/>
+                <item value="还款"/>
+              </model>
+            </properties>
+          </component>
+          <component id="7d81d" class="javax.swing.JLabel" binding="nameLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="6dc61" class="javax.swing.JLabel" binding="balanceLabel">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="e03f2" class="javax.swing.JLabel" binding="ceilingLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="a9c49" class="javax.swing.JLabel" binding="loanLabel">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="9f1c3" class="javax.swing.JLabel" binding="idLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="59373" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="a6d4" class="javax.swing.JButton" binding="businessCommitButton">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="提交"/>
+            </properties>
+          </component>
+          <component id="38b4d" class="javax.swing.JButton" binding="businessReturnButton">
+            <constraints>
+              <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="返回"/>
+            </properties>
+          </component>
+          <hspacer id="9a73d">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </hspacer>
+          <vspacer id="57932">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </vspacer>
+          <hspacer id="59ffc">
+            <constraints>
+              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </hspacer>
+        </children>
       </grid>
     </children>
   </grid>

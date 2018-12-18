@@ -1,4 +1,4 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Util;
 
 public enum ACCOUNT_TYPE {
     SavingAccount,

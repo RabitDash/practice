@@ -1,14 +1,13 @@
 package com.rabitdash.rabyte.Exception;
 
-public class LoanException extends ATMException {
-    public LoanException() {
+public class BalanceNotEnoughException extends ATMException {
+    public BalanceNotEnoughException() {
         super();
     }
 
-    public LoanException(String message) {
+    public BalanceNotEnoughException(String message) {
         super(message);
     }
-
     @Override
     public void printStackTrace() {
         super.printStackTrace();

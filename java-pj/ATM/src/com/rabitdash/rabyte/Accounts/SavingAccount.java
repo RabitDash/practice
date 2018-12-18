@@ -1,4 +1,4 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Accounts;
 import com.rabitdash.rabyte.Accounts.Account;
 import com.rabitdash.rabyte.Exception.*;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;

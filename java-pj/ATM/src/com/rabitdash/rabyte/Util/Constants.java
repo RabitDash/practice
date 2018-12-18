@@ -1,4 +1,4 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Util;
 
 public class Constants {
     public static final String ERROR = "错误";

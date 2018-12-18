@@ -1,6 +1,5 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Accounts;
 
-import com.rabitdash.rabyte.Accounts.Account;
 import com.rabitdash.rabyte.Exception.BalanceNotEnoughException;
 import com.rabitdash.rabyte.Exception.LoanException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
@@ -8,12 +7,12 @@ import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 public class LoanSavingAccount extends SavingAccount implements Loanable {
     private double loan;
 
-    LoanSavingAccount() {
+    public LoanSavingAccount() {
         super();
         type = ACCOUNT_TYPE.LoanSavingAccount;
     }
 
-    LoanSavingAccount(long id, String password, String name, String personId, String email) {
+    public LoanSavingAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
         type = ACCOUNT_TYPE.LoanSavingAccount;
     }

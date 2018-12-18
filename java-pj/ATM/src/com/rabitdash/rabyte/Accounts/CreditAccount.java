@@ -1,4 +1,4 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Accounts;
 import com.rabitdash.rabyte.Accounts.Account;
 import com.rabitdash.rabyte.Exception.*;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
@@ -8,13 +8,13 @@ public class CreditAccount extends Account {
 //    protected ACCOUNT_TYPE type;
     protected double ceiling;
 
-    CreditAccount() {
+    public CreditAccount() {
         super();
         this.ceiling = 0;
         type = ACCOUNT_TYPE.CreditAccount;
     }
 
-    CreditAccount(long id, String password, String name, String personId, String email) {
+    public CreditAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
         type = ACCOUNT_TYPE.CreditAccount;
     }

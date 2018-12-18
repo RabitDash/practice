@@ -1,14 +1,12 @@
-package com.rabitdash.rabyte;
+package com.rabitdash.rabyte.Exception;
 
-import com.rabitdash.rabyte.Exception.ATMException;
+public class RegisterException extends ATMException {
 
-class RegisterException extends ATMException {
-
-    RegisterException() {
+    public RegisterException() {
         super();
     }
 
-    RegisterException(String message) {
+    public RegisterException(String message) {
         super(message);
     }
 }
