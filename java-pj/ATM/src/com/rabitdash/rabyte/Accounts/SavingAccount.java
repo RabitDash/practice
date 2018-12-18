@@ -1,20 +1,23 @@
 package com.rabitdash.rabyte;
+import com.rabitdash.rabyte.Accounts.Account;
+import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 //储蓄账户
-class SavingAccount extends Account {
+public class SavingAccount extends Account {
 
-    SavingAccount() {
+    public SavingAccount() {
         super();
-        type = ACCOUNTTYPE.SavingAccount;
+        type = ACCOUNT_TYPE.SavingAccount;
     }
 
-    SavingAccount(long id, String password, String name, String personId, String email) {
+    public SavingAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.SavingAccount;
+        type = ACCOUNT_TYPE.SavingAccount;
     }
 
     @Override
-    Account withdraw(double num) throws BalanceNotEnoughException{
+    public Account withdraw(double num) throws BalanceNotEnoughException {
         //是否透支
         if (num > this.getBalance())
         {

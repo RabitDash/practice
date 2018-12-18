@@ -1,32 +1,35 @@
 package com.rabitdash.rabyte;
+import com.rabitdash.rabyte.Accounts.Account;
+import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
-class CreditAccount extends Account {
-    //    protected static ACCOUNTTYPE type = ACCOUNTTYPE.CreditAccount;
-//    protected ACCOUNTTYPE type;
+public class CreditAccount extends Account {
+    //    protected static ACCOUNT_TYPE type = ACCOUNT_TYPE.CreditAccount;
+//    protected ACCOUNT_TYPE type;
     protected double ceiling;
 
     CreditAccount() {
         super();
         this.ceiling = 0;
-        type = ACCOUNTTYPE.CreditAccount;
+        type = ACCOUNT_TYPE.CreditAccount;
     }
 
     CreditAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.CreditAccount;
+        type = ACCOUNT_TYPE.CreditAccount;
     }
 
-    double getCeiling() {
+    public double getCeiling() {
         return ceiling;
     }
 
-    void setCeiling(double ceiling) {
+    public void setCeiling(double ceiling) {
         this.ceiling = ceiling;
         System.out.println("fuck");
     }
 
     @Override
-    Account withdraw(double num) throws BalanceNotEnoughException {
+    public Account withdraw(double num) throws BalanceNotEnoughException {
         //是否透支
         if (num > this.getBalance() + this.getCeiling()) {
             throw new BalanceNotEnoughException("透支余额不足");

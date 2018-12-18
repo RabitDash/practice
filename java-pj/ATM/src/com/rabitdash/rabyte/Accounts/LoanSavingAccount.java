@@ -1,16 +1,21 @@
 package com.rabitdash.rabyte;
 
-class LoanSavingAccount extends SavingAccount implements Loanable {
+import com.rabitdash.rabyte.Accounts.Account;
+import com.rabitdash.rabyte.Exception.BalanceNotEnoughException;
+import com.rabitdash.rabyte.Exception.LoanException;
+import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
+
+public class LoanSavingAccount extends SavingAccount implements Loanable {
     private double loan;
 
     LoanSavingAccount() {
         super();
-        type = ACCOUNTTYPE.LoanSavingAccount;
+        type = ACCOUNT_TYPE.LoanSavingAccount;
     }
 
     LoanSavingAccount(long id, String password, String name, String personId, String email) {
         super(id, password, name, personId, email);
-        type = ACCOUNTTYPE.LoanSavingAccount;
+        type = ACCOUNT_TYPE.LoanSavingAccount;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.rabitdash.rabyte;
 
-class ATMException extends Exception {
+import javax.swing.*;
+
+public class ATMException extends Exception {
     public ATMException() {
         super();
     }
@@ -8,28 +10,16 @@ class ATMException extends Exception {
     public ATMException(String message) {
         super(message);
     }
+
+    @Override
+    public void printStackTrace() {
+        JOptionPane.showMessageDialog(null,this.getMessage(),"错误",JOptionPane.ERROR_MESSAGE);
+    }
+
 }
 
-class BalanceNotEnoughException extends ATMException {
-    public BalanceNotEnoughException() {
-        super();
-    }
 
-    public BalanceNotEnoughException(String message) {
-        super(message);
-    }
-}
 
-class RegisterException extends ATMException {
-
-    RegisterException() {
-        super();
-    }
-
-    RegisterException(String message) {
-        super(message);
-    }
-}
 
 class LoginException extends ATMException {
     LoginException() {
@@ -38,6 +28,10 @@ class LoginException extends ATMException {
 
     LoginException(String message) {
         super(message);
+    }
+    @Override
+    public void printStackTrace() {
+        super.printStackTrace();
     }
 }
 
@@ -48,5 +42,10 @@ class LoanException extends ATMException {
 
     LoanException(String message) {
         super(message);
+    }
+
+    @Override
+    public void printStackTrace() {
+        super.printStackTrace();
     }
 }
