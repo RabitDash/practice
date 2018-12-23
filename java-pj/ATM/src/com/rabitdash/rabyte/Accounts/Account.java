@@ -28,7 +28,6 @@ public abstract class Account {
         this.email = email;
         this.balance = 0;
     }
-
     public final Account deposit(double num) {
         this.balance += num;
         return this;

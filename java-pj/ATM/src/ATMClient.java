@@ -80,7 +80,6 @@ public class ATMClient {
         returnButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
                 RegisterPanel.setVisible(false);
                 MainPanel.setVisible(true);
             }
@@ -88,7 +87,6 @@ public class ATMClient {
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
                 MainPanel.setVisible(false);
                 LoginPanel.setVisible(true);
             }
@@ -96,7 +94,6 @@ public class ATMClient {
         cancelButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
                 LoginPanel.setVisible(false);
                 MainPanel.setVisible(true);
             }
@@ -137,21 +134,44 @@ public class ATMClient {
         BusinessPanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
+                //更新显示
                 idLabel.setText(String.valueOf(curAccount.getId()));
                 nameLabel.setText(curAccount.getName());
                 balanceLabel.setText(String.valueOf(curAccount.getBalance()));
                 if (curAccount.getType() == ACCOUNT_TYPE.CreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount) {
+                    ceilingLabel.setVisible(true);
+                    ceilingHeadLabel.setVisible(true);
                     ceilingLabel.setText(String.valueOf(((CreditAccount) curAccount).getCeiling()));
+                } else {
+                    ceilingHeadLabel.setVisible(false);
+                    ceilingLabel.setVisible(false);
                 }
                 if (curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanSavingAccount) {
+                    loanLabel.setVisible(true);
+                    loanHeadLabel.setVisible(true);
                     loanLabel.setText(String.valueOf(((Loanable) curAccount).getLoan()));
+                } else {
+                    loanLabel.setVisible(false);
+                    loanHeadLabel.setVisible(false);
                 }
+//
+//                idLabel.setText(String.valueOf(curAccount.getId()));
+//                nameLabel.setText(curAccount.getName());
+//                balanceLabel.setText(String.valueOf(curAccount.getBalance()));
+//                if (curAccount.getType() == ACCOUNT_TYPE.CreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount) {
+//                    ceilingLabel.setText(String.valueOf(((CreditAccount) curAccount).getCeiling()));
+//                }
+//                if (curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanSavingAccount) {
+//                    loanLabel.setText(String.valueOf(((Loanable) curAccount).getLoan()));
+//                }
+
             }
         });
         businessCommitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 double num = Double.valueOf(textField3.getText());
+                System.out.println(curAccount.getType());
                 try {
                     switch (comboBox2.getSelectedIndex()) {
                         case 0:
@@ -162,7 +182,7 @@ public class ATMClient {
                             break;
                         case 2:
                             if (curAccount.getType() != ACCOUNT_TYPE.LoanSavingAccount
-                                    || curAccount.getType() != ACCOUNT_TYPE.LoanCreditAccount) {
+                                    && curAccount.getType() != ACCOUNT_TYPE.LoanCreditAccount) {
                                 JOptionPane.showMessageDialog(null,
                                         Constants.ERROR
                                                 + Constants.NOT + Constants.LOAN + Constants.ACCOUNT);
@@ -171,7 +191,7 @@ public class ATMClient {
                             break;
                         case 3:
                             if (curAccount.getType() != ACCOUNT_TYPE.LoanSavingAccount
-                                    || curAccount.getType() != ACCOUNT_TYPE.LoanCreditAccount) {
+                                    && curAccount.getType() != ACCOUNT_TYPE.LoanCreditAccount) {
                                 JOptionPane.showMessageDialog(null,
                                         Constants.ERROR
                                                 + Constants.NOT + Constants.LOAN + Constants.ACCOUNT);
@@ -205,6 +225,13 @@ public class ATMClient {
                     loanHeadLabel.setVisible(false);
                 }
 
+            }
+        });
+        businessReturnButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                BusinessPanel.setVisible(false);
+                MainPanel.setVisible(true);
             }
         });
     }
