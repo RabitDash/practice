@@ -1,10 +1,7 @@
 package com.rabitdash.rabyte;
 
 import com.rabitdash.rabyte.Accounts.*;
-import com.rabitdash.rabyte.Exception.ATMException;
-import com.rabitdash.rabyte.Exception.LoanException;
-import com.rabitdash.rabyte.Exception.LoginException;
-import com.rabitdash.rabyte.Exception.RegisterException;
+import com.rabitdash.rabyte.Exception.*;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 import java.io.FileOutputStream;
@@ -109,7 +106,7 @@ public class Bank {
             account = getAccountById(id).withdraw(num);
             return account;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -141,8 +138,17 @@ public class Bank {
         try {
             withdraw(from, money);
             deposit(to, money);
-        } catch (Exception e) {
+        } catch (BalanceNotEnoughException e1) {
+            e1.printStackTrace();
             return false;
+            //找不到账户
+        } catch (ATMException e2) {
+            try {
+                deposit(from, money);
+            } catch (ATMException e) {
+                e.printStackTrace();
+            }
+            e2.printStackTrace();
         }
         return true;
     }

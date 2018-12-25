@@ -3,7 +3,8 @@ package com.rabitdash.rabyte.DAO;
 import com.rabitdash.rabyte.Accounts.Account;
 
 import java.io.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
 
 //TODO
 public class AccountDAOFileImpl implements AccountDAO {
@@ -50,9 +51,8 @@ public class AccountDAOFileImpl implements AccountDAO {
     @Override
     public Account search(long id) throws Exception {
         readFile();
-        accountHashMap.get(id);
-        writeFile();
-        return null;
+        return accountHashMap.get(id);
+
     }
 
     @Override

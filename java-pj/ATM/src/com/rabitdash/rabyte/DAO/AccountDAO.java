@@ -3,7 +3,6 @@ package com.rabitdash.rabyte.DAO;
 import com.rabitdash.rabyte.Accounts.Account;
 
 import java.util.Collection;
-import java.util.Collections;
 
 public interface AccountDAO {
     boolean add(Account account) throws Exception;

@@ -25,7 +25,6 @@ public class CreditAccount extends Account {
 
     public void setCeiling(double ceiling) {
         this.ceiling = ceiling;
-        System.out.println("fuck");
     }
 
     @Override
