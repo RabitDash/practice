@@ -1,19 +1,25 @@
 package com.rabitdash.rabyte;
 
 import com.rabitdash.rabyte.Accounts.*;
-import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Exception.ATMException;
+import com.rabitdash.rabyte.Exception.LoanException;
+import com.rabitdash.rabyte.Exception.LoginException;
+import com.rabitdash.rabyte.Exception.RegisterException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
 
 
+    private final static long startIdNum = 0;
     private static volatile Bank instance = null;
     private static int nAccounts;// number of accounts
     private List<Account> accounts;
-    private final static long startIdNum = 0;
+
     private Bank() {
         accounts = new ArrayList<Account>();
         nAccounts = 0;
@@ -30,6 +36,10 @@ public class Bank {
         return instance;
     }
 
+    public static void main(String[] args) {
+        getInstance().save();
+    }
+
     Account getAccountById(long id) throws ATMException {
         for (Account a : accounts) {
             if (a.getId() == id) {
@@ -40,7 +50,7 @@ public class Bank {
 
     }
 
-    public Account register(long id, String password, String name, String personId, String email, ACCOUNT_TYPE type) throws RegisterException{
+    public Account register(long id, String password, String name, String personId, String email, ACCOUNT_TYPE type) throws RegisterException {
         Account account;
         switch (type) {
             case SavingAccount:
@@ -63,7 +73,8 @@ public class Bank {
         nAccounts++;
         return account;
     }
-    public Account register(String password, String name, String personId, String email, ACCOUNT_TYPE type) throws RegisterException{
+
+    public Account register(String password, String name, String personId, String email, ACCOUNT_TYPE type) throws RegisterException {
         Account account;
         long id = startIdNum + nAccounts;
         switch (type) {
@@ -87,38 +98,37 @@ public class Bank {
         nAccounts++;
         return account;
     }
-    public Account deposit(long id, double num) throws ATMException{
+
+    public Account deposit(long id, double num) throws ATMException {
         return getAccountById(id).deposit(num);
     }
 
     public Account withdraw(long id, double num) {
         Account account;
-        try{
+        try {
             account = getAccountById(id).withdraw(num);
             return account;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public Account requestLoan(long id, double num) throws LoanException,ATMException{
+    public Account requestLoan(long id, double num) throws LoanException, ATMException {
         Account account = getAccountById(id);
         if (account.type == ACCOUNT_TYPE.LoanCreditAccount || account.type == ACCOUNT_TYPE.LoanSavingAccount)
             ((Loanable) account).requestLoan(num);
         return account;
     }
 
-    public Account payLoan(long id, double num) throws LoanException,ATMException{
+    public Account payLoan(long id, double num) throws LoanException, ATMException {
         Account account = getAccountById(id);
         if (account.type == ACCOUNT_TYPE.LoanCreditAccount || account.type == ACCOUNT_TYPE.LoanSavingAccount)
             ((Loanable) account).payLoan(num);
         return account;
     }
 
-    public Account setCeiling(long id, double num) throws ATMException{
+    public Account setCeiling(long id, double num) throws ATMException {
         Account account = getAccountById(id);
         if (account.type == ACCOUNT_TYPE.CreditAccount || account.type == ACCOUNT_TYPE.LoanCreditAccount) {
             ((CreditAccount) account).setCeiling(num);
@@ -137,7 +147,7 @@ public class Bank {
         return true;
     }
 
-    public Account login(long id, String password) throws LoginException,ATMException{
+    public Account login(long id, String password) throws LoginException, ATMException {
         if (getAccountById(id).getPassword().equals(password))
             return getAccountById(id);
         throw new LoginException("账户名或密码错误");
@@ -171,5 +181,18 @@ public class Bank {
         return sumLoan;
     }
 
+    public void save() {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("id.ser"));
+            out.writeObject(accounts);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void load() {
+
+    }
 
 }

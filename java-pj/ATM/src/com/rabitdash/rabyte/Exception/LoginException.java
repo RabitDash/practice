@@ -8,6 +8,7 @@ public class LoginException extends ATMException {
     public LoginException(String message) {
         super(message);
     }
+
     @Override
     public void printStackTrace() {
         super.printStackTrace();

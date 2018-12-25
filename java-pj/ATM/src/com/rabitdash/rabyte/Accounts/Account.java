@@ -3,12 +3,16 @@ package com.rabitdash.rabyte.Accounts;
 /**
  * @author rabitdash
  */
-import com.rabitdash.rabyte.Exception.*;
+
+import com.rabitdash.rabyte.Exception.BalanceNotEnoughException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
-public abstract class Account {
-    private long id;
+import java.io.Serializable;
+
+public abstract class Account implements Serializable {
+
     public ACCOUNT_TYPE type;
+    private long id;
     private String password;
     private String name;
     private String personId;
@@ -17,7 +21,7 @@ public abstract class Account {
 
     public Account() {
         balance = 0;
-        id=0;
+        id = 0;
     }
 
     public Account(long id, String password, String name, String personId, String email) {
@@ -28,6 +32,7 @@ public abstract class Account {
         this.email = email;
         this.balance = 0;
     }
+
     public final Account deposit(double num) {
         this.balance += num;
         return this;
@@ -94,9 +99,32 @@ public abstract class Account {
 
     @Override
     public boolean equals(Object o) {
-
         return this.id == ((Account) o).getId();
     }
+//    public static void main(String[] args) {
+//        try {
+//            ObjectOutputStream out=new ObjectOutputStream(new FileOutputStream("id.ser"));
+//            out.writeLong(100001L);
+//            SavingAccount savingAccount = new SavingAccount();
+//            out.writeObject(savingAccount);
+//            System.out.println("Savingaccount:" + savingAccount.toString());
+//            out.close();
+//            ObjectInputStream in=new ObjectInputStream(new FileInputStream("id.ser"));
+//            long l=in.readLong();
+//            SavingAccount a;
+//
+//            a = (SavingAccount)in.readObject();
+//
+//            System.out.println(l);
+//            System.out.println("fauk;"+savingAccount.toString());
+//            in.close();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
 
 

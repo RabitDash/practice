@@ -138,7 +138,8 @@ public class ATMClient {
                 idLabel.setText(String.valueOf(curAccount.getId()));
                 nameLabel.setText(curAccount.getName());
                 balanceLabel.setText(String.valueOf(curAccount.getBalance()));
-                if (curAccount.getType() == ACCOUNT_TYPE.CreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount) {
+//                if (curAccount.getType() == ACCOUNT_TYPE.CreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount) {
+                if (curAccount instanceof CreditAccount) {
                     ceilingLabel.setVisible(true);
                     ceilingHeadLabel.setVisible(true);
                     ceilingLabel.setText(String.valueOf(((CreditAccount) curAccount).getCeiling()));
@@ -146,7 +147,7 @@ public class ATMClient {
                     ceilingHeadLabel.setVisible(false);
                     ceilingLabel.setVisible(false);
                 }
-                if (curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanSavingAccount) {
+                if (curAccount instanceof Loanable) {
                     loanLabel.setVisible(true);
                     loanHeadLabel.setVisible(true);
                     loanLabel.setText(String.valueOf(((Loanable) curAccount).getLoan()));
@@ -171,7 +172,7 @@ public class ATMClient {
             @Override
             public void mouseClicked(MouseEvent e) {
                 double num = Double.valueOf(textField3.getText());
-                System.out.println(curAccount.getType());
+//                System.out.println(curAccount.getType());
                 try {
                     switch (comboBox2.getSelectedIndex()) {
                         case 0:
@@ -181,22 +182,26 @@ public class ATMClient {
                             bank.withdraw(curAccount.getId(), num);
                             break;
                         case 2:
-                            if (curAccount.getType() != ACCOUNT_TYPE.LoanSavingAccount
-                                    && curAccount.getType() != ACCOUNT_TYPE.LoanCreditAccount) {
+                            if (!(curAccount instanceof Loanable)) {
                                 JOptionPane.showMessageDialog(null,
                                         Constants.ERROR
                                                 + Constants.NOT + Constants.LOAN + Constants.ACCOUNT);
-                            } else
+                            } else {
                                 bank.requestLoan(curAccount.getId(), num);
+                            }
                             break;
                         case 3:
-                            if (curAccount.getType() != ACCOUNT_TYPE.LoanSavingAccount
-                                    && curAccount.getType() != ACCOUNT_TYPE.LoanCreditAccount) {
+                            if (!(curAccount instanceof Loanable)) {
                                 JOptionPane.showMessageDialog(null,
                                         Constants.ERROR
                                                 + Constants.NOT + Constants.LOAN + Constants.ACCOUNT);
-                            } else
+                            } else {
                                 bank.payLoan(curAccount.getId(), num);
+                            }
+                            break;
+                        case 4:
+                            long transferId = Long.valueOf(JOptionPane.showInputDialog(null, "转账给："));
+                            bank.transfer(curAccount.getId(), transferId, num);
                             break;
 
                     }
@@ -208,7 +213,7 @@ public class ATMClient {
                 idLabel.setText(String.valueOf(curAccount.getId()));
                 nameLabel.setText(curAccount.getName());
                 balanceLabel.setText(String.valueOf(curAccount.getBalance()));
-                if (curAccount.getType() == ACCOUNT_TYPE.CreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount) {
+                if (curAccount instanceof CreditAccount) {
                     ceilingLabel.setVisible(true);
                     ceilingHeadLabel.setVisible(true);
                     ceilingLabel.setText(String.valueOf(((CreditAccount) curAccount).getCeiling()));
@@ -216,7 +221,7 @@ public class ATMClient {
                     ceilingHeadLabel.setVisible(false);
                     ceilingLabel.setVisible(false);
                 }
-                if (curAccount.getType() == ACCOUNT_TYPE.LoanCreditAccount || curAccount.getType() == ACCOUNT_TYPE.LoanSavingAccount) {
+                if (curAccount instanceof Loanable) {
                     loanLabel.setVisible(true);
                     loanHeadLabel.setVisible(true);
                     loanLabel.setText(String.valueOf(((Loanable) curAccount).getLoan()));

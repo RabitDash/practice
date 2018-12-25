@@ -13,7 +13,7 @@ public class ATMException extends Exception {
 
     @Override
     public void printStackTrace() {
-        JOptionPane.showMessageDialog(null,this.getMessage(),"错误",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, this.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
     }
 
 }

@@ -1,10 +1,11 @@
 package com.rabitdash.rabyte.Accounts;
-import com.rabitdash.rabyte.Accounts.Account;
-import com.rabitdash.rabyte.Exception.*;
-public abstract interface Loanable{
-    public Account requestLoan(double money) throws LoanException;
 
-    public Account payLoan(double money) throws LoanException;
+import com.rabitdash.rabyte.Exception.LoanException;
 
-    public double getLoan();
+public interface Loanable {
+    Account requestLoan(double money) throws LoanException;
+
+    Account payLoan(double money) throws LoanException;
+
+    double getLoan();
 }

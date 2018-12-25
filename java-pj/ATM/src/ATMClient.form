@@ -363,6 +363,7 @@
                 <item value="取款"/>
                 <item value="贷款"/>
                 <item value="还款"/>
+                <item value="转账"/>
               </model>
             </properties>
           </component>

@@ -1,6 +1,6 @@
 package com.rabitdash.rabyte.Accounts;
-import com.rabitdash.rabyte.Accounts.Account;
-import com.rabitdash.rabyte.Exception.*;
+
+import com.rabitdash.rabyte.Exception.BalanceNotEnoughException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 //储蓄账户
@@ -19,8 +19,7 @@ public class SavingAccount extends Account {
     @Override
     public Account withdraw(double num) throws BalanceNotEnoughException {
         //是否透支
-        if (num > this.getBalance())
-        {
+        if (num > this.getBalance()) {
             throw new BalanceNotEnoughException("余额不足");
         } else {
             this.setBalance(this.getBalance() - num);

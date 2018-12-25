@@ -5,7 +5,7 @@ import com.rabitdash.rabyte.Exception.LoanException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 public class LoanSavingAccount extends SavingAccount implements Loanable {
-    private double loan;
+    private double loan = 0;
 
     public LoanSavingAccount() {
         super();
@@ -43,6 +43,10 @@ public class LoanSavingAccount extends SavingAccount implements Loanable {
     @Override
     public double getLoan() {
         return loan;
+    }
+
+    public void setLoan(double loan) {
+        this.loan = loan;
     }
 
     @Override
