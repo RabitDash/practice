@@ -1,11 +1,12 @@
 package com.rabitdash.rabyte.Accounts;
 
-import com.rabitdash.rabyte.Exception.BalanceNotEnoughException;
-import com.rabitdash.rabyte.Exception.LoanException;
+import com.rabitdash.rabyte.Exception.*;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
-public class LoanCreditAccount extends CreditAccount implements Loanable {
-    private double loan = 0;
+import java.io.Serializable;
+
+public class LoanCreditAccount extends CreditAccount implements Loanable, Serializable {
+    private double loan;
 
     public LoanCreditAccount() {
         super();
@@ -42,10 +43,6 @@ public class LoanCreditAccount extends CreditAccount implements Loanable {
     @Override
     public double getLoan() {
         return loan;
-    }
-
-    public void setLoan(double loan) {
-        this.loan = loan;
     }
 
     @Override

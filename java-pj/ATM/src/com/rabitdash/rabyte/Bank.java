@@ -4,19 +4,16 @@ import com.rabitdash.rabyte.Accounts.*;
 import com.rabitdash.rabyte.Exception.*;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
 
 
-    private final static long startIdNum = 0;
     private static volatile Bank instance = null;
     private static int nAccounts;// number of accounts
     private List<Account> accounts;
-
+    private final static long startIdNum = 0;
     private Bank() {
         accounts = new ArrayList<Account>();
         nAccounts = 0;
@@ -31,10 +28,6 @@ public class Bank {
             }
         }
         return instance;
-    }
-
-    public static void main(String[] args) {
-        getInstance().save();
     }
 
     Account getAccountById(long id) throws ATMException {
@@ -106,28 +99,28 @@ public class Bank {
             account = getAccountById(id).withdraw(num);
             return account;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     public Account requestLoan(long id, double num) throws LoanException, ATMException {
         Account account = getAccountById(id);
-        if (account.type == ACCOUNT_TYPE.LoanCreditAccount || account.type == ACCOUNT_TYPE.LoanSavingAccount)
+        if (account instanceof Loanable)
             ((Loanable) account).requestLoan(num);
         return account;
     }
 
     public Account payLoan(long id, double num) throws LoanException, ATMException {
         Account account = getAccountById(id);
-        if (account.type == ACCOUNT_TYPE.LoanCreditAccount || account.type == ACCOUNT_TYPE.LoanSavingAccount)
+        if (account instanceof Loanable)
             ((Loanable) account).payLoan(num);
         return account;
     }
 
     public Account setCeiling(long id, double num) throws ATMException {
         Account account = getAccountById(id);
-        if (account.type == ACCOUNT_TYPE.CreditAccount || account.type == ACCOUNT_TYPE.LoanCreditAccount) {
+        if (account instanceof CreditAccount) {
             ((CreditAccount) account).setCeiling(num);
 //            System.out.println("fuck");
         }
@@ -138,17 +131,8 @@ public class Bank {
         try {
             withdraw(from, money);
             deposit(to, money);
-        } catch (BalanceNotEnoughException e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
             return false;
-            //找不到账户
-        } catch (ATMException e2) {
-            try {
-                deposit(from, money);
-            } catch (ATMException e) {
-                e.printStackTrace();
-            }
-            e2.printStackTrace();
         }
         return true;
     }
@@ -171,7 +155,7 @@ public class Bank {
     public double allCeiling() {
         double sumCeiling = 0.0;
         for (Account a : accounts) {
-            if (a.type == ACCOUNT_TYPE.CreditAccount || a.type == ACCOUNT_TYPE.LoanCreditAccount)
+            if (a instanceof CreditAccount)
                 sumCeiling += ((CreditAccount) a).getCeiling();
         }
         return sumCeiling;
@@ -180,25 +164,12 @@ public class Bank {
     public double allLoan() {
         double sumLoan = 0.0;
         for (Account a : accounts) {
-            if (a.type == ACCOUNT_TYPE.LoanCreditAccount || a.type == ACCOUNT_TYPE.LoanSavingAccount)
+            if (a instanceof Loanable)
                 sumLoan += ((Loanable) a).getLoan();
 
         }
         return sumLoan;
     }
 
-    public void save() {
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("id.ser"));
-            out.writeObject(accounts);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void load() {
-
-    }
 
 }
