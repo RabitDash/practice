@@ -1,7 +1,6 @@
 package com.rabitdash.rabyte.Accounts;
 
-import com.rabitdash.rabyte.Accounts.Account;
-import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Exception.LoanException;
 
 public interface Loanable {
     Account requestLoan(double money) throws LoanException;

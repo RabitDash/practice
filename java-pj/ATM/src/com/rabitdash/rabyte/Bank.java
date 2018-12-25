@@ -1,7 +1,10 @@
 package com.rabitdash.rabyte;
 
 import com.rabitdash.rabyte.Accounts.*;
-import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Exception.ATMException;
+import com.rabitdash.rabyte.Exception.LoanException;
+import com.rabitdash.rabyte.Exception.LoginException;
+import com.rabitdash.rabyte.Exception.RegisterException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 import java.util.ArrayList;
@@ -10,10 +13,11 @@ import java.util.List;
 public class Bank {
 
 
+    private final static long startIdNum = 0;
     private static volatile Bank instance = null;
     private static int nAccounts;// number of accounts
     private List<Account> accounts;
-    private final static long startIdNum = 0;
+
     private Bank() {
         accounts = new ArrayList<Account>();
         nAccounts = 0;

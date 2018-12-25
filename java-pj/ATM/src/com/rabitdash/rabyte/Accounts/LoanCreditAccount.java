@@ -1,6 +1,7 @@
 package com.rabitdash.rabyte.Accounts;
 
-import com.rabitdash.rabyte.Exception.*;
+import com.rabitdash.rabyte.Exception.BalanceNotEnoughException;
+import com.rabitdash.rabyte.Exception.LoanException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
 import java.io.Serializable;
