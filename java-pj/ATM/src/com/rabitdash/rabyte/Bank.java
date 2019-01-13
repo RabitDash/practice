@@ -7,8 +7,6 @@ import com.rabitdash.rabyte.Exception.LoginException;
 import com.rabitdash.rabyte.Exception.RegisterException;
 import com.rabitdash.rabyte.Util.ACCOUNT_TYPE;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +32,6 @@ public class Bank {
             }
         }
         return instance;
-    }
-
-    public static void main(String[] args) {
-        getInstance().save();
     }
 
     Account getAccountById(long id) throws ATMException {
@@ -116,21 +110,21 @@ public class Bank {
 
     public Account requestLoan(long id, double num) throws LoanException, ATMException {
         Account account = getAccountById(id);
-        if (account.type == ACCOUNT_TYPE.LoanCreditAccount || account.type == ACCOUNT_TYPE.LoanSavingAccount)
+        if (account instanceof Loanable)
             ((Loanable) account).requestLoan(num);
         return account;
     }
 
     public Account payLoan(long id, double num) throws LoanException, ATMException {
         Account account = getAccountById(id);
-        if (account.type == ACCOUNT_TYPE.LoanCreditAccount || account.type == ACCOUNT_TYPE.LoanSavingAccount)
+        if (account instanceof Loanable)
             ((Loanable) account).payLoan(num);
         return account;
     }
 
     public Account setCeiling(long id, double num) throws ATMException {
         Account account = getAccountById(id);
-        if (account.type == ACCOUNT_TYPE.CreditAccount || account.type == ACCOUNT_TYPE.LoanCreditAccount) {
+        if (account instanceof CreditAccount) {
             ((CreditAccount) account).setCeiling(num);
 //            System.out.println("fuck");
         }
@@ -165,7 +159,7 @@ public class Bank {
     public double allCeiling() {
         double sumCeiling = 0.0;
         for (Account a : accounts) {
-            if (a.type == ACCOUNT_TYPE.CreditAccount || a.type == ACCOUNT_TYPE.LoanCreditAccount)
+            if (a instanceof CreditAccount)
                 sumCeiling += ((CreditAccount) a).getCeiling();
         }
         return sumCeiling;
@@ -174,25 +168,12 @@ public class Bank {
     public double allLoan() {
         double sumLoan = 0.0;
         for (Account a : accounts) {
-            if (a.type == ACCOUNT_TYPE.LoanCreditAccount || a.type == ACCOUNT_TYPE.LoanSavingAccount)
+            if (a instanceof Loanable)
                 sumLoan += ((Loanable) a).getLoan();
 
         }
         return sumLoan;
     }
 
-    public void save() {
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("id.ser"));
-            out.writeObject(accounts);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void load() {
-
-    }
 
 }
